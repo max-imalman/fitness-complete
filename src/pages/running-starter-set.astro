@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 const products = [
   {
     name: 'Running Shoes',
-    why: `This is the single most important purchase you'll make as a beginner runner. The wrong shoe causes injuries — shin splints, knee pain, plantar fasciitis — that end runs before habits form. Get fitted at a local running specialty store if you can (they'll watch you walk and recommend based on your gait). If you're ordering online, at least know whether you overpronate.`,
+    why: `This is the single most important purchase you'll make as a beginner runner. The wrong shoe causes injuries like shin splints, knee pain, and plantar fasciitis that end runs before habits form. Get fitted at a local running specialty store if you can (they'll watch you walk and recommend based on your gait). If you're ordering online, at least know whether you overpronate.`,
     options: [
       { tier: 'Budget', name: 'ASICS Gel-Contend 8', price: '$55–70', bestFor: 'Reliable cushion, neutral, great entry price', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Brooks Ghost 16', price: '$130–140', bestFor: 'Best all-rounder for most beginners, smooth ride', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
@@ -13,7 +13,7 @@ const products = [
   },
   {
     name: 'Running Socks',
-    why: `Cotton socks cause blisters. This is not a preference — it's physics. Cotton holds moisture against your skin, which creates friction, which creates blisters. Moisture-wicking synthetic or merino wool socks fix this entirely. Most beginners learn this the hard way after their second run.`,
+    why: `Cotton socks cause blisters. This is not a preference. It is physics. Cotton holds moisture against your skin, which creates friction, which creates blisters. Moisture-wicking synthetic or merino wool socks fix this entirely. Most beginners learn this the hard way after their second run.`,
     options: [
       { tier: 'Budget', name: 'Balega Hidden Comfort No-Show', price: '$14–18', bestFor: 'Best value running sock, cushioned heel and toe', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Darn Tough Run No Show Tab', price: '$22–26', bestFor: 'Merino wool, lifetime warranty, extremely durable', link: '#', retailer: 'Buy at REI →' },
@@ -22,7 +22,7 @@ const products = [
   },
   {
     name: 'Running Belt / Hydration',
-    why: `You need somewhere to put your phone, keys, and cards that isn't your hand. Holding your phone changes your arm swing and throws off your form. A running belt solves this cleanly — get one that fits your phone model snugly and doesn't bounce. For runs over 45 minutes, add a handheld water bottle or upgrade to a vest.`,
+    why: `You need somewhere to put your phone, keys, and cards that isn't your hand. Holding your phone changes your arm swing and throws off your form. A running belt solves this cleanly. Get one that fits your phone model snugly and doesn't bounce. For runs over 45 minutes, add a handheld water bottle or upgrade to a vest.`,
     options: [
       { tier: 'Budget', name: 'FlipBelt Classic', price: '$28–35', bestFor: 'Minimalist tube belt, no bounce, holds most phones', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Nathan SpeedShot Plus Handheld', price: '$30–38', bestFor: 'Adds hydration for longer runs, hands-free grip', link: '#', retailer: 'Buy at REI →' },
@@ -31,7 +31,7 @@ const products = [
   },
   {
     name: 'Moisture-Wicking Shirt',
-    why: `Cotton shirts become heavy, cold, and chafe-inducing once they're wet — which happens within ten minutes of running. Synthetic fabrics move sweat away from your skin and dry fast. This doesn't need to be expensive: a $25 tech tee does everything a $90 one does for a beginner. Buy at least two so you're not doing laundry before every run.`,
+    why: `Cotton shirts become heavy, cold, and chafe-inducing once they're wet, which happens within ten minutes of running. Synthetic fabrics move sweat away from your skin and dry fast. This doesn't need to be expensive: a $25 tech tee does everything a $90 one does for a beginner. Buy at least two so you're not doing laundry before every run.`,
     options: [
       { tier: 'Budget', name: "Amazon Essentials Men's Tech Stretch Tee", price: '$14–18', bestFor: 'Functional, cheap, buy three and move on', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Nike Dri-FIT Short Sleeve', price: '$30–40', bestFor: 'Great fit, wide size range, reliable wicking', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
@@ -48,8 +48,8 @@ const tierColors: Record<string, string> = {
 ---
 
 <Layout
-  title="Running Starter Kit — fitness-complete.com"
-  description="The right shoes are 90% of it. Here's everything a beginner runner actually needs — researched from Reddit and real reviews."
+  title="Running Starter Kit | fitness-complete.com"
+  description="The right shoes are 90% of it. Here's everything a beginner runner actually needs, researched from Reddit and real reviews."
 >
 
   <!-- Nav -->
@@ -96,7 +96,7 @@ const tierColors: Record<string, string> = {
       <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
         <h2 class="font-bold text-gray-900 mb-2">How these picks were made</h2>
         <p class="text-sm text-gray-500 leading-relaxed max-w-3xl">
-          We pulled from r/running, r/beginnerfitness, and r/C25K to find what beginning runners actually buy and stick with — and what gets returned after two runs. Every pick was cross-referenced with Amazon reviews, specifically filtering for long-term durability and beginner feedback. Commission rate played no role.
+          We pulled from r/running, r/beginnerfitness, and r/C25K to find what beginning runners actually buy and stick with, and what gets returned after two runs. Every pick was cross-referenced with Amazon reviews, specifically filtering for long-term durability and beginner feedback. Commission rate played no role.
         </p>
       </div>
     </section>
@@ -179,7 +179,7 @@ const tierColors: Record<string, string> = {
         <div>
           <h2 class="text-lg font-bold text-gray-900 mb-1">Gift this kit</h2>
           <p class="text-gray-600 text-sm sm:text-base max-w-2xl">
-            Know someone who just signed up for a 5K or started the Couch to 5K program? Running socks and a FlipBelt make a surprisingly thoughtful gift — it shows you know what they actually need on a run. Pair with the Brooks Ghost shoes if you know their size and you've covered everything.
+            Know someone who just signed up for a 5K or started the Couch to 5K program? Running socks and a FlipBelt make a surprisingly thoughtful gift. It shows you know what they actually need on a run. Pair with the Brooks Ghost shoes if you know their size and you've covered everything.
           </p>
           <a href="/gifts" class="inline-block mt-3 text-sm font-semibold text-amber-700 hover:text-amber-900 transition-colors">
             See the full gift guide →

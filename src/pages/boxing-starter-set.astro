@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 const products = [
   {
     name: 'Boxing Gloves',
-    why: `Your gloves protect your hands and your sparring partner's face — both matter. The wrong gloves cause wrist injuries and joint pain that sideline beginners within weeks. Bag gloves and sparring gloves are different products; if you're only buying one pair, get a 12oz or 14oz all-purpose glove. Weight matters: heavier gloves (16oz) are required for most sparring scenarios.`,
+    why: `Your gloves protect your hands and your sparring partner's face. Both matter. The wrong gloves cause wrist injuries and joint pain that sideline beginners within weeks. Bag gloves and sparring gloves are different products; if you're only buying one pair, get a 12oz or 14oz all-purpose glove. Weight matters: heavier gloves (16oz) are required for most sparring scenarios.`,
     options: [
       { tier: 'Budget', name: 'Everlast Pro Style Training Gloves', price: '$30–40', bestFor: 'Reliable beginner glove, works for bag and pads', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
       { tier: 'Mid-Range', name: 'Hayabusa T3 Boxing Gloves', price: '$100–120', bestFor: 'Excellent wrist support, durable leather, big step up', link: '#', retailer: 'Buy on Amazon →' },
@@ -13,7 +13,7 @@ const products = [
   },
   {
     name: 'Hand Wraps',
-    why: `Gloves alone are not enough. Hand wraps stabilize your wrist, compress your knuckles, and protect your thumb joint — the parts of your hand that absorb impact before the glove padding does. Wear them every single session. 180" wraps are the right length for most adults; anything shorter leaves your wrist unsupported.`,
+    why: `Gloves alone are not enough. Hand wraps stabilize your wrist, compress your knuckles, and protect your thumb joint. These are the parts of your hand that absorb impact before the glove padding does. Wear them every single session. 180" wraps are the right length for most adults; anything shorter leaves your wrist unsupported.`,
     options: [
       { tier: 'Budget', name: 'Everlast 120" Cotton Hand Wraps', price: '$8–12', bestFor: 'Gets the job done, machine washable, easy to find', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
       { tier: 'Mid-Range', name: 'Title Boxing Mexican Style Hand Wraps', price: '$14–18', bestFor: '180" stretch cotton, superior compression and wrist coverage', link: '#', retailer: 'Buy at Title Boxing →' },
@@ -22,7 +22,7 @@ const products = [
   },
   {
     name: 'Mouthguard',
-    why: `Non-negotiable for any sparring. A good idea even for bag work — you clench your jaw harder than you think on heavy shots, and a mouthguard prevents tooth grinding and jaw stress. Don't use the $5 boil-and-bite from a convenience store. Fit matters. A guard that fits poorly won't stay in and gives you false confidence.`,
+    why: `Non-negotiable for any sparring. It is a good idea even for bag work. You clench your jaw harder than you think on heavy shots, and a mouthguard prevents tooth grinding and jaw stress. Don't use the $5 boil-and-bite from a convenience store. Fit matters. A guard that fits poorly won't stay in and gives you false confidence.`,
     options: [
       { tier: 'Budget', name: 'Shock Doctor Gel Max Mouthguard', price: '$18–25', bestFor: 'Best boil-and-bite on the market, tight custom fit', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
       { tier: 'Mid-Range', name: 'SISU Aero 1.6mm Mouthguard', price: '$28–35', bestFor: 'Thin profile, can talk and drink with it in', link: '#', retailer: 'Buy on Amazon →' },
@@ -31,7 +31,7 @@ const products = [
   },
   {
     name: 'Jump Rope',
-    why: `Jump rope is the standard boxing conditioning tool for a reason: it builds footwork, coordination, and cardiovascular endurance simultaneously. Ten minutes of jump rope is harder than it looks. Beginners should start with a basic speed rope — the weighted "fitness" jump ropes are a different training tool and not what boxing coaches use.`,
+    why: `Jump rope is the standard boxing conditioning tool for a reason: it builds footwork, coordination, and cardiovascular endurance simultaneously. Ten minutes of jump rope is harder than it looks. Beginners should start with a basic speed rope. The weighted fitness jump ropes are a different training tool and not what boxing coaches use.`,
     options: [
       { tier: 'Budget', name: 'XYLsports Jump Rope', price: '$8–12', bestFor: 'Lightweight speed rope, adjustable, fine to learn on', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Rx Smart Gear Jump Rope', price: '$35–50', bestFor: 'Bearing handles, fast wire cable, used by serious athletes', link: '#', retailer: 'Buy at Rx Smart Gear →' },
@@ -40,7 +40,7 @@ const products = [
   },
   {
     name: 'Heavy Bag',
-    why: `If you're training at home, a bag changes everything. Shadowboxing is useful but hitting something real teaches you about power transfer, distance, and proper form in a way nothing else does. A 70lb bag is right for most adults — heavy enough to not swing wildly on every punch, light enough to install without a structural engineer. Make sure your ceiling can handle the mount.`,
+    why: `If you're training at home, a bag changes everything. Shadowboxing is useful but hitting something real teaches you about power transfer, distance, and proper form in a way nothing else does. A 70lb bag is right for most adults. It is heavy enough to not swing wildly on every punch and light enough to install without a structural engineer. Make sure your ceiling can handle the mount.`,
     options: [
       { tier: 'Budget', name: 'Everlast 70lb Heavy Bag Kit', price: '$80–110', bestFor: 'Includes gloves and wraps, good starter combo', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
       { tier: 'Mid-Range', name: 'Century Wavemaster Freestanding Bag', price: '$180–220', bestFor: 'No ceiling mount needed, base fills with sand or water', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
@@ -57,8 +57,8 @@ const tierColors: Record<string, string> = {
 ---
 
 <Layout
-  title="Boxing Starter Kit — fitness-complete.com"
-  description="Protect your hands first. Everything else is secondary. The exact gear a beginner boxer needs — researched from real fighters and real reviews."
+  title="Boxing Starter Kit | fitness-complete.com"
+  description="Protect your hands first. Everything else is secondary. The exact gear a beginner boxer needs, researched from real fighters and real reviews."
 >
 
   <!-- Nav -->
@@ -105,7 +105,7 @@ const tierColors: Record<string, string> = {
       <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
         <h2 class="font-bold text-gray-900 mb-2">How these picks were made</h2>
         <p class="text-sm text-gray-500 leading-relaxed max-w-3xl">
-          We went through r/amateur_boxing, r/boxing, and r/martialarts to find what coaches actually recommend to beginners — and what gets flagged as dangerous or wasteful. Every pick was cross-referenced with Amazon reviews, specifically filtering for durability after extended use and fit feedback from real beginners. Commission rate played no role.
+          We went through r/amateur_boxing, r/boxing, and r/martialarts to find what coaches actually recommend to beginners, and what gets flagged as dangerous or wasteful. Every pick was cross-referenced with Amazon reviews, specifically filtering for durability after extended use and fit feedback from real beginners. Commission rate played no role.
         </p>
       </div>
     </section>
