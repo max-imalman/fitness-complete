@@ -1,0 +1,205 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const products = [
+  {
+    name: 'Pilates Mat',
+    why: `A yoga mat won't cut it. Pilates involves sustained spine, hip, and knee contact with the floor — you need at least 6mm of cushioning or you'll be shifting and grimacing instead of focusing on form. A thicker mat also stays put better on studio floors. This is the one item worth spending up on.`,
+    options: [
+      { tier: 'Budget', name: 'Gaiam Essentials Thick Yoga Mat', price: '$25–35', bestFor: 'Getting started without overspending', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Mid-Range', name: 'Manduka PRO Lite 4.7mm', price: '$78–88', bestFor: 'Most beginners — dense, grippy, lasts years', link: '#', retailer: 'Buy at REI →' },
+      { tier: 'Premium', name: 'Lululemon The Mat 5mm', price: '$98–118', bestFor: 'Best grip and cushion, looks great in studio', link: '#', retailer: 'Buy at Lululemon →' },
+    ],
+  },
+  {
+    name: 'Grip Socks',
+    why: `Most studios require them — you won't be let in without them. The grippy rubber dots on the sole prevent slipping on reformer platforms and mats, which matters a lot when you're in a wide squat at full spring tension. Don't use regular socks or bare feet as a workaround.`,
+    options: [
+      { tier: 'Budget', name: 'Tavi Noir Savvy Sock', price: '$12–16', bestFor: 'Meets studio requirements without the price tag', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Mid-Range', name: 'ToeSox Full Toe Crew', price: '$18–24', bestFor: 'Individual toe design improves reformer feedback', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Premium', name: 'Alo Yoga Warrior Sock', price: '$28–34', bestFor: 'Studio-quality look, excellent grip, durable', link: '#', retailer: 'Buy at Alo Yoga →' },
+    ],
+  },
+  {
+    name: 'Resistance Bands',
+    why: `Mat Pilates classes use resistance bands constantly — for arm series, leg work, and assisted stretching. Buying a single band is a mistake; get a set with multiple resistance levels so you can match the band to the exercise and your strength. Fabric loops are easier to work with than latex tubes for hip work.`,
+    options: [
+      { tier: 'Budget', name: 'Fit Simplify Resistance Loop Bands', price: '$10–14', bestFor: '5-band set, covers every resistance level', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Mid-Range', name: 'Theraband Professional Loops', price: '$18–25', bestFor: 'Physical-therapy grade, color-coded resistance', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Premium', name: 'Perform Better Mini Bands', price: '$28–35', bestFor: 'Durable fabric, won\'t roll or snap, class staple', link: '#', retailer: 'Buy at Perform Better →' },
+    ],
+  },
+  {
+    name: 'Water Bottle',
+    why: `Pilates is lower-intensity than a HIIT class but you still sweat, and staying hydrated keeps your concentration sharp. You need a bottle that's leakproof when it inevitably gets knocked over, easy to open one-handed between exercises, and large enough to last a 60-minute class without a refill.`,
+    options: [
+      { tier: 'Budget', name: 'Nalgene Wide Mouth 32oz', price: '$10–15', bestFor: 'Indestructible, simple, no frills', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Mid-Range', name: 'Hydro Flask 32oz Wide Mouth', price: '$40–50', bestFor: 'Keeps water cold, great leakproof lid', link: '#', retailer: 'Buy at REI →' },
+      { tier: 'Premium', name: "S'well 17oz Bottle", price: '$35–45', bestFor: 'Slim enough for a reformer cupholder, beautiful finish', link: '#', retailer: 'Buy on Amazon →' },
+    ],
+  },
+  {
+    name: 'Grip Gloves',
+    why: `Optional for mat classes, but useful for reformer work where your hands are on smooth bars for extended holds. They prevent the callusing that comes with repetitive bar contact and give you more confidence holding positions. If your studio does a lot of arm work, you'll be glad you have them.`,
+    options: [
+      { tier: 'Budget', name: 'Trideer Half Finger Gloves', price: '$12–16', bestFor: 'Basic palm protection, fits most hand sizes', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Mid-Range', name: 'Harbinger Pro Wrist Wrap Gloves', price: '$30–40', bestFor: 'Adds wrist support for reformer bar holds', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
+      { tier: 'Premium', name: 'Lululemon Fitness Gloves', price: '$38–48', bestFor: 'Clean design, great grip, won\'t look out of place in class', link: '#', retailer: 'Buy at Lululemon →' },
+    ],
+  },
+];
+
+const tierColors: Record<string, string> = {
+  Budget: 'bg-green-50 text-green-700',
+  'Mid-Range': 'bg-blue-50 text-blue-700',
+  Premium: 'bg-purple-50 text-purple-700',
+};
+---
+
+<Layout
+  title="Pilates Starter Kit — fitness-complete.com"
+  description="What you actually need before your first Pilates class. Researched from Reddit and real reviews — no influencer picks."
+>
+
+  <!-- Nav -->
+  <header class="border-b border-gray-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="/" class="text-lg font-bold tracking-tight text-gray-900">fitness-complete</a>
+      <nav class="hidden sm:flex gap-6 text-sm text-gray-500">
+        <a href="/gym-starter-set" class="hover:text-gray-900 transition-colors">Gym</a>
+        <a href="/pilates-starter-set" class="text-gray-900 font-semibold transition-colors">Pilates</a>
+        <a href="/running-starter-set" class="hover:text-gray-900 transition-colors">Running</a>
+        <a href="/home-gym-starter-set" class="hover:text-gray-900 transition-colors">Home Gym</a>
+        <a href="/boxing-starter-set" class="hover:text-gray-900 transition-colors">Boxing</a>
+        <a href="/gifts" class="hover:text-gray-900 transition-colors font-medium text-gray-700">🎁 Gifts</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 pt-16 pb-12">
+      <a href="/" class="inline-block text-sm text-gray-400 hover:text-gray-600 transition-colors mb-6">← All starter kits</a>
+      <div class="bg-rose-100 h-48 sm:h-64 rounded-2xl w-full flex items-center justify-center mb-8">
+        <span class="text-rose-400 text-sm font-semibold">Pilates — image placeholder</span>
+      </div>
+      <p class="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-3">Pilates</p>
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight mb-5">
+        Pilates Starter Kit
+      </h1>
+      <p class="text-lg sm:text-xl text-gray-500 max-w-2xl leading-relaxed">
+        What you actually need before your first class — and what to skip.
+      </p>
+    </section>
+
+    <!-- Methodology intro -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 pb-12">
+      <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+        <h2 class="font-bold text-gray-900 mb-2">How these picks were made</h2>
+        <p class="text-sm text-gray-500 leading-relaxed max-w-3xl">
+          We combed r/pilates, r/xxfitness, and r/beginnerfitness to find what real beginners actually used and recommended — and what they wasted money on. We cross-referenced with Amazon reviews, focusing on the 3-star range for honest feedback on quality and durability. Commission rate was never a factor.
+        </p>
+      </div>
+    </section>
+
+    <!-- Product sections -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 pb-16 space-y-16">
+
+      {products.map((product, i) => (
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="bg-gray-900 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">
+              {i + 1}
+            </span>
+            <h2 class="text-2xl font-bold text-gray-900">{product.name}</h2>
+          </div>
+
+          <p class="text-gray-600 leading-relaxed mb-6 max-w-3xl">{product.why}</p>
+
+          <!-- Comparison table — desktop -->
+          <div class="hidden sm:block overflow-hidden rounded-xl border border-gray-100">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-gray-50 border-b border-gray-100">
+                  <th class="text-left px-5 py-3 font-semibold text-gray-500 w-24">Tier</th>
+                  <th class="text-left px-5 py-3 font-semibold text-gray-500">Product</th>
+                  <th class="text-left px-5 py-3 font-semibold text-gray-500 w-32">Price</th>
+                  <th class="text-left px-5 py-3 font-semibold text-gray-500">Best For</th>
+                  <th class="text-left px-5 py-3 font-semibold text-gray-500 w-24">Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                {product.options.map((opt, j) => (
+                  <tr class={j < product.options.length - 1 ? 'border-b border-gray-100' : ''}>
+                    <td class="px-5 py-4">
+                      <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full ${tierColors[opt.tier]}`}>
+                        {opt.tier}
+                      </span>
+                    </td>
+                    <td class="px-5 py-4 font-medium text-gray-900">{opt.name}</td>
+                    <td class="px-5 py-4 text-gray-500">{opt.price}</td>
+                    <td class="px-5 py-4 text-gray-500">{opt.bestFor}</td>
+                    <td class="px-5 py-4">
+                      <a href={opt.link} class="text-blue-600 hover:text-blue-800 font-semibold transition-colors">
+                        {opt.retailer}
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Comparison cards — mobile -->
+          <div class="sm:hidden space-y-3">
+            {product.options.map((opt) => (
+              <div class="rounded-xl border border-gray-100 p-4">
+                <div class="flex items-center justify-between mb-2">
+                  <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full ${tierColors[opt.tier]}`}>
+                    {opt.tier}
+                  </span>
+                  <span class="text-sm text-gray-500 font-medium">{opt.price}</span>
+                </div>
+                <p class="font-semibold text-gray-900 text-sm mb-1">{opt.name}</p>
+                <p class="text-xs text-gray-500 mb-3">{opt.bestFor}</p>
+                <a href={opt.link} class="inline-block text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">
+                  {opt.retailer}
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+
+    </section>
+
+    <!-- Gift callout -->
+    <section class="bg-amber-50 border-t border-amber-100">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+        <div class="w-1 self-stretch bg-amber-300 rounded-full flex-shrink-0 hidden sm:block"></div>
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 mb-1">Gift this kit</h2>
+          <p class="text-gray-600 text-sm sm:text-base max-w-2xl">
+            Know someone who just signed up for Pilates? A mat and grip socks alone makes a thoughtful, practical gift — and shows you actually know what they need. Add a resistance band set and you've covered everything for their first month of classes.
+          </p>
+          <a href="/gifts" class="inline-block mt-3 text-sm font-semibold text-amber-700 hover:text-amber-900 transition-colors">
+            See the full gift guide →
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <p class="text-sm font-bold text-gray-900">fitness-complete.com</p>
+      <p class="text-xs text-gray-400 max-w-md text-left sm:text-right">
+        This site contains affiliate links. We may earn a commission at no extra cost to you.
+      </p>
+    </div>
+  </footer>
+
+</Layout>

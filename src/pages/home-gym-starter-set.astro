@@ -1,0 +1,205 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const products = [
+  {
+    name: 'Adjustable Dumbbells',
+    why: `This is the single best investment for a home gym. A good set of adjustable dumbbells replaces an entire rack and takes up about as much space as a shoebox. Most beginners need 5–50lbs to cover everything from lateral raises to goblet squats. Don't cheap out here — flimsy adjustable dumbbells slip and wobble mid-set, which is both annoying and dangerous.`,
+    options: [
+      { tier: 'Budget', name: 'Amazon Basics Adjustable Dumbbell', price: '$40–60', bestFor: 'Single dumbbell, basic adjustment, tight budget', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Mid-Range', name: 'Bowflex SelectTech 552', price: '$280–320', bestFor: 'Best all-rounder, 5–52.5lbs, fast dial adjustment', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
+      { tier: 'Premium', name: 'POWERBLOCK Elite EXP', price: '$350–430', bestFor: 'More compact than Bowflex, expandable to 90lbs', link: '#', retailer: 'Buy at POWERBLOCK →' },
+    ],
+  },
+  {
+    name: 'Resistance Bands',
+    why: `Bands fill the gaps between dumbbell weights, make every exercise harder at the top of the movement where dumbbells feel light, and are essential for warmup work and banded exercises. A set of loop bands plus one long resistance band covers nearly everything. They're also the cheapest thing on this list and the most overlooked.`,
+    options: [
+      { tier: 'Budget', name: 'Fit Simplify Resistance Loop Bands', price: '$10–14', bestFor: 'Five bands covering light to heavy, hard to beat', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Mid-Range', name: 'Bodylastics Stackable Tube Bands', price: '$30–45', bestFor: 'Anchor system for door, handles included, versatile', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Premium', name: 'SPRI Braided Xertube', price: '$18–28', bestFor: 'Braided cord won\'t snap, longer lasting than latex', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
+    ],
+  },
+  {
+    name: 'Pull-Up Bar',
+    why: `A doorframe pull-up bar unlocks back and bicep training without machines, and it costs $30. It also works for hanging core exercises, inverted rows with a table, and assisted stretching. Get one that fits over the door frame rather than screwing into the wall — it installs in seconds and moves with you.`,
+    options: [
+      { tier: 'Budget', name: 'Iron Gym Total Upper Body Workout Bar', price: '$28–35', bestFor: 'Classic doorframe design, holds up to 300lbs', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Mid-Range', name: 'Perfect Fitness Multi-Gym Doorframe Bar', price: '$35–45', bestFor: 'Better grip positions, sturdier frame, no screws', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Premium', name: 'Rogue Monster Lite Pull-Up Bar', price: '$195–250', bestFor: 'Wall-mounted, permanent, serious training capacity', link: '#', retailer: 'Buy at Rogue Fitness →' },
+    ],
+  },
+  {
+    name: 'Exercise Mat',
+    why: `Your floor is not a gym mat. Hard floors cause wrist, knee, and spine discomfort during floor exercises, and gym mats prevent slipping on hardwood or tile. You also need something to protect your floor from dumbbell drops (because it will happen). A 6mm mat handles most floor work; go thicker if you have joint issues.`,
+    options: [
+      { tier: 'Budget', name: 'BalanceFrom GoYoga All-Purpose Mat', price: '$18–25', bestFor: 'Gets the job done, good thickness for the price', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Mid-Range', name: 'Gaiam Premium 6mm Yoga Mat', price: '$35–45', bestFor: 'Non-slip texture, good cushion, wide enough for most', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Premium', name: 'Manduka PRO 6mm Yoga Mat', price: '$120–140', bestFor: 'Dense, no-squish cushion, lifetime guarantee', link: '#', retailer: 'Buy at REI →' },
+    ],
+  },
+  {
+    name: 'Foam Roller',
+    why: `Most beginners skip this and regret it around week four when their legs feel like concrete. Foam rolling isn't a cure-all but it significantly reduces DOMS (delayed onset muscle soreness), improves mobility, and keeps you training consistently. Use it for 5–10 minutes after every session on your quads, hamstrings, and upper back.`,
+    options: [
+      { tier: 'Budget', name: 'AmazonBasics High-Density Foam Roller', price: '$18–25', bestFor: 'Firm, durable, does exactly what a foam roller should', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Mid-Range', name: 'TriggerPoint GRID Foam Roller', price: '$35–45', bestFor: 'Multi-density surface, better myofascial release', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
+      { tier: 'Premium', name: 'Hyperice Vyper 3 Vibrating Roller', price: '$180–220', bestFor: 'Vibration speeds recovery, genuinely different experience', link: '#', retailer: 'Buy at Hyperice →' },
+    ],
+  },
+];
+
+const tierColors: Record<string, string> = {
+  Budget: 'bg-green-50 text-green-700',
+  'Mid-Range': 'bg-blue-50 text-blue-700',
+  Premium: 'bg-purple-50 text-purple-700',
+};
+---
+
+<Layout
+  title="Home Gym Starter Kit — fitness-complete.com"
+  description="A functional home gym setup that fits in a corner. No treadmill required — researched from Reddit and real reviews."
+>
+
+  <!-- Nav -->
+  <header class="border-b border-gray-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="/" class="text-lg font-bold tracking-tight text-gray-900">fitness-complete</a>
+      <nav class="hidden sm:flex gap-6 text-sm text-gray-500">
+        <a href="/gym-starter-set" class="hover:text-gray-900 transition-colors">Gym</a>
+        <a href="/pilates-starter-set" class="hover:text-gray-900 transition-colors">Pilates</a>
+        <a href="/running-starter-set" class="hover:text-gray-900 transition-colors">Running</a>
+        <a href="/home-gym-starter-set" class="text-gray-900 font-semibold transition-colors">Home Gym</a>
+        <a href="/boxing-starter-set" class="hover:text-gray-900 transition-colors">Boxing</a>
+        <a href="/gifts" class="hover:text-gray-900 transition-colors font-medium text-gray-700">🎁 Gifts</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 pt-16 pb-12">
+      <a href="/" class="inline-block text-sm text-gray-400 hover:text-gray-600 transition-colors mb-6">← All starter kits</a>
+      <div class="bg-yellow-100 h-48 sm:h-64 rounded-2xl w-full flex items-center justify-center mb-8">
+        <span class="text-yellow-500 text-sm font-semibold">Home Gym — image placeholder</span>
+      </div>
+      <p class="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-3">Home Gym</p>
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight mb-5">
+        Home Gym Starter Kit
+      </h1>
+      <p class="text-lg sm:text-xl text-gray-500 max-w-2xl leading-relaxed">
+        A functional setup that fits in a corner. No treadmill required.
+      </p>
+    </section>
+
+    <!-- Methodology intro -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 pb-12">
+      <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+        <h2 class="font-bold text-gray-900 mb-2">How these picks were made</h2>
+        <p class="text-sm text-gray-500 leading-relaxed max-w-3xl">
+          We pulled from r/homegym, r/fitness, and r/beginnerfitness to find what beginners actually buy when setting up at home — and what collects dust after a month. Amazon reviews were cross-referenced for long-term durability, noise complaints, and space footprint. Commission rate played no role.
+        </p>
+      </div>
+    </section>
+
+    <!-- Product sections -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 pb-16 space-y-16">
+
+      {products.map((product, i) => (
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="bg-gray-900 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">
+              {i + 1}
+            </span>
+            <h2 class="text-2xl font-bold text-gray-900">{product.name}</h2>
+          </div>
+
+          <p class="text-gray-600 leading-relaxed mb-6 max-w-3xl">{product.why}</p>
+
+          <!-- Comparison table — desktop -->
+          <div class="hidden sm:block overflow-hidden rounded-xl border border-gray-100">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-gray-50 border-b border-gray-100">
+                  <th class="text-left px-5 py-3 font-semibold text-gray-500 w-24">Tier</th>
+                  <th class="text-left px-5 py-3 font-semibold text-gray-500">Product</th>
+                  <th class="text-left px-5 py-3 font-semibold text-gray-500 w-32">Price</th>
+                  <th class="text-left px-5 py-3 font-semibold text-gray-500">Best For</th>
+                  <th class="text-left px-5 py-3 font-semibold text-gray-500 w-24">Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                {product.options.map((opt, j) => (
+                  <tr class={j < product.options.length - 1 ? 'border-b border-gray-100' : ''}>
+                    <td class="px-5 py-4">
+                      <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full ${tierColors[opt.tier]}`}>
+                        {opt.tier}
+                      </span>
+                    </td>
+                    <td class="px-5 py-4 font-medium text-gray-900">{opt.name}</td>
+                    <td class="px-5 py-4 text-gray-500">{opt.price}</td>
+                    <td class="px-5 py-4 text-gray-500">{opt.bestFor}</td>
+                    <td class="px-5 py-4">
+                      <a href={opt.link} class="text-blue-600 hover:text-blue-800 font-semibold transition-colors">
+                        {opt.retailer}
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Comparison cards — mobile -->
+          <div class="sm:hidden space-y-3">
+            {product.options.map((opt) => (
+              <div class="rounded-xl border border-gray-100 p-4">
+                <div class="flex items-center justify-between mb-2">
+                  <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full ${tierColors[opt.tier]}`}>
+                    {opt.tier}
+                  </span>
+                  <span class="text-sm text-gray-500 font-medium">{opt.price}</span>
+                </div>
+                <p class="font-semibold text-gray-900 text-sm mb-1">{opt.name}</p>
+                <p class="text-xs text-gray-500 mb-3">{opt.bestFor}</p>
+                <a href={opt.link} class="inline-block text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">
+                  {opt.retailer}
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+
+    </section>
+
+    <!-- Gift callout -->
+    <section class="bg-amber-50 border-t border-amber-100">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+        <div class="w-1 self-stretch bg-amber-300 rounded-full flex-shrink-0 hidden sm:block"></div>
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 mb-1">Gift this kit</h2>
+          <p class="text-gray-600 text-sm sm:text-base max-w-2xl">
+            Know someone who's been saying they want to work out at home? A resistance band set and a foam roller is a practical, thoughtful gift under $60 that actually gets used. If budget allows, the Bowflex SelectTech 552s are the kind of gift that gets mentioned every time they work out.
+          </p>
+          <a href="/gifts" class="inline-block mt-3 text-sm font-semibold text-amber-700 hover:text-amber-900 transition-colors">
+            See the full gift guide →
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <p class="text-sm font-bold text-gray-900">fitness-complete.com</p>
+      <p class="text-xs text-gray-400 max-w-md text-left sm:text-right">
+        This site contains affiliate links. We may earn a commission at no extra cost to you.
+      </p>
+    </div>
+  </footer>
+
+</Layout>

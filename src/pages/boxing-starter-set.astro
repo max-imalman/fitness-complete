@@ -1,0 +1,205 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const products = [
+  {
+    name: 'Boxing Gloves',
+    why: `Your gloves protect your hands and your sparring partner's face — both matter. The wrong gloves cause wrist injuries and joint pain that sideline beginners within weeks. Bag gloves and sparring gloves are different products; if you're only buying one pair, get a 12oz or 14oz all-purpose glove. Weight matters: heavier gloves (16oz) are required for most sparring scenarios.`,
+    options: [
+      { tier: 'Budget', name: 'Everlast Pro Style Training Gloves', price: '$30–40', bestFor: 'Reliable beginner glove, works for bag and pads', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
+      { tier: 'Mid-Range', name: 'Hayabusa T3 Boxing Gloves', price: '$100–120', bestFor: 'Excellent wrist support, durable leather, big step up', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Premium', name: 'Cleto Reyes Hook and Loop Gloves', price: '$180–220', bestFor: 'Mexican-made leather, gym standard for serious training', link: '#', retailer: 'Buy at Title Boxing →' },
+    ],
+  },
+  {
+    name: 'Hand Wraps',
+    why: `Gloves alone are not enough. Hand wraps stabilize your wrist, compress your knuckles, and protect your thumb joint — the parts of your hand that absorb impact before the glove padding does. Wear them every single session. 180" wraps are the right length for most adults; anything shorter leaves your wrist unsupported.`,
+    options: [
+      { tier: 'Budget', name: 'Everlast 120" Cotton Hand Wraps', price: '$8–12', bestFor: 'Gets the job done, machine washable, easy to find', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
+      { tier: 'Mid-Range', name: 'Title Boxing Mexican Style Hand Wraps', price: '$14–18', bestFor: '180" stretch cotton, superior compression and wrist coverage', link: '#', retailer: 'Buy at Title Boxing →' },
+      { tier: 'Premium', name: 'Venum Kontact Gel Wraps', price: '$28–35', bestFor: 'Slip-on design with gel knuckle pad, fastest to put on before class', link: '#', retailer: 'Buy on Amazon →' },
+    ],
+  },
+  {
+    name: 'Mouthguard',
+    why: `Non-negotiable for any sparring. A good idea even for bag work — you clench your jaw harder than you think on heavy shots, and a mouthguard prevents tooth grinding and jaw stress. Don't use the $5 boil-and-bite from a convenience store. Fit matters. A guard that fits poorly won't stay in and gives you false confidence.`,
+    options: [
+      { tier: 'Budget', name: 'Shock Doctor Gel Max Mouthguard', price: '$18–25', bestFor: 'Best boil-and-bite on the market, tight custom fit', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
+      { tier: 'Mid-Range', name: 'SISU Aero 1.6mm Mouthguard', price: '$28–35', bestFor: 'Thin profile, can talk and drink with it in', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Premium', name: 'SISU Max 2.4mm Mouthguard', price: '$35–45', bestFor: 'Maximum protection, same slim profile as Aero', link: '#', retailer: 'Buy at SISU →' },
+    ],
+  },
+  {
+    name: 'Jump Rope',
+    why: `Jump rope is the standard boxing conditioning tool for a reason: it builds footwork, coordination, and cardiovascular endurance simultaneously. Ten minutes of jump rope is harder than it looks. Beginners should start with a basic speed rope — the weighted "fitness" jump ropes are a different training tool and not what boxing coaches use.`,
+    options: [
+      { tier: 'Budget', name: 'XYLsports Jump Rope', price: '$8–12', bestFor: 'Lightweight speed rope, adjustable, fine to learn on', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Mid-Range', name: 'Rx Smart Gear Jump Rope', price: '$35–50', bestFor: 'Bearing handles, fast wire cable, used by serious athletes', link: '#', retailer: 'Buy at Rx Smart Gear →' },
+      { tier: 'Premium', name: 'Crossrope Get Lean Set', price: '$98–118', bestFor: 'Interchangeable weighted ropes, app workouts, best system', link: '#', retailer: 'Buy at Crossrope →' },
+    ],
+  },
+  {
+    name: 'Heavy Bag',
+    why: `If you're training at home, a bag changes everything. Shadowboxing is useful but hitting something real teaches you about power transfer, distance, and proper form in a way nothing else does. A 70lb bag is right for most adults — heavy enough to not swing wildly on every punch, light enough to install without a structural engineer. Make sure your ceiling can handle the mount.`,
+    options: [
+      { tier: 'Budget', name: 'Everlast 70lb Heavy Bag Kit', price: '$80–110', bestFor: 'Includes gloves and wraps, good starter combo', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
+      { tier: 'Mid-Range', name: 'Century Wavemaster Freestanding Bag', price: '$180–220', bestFor: 'No ceiling mount needed, base fills with sand or water', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
+      { tier: 'Premium', name: 'Ringside 100lb Powerhide Heavy Bag', price: '$180–240', bestFor: 'Serious weight for serious training, durable leather cover', link: '#', retailer: 'Buy at Ringside →' },
+    ],
+  },
+];
+
+const tierColors: Record<string, string> = {
+  Budget: 'bg-green-50 text-green-700',
+  'Mid-Range': 'bg-blue-50 text-blue-700',
+  Premium: 'bg-purple-50 text-purple-700',
+};
+---
+
+<Layout
+  title="Boxing Starter Kit — fitness-complete.com"
+  description="Protect your hands first. Everything else is secondary. The exact gear a beginner boxer needs — researched from real fighters and real reviews."
+>
+
+  <!-- Nav -->
+  <header class="border-b border-gray-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="/" class="text-lg font-bold tracking-tight text-gray-900">fitness-complete</a>
+      <nav class="hidden sm:flex gap-6 text-sm text-gray-500">
+        <a href="/gym-starter-set" class="hover:text-gray-900 transition-colors">Gym</a>
+        <a href="/pilates-starter-set" class="hover:text-gray-900 transition-colors">Pilates</a>
+        <a href="/running-starter-set" class="hover:text-gray-900 transition-colors">Running</a>
+        <a href="/home-gym-starter-set" class="hover:text-gray-900 transition-colors">Home Gym</a>
+        <a href="/boxing-starter-set" class="text-gray-900 font-semibold transition-colors">Boxing</a>
+        <a href="/gifts" class="hover:text-gray-900 transition-colors font-medium text-gray-700">🎁 Gifts</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 pt-16 pb-12">
+      <a href="/" class="inline-block text-sm text-gray-400 hover:text-gray-600 transition-colors mb-6">← All starter kits</a>
+      <div class="bg-orange-100 h-48 sm:h-64 rounded-2xl w-full flex items-center justify-center mb-8">
+        <span class="text-orange-400 text-sm font-semibold">Boxing — image placeholder</span>
+      </div>
+      <p class="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-3">Boxing</p>
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight mb-5">
+        Boxing Starter Kit
+      </h1>
+      <p class="text-lg sm:text-xl text-gray-500 max-w-2xl leading-relaxed">
+        Protect your hands first. Everything else is secondary.
+      </p>
+    </section>
+
+    <!-- Methodology intro -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 pb-12">
+      <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+        <h2 class="font-bold text-gray-900 mb-2">How these picks were made</h2>
+        <p class="text-sm text-gray-500 leading-relaxed max-w-3xl">
+          We went through r/amateur_boxing, r/boxing, and r/martialarts to find what coaches actually recommend to beginners — and what gets flagged as dangerous or wasteful. Every pick was cross-referenced with Amazon reviews, specifically filtering for durability after extended use and fit feedback from real beginners. Commission rate played no role.
+        </p>
+      </div>
+    </section>
+
+    <!-- Product sections -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 pb-16 space-y-16">
+
+      {products.map((product, i) => (
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="bg-gray-900 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">
+              {i + 1}
+            </span>
+            <h2 class="text-2xl font-bold text-gray-900">{product.name}</h2>
+          </div>
+
+          <p class="text-gray-600 leading-relaxed mb-6 max-w-3xl">{product.why}</p>
+
+          <!-- Comparison table — desktop -->
+          <div class="hidden sm:block overflow-hidden rounded-xl border border-gray-100">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-gray-50 border-b border-gray-100">
+                  <th class="text-left px-5 py-3 font-semibold text-gray-500 w-24">Tier</th>
+                  <th class="text-left px-5 py-3 font-semibold text-gray-500">Product</th>
+                  <th class="text-left px-5 py-3 font-semibold text-gray-500 w-32">Price</th>
+                  <th class="text-left px-5 py-3 font-semibold text-gray-500">Best For</th>
+                  <th class="text-left px-5 py-3 font-semibold text-gray-500 w-24">Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                {product.options.map((opt, j) => (
+                  <tr class={j < product.options.length - 1 ? 'border-b border-gray-100' : ''}>
+                    <td class="px-5 py-4">
+                      <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full ${tierColors[opt.tier]}`}>
+                        {opt.tier}
+                      </span>
+                    </td>
+                    <td class="px-5 py-4 font-medium text-gray-900">{opt.name}</td>
+                    <td class="px-5 py-4 text-gray-500">{opt.price}</td>
+                    <td class="px-5 py-4 text-gray-500">{opt.bestFor}</td>
+                    <td class="px-5 py-4">
+                      <a href={opt.link} class="text-blue-600 hover:text-blue-800 font-semibold transition-colors">
+                        {opt.retailer}
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Comparison cards — mobile -->
+          <div class="sm:hidden space-y-3">
+            {product.options.map((opt) => (
+              <div class="rounded-xl border border-gray-100 p-4">
+                <div class="flex items-center justify-between mb-2">
+                  <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full ${tierColors[opt.tier]}`}>
+                    {opt.tier}
+                  </span>
+                  <span class="text-sm text-gray-500 font-medium">{opt.price}</span>
+                </div>
+                <p class="font-semibold text-gray-900 text-sm mb-1">{opt.name}</p>
+                <p class="text-xs text-gray-500 mb-3">{opt.bestFor}</p>
+                <a href={opt.link} class="inline-block text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">
+                  {opt.retailer}
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+
+    </section>
+
+    <!-- Gift callout -->
+    <section class="bg-amber-50 border-t border-amber-100">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+        <div class="w-1 self-stretch bg-amber-300 rounded-full flex-shrink-0 hidden sm:block"></div>
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 mb-1">Gift this kit</h2>
+          <p class="text-gray-600 text-sm sm:text-base max-w-2xl">
+            Know someone who just joined a boxing gym or wants to start training at home? A pair of Everlast gloves and hand wraps is a complete, under-$50 gift that shows you thought about what they actually need. Add a jump rope and you've covered their first month of conditioning.
+          </p>
+          <a href="/gifts" class="inline-block mt-3 text-sm font-semibold text-amber-700 hover:text-amber-900 transition-colors">
+            See the full gift guide →
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <p class="text-sm font-bold text-gray-900">fitness-complete.com</p>
+      <p class="text-xs text-gray-400 max-w-md text-left sm:text-right">
+        This site contains affiliate links. We may earn a commission at no extra cost to you.
+      </p>
+    </div>
+  </footer>
+
+</Layout>

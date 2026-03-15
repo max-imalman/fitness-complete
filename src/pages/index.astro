@@ -1,11 +1,189 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const sports = [
+  {
+    name: 'Gym',
+    slug: 'gym-starter-set',
+    description: 'Lifting shoes, belt, straps, and a decent program. Everything a beginner needs to not look lost on day one.',
+    color: 'bg-blue-100',
+    accent: 'text-blue-700',
+  },
+  {
+    name: 'Pilates',
+    slug: 'pilates-starter-set',
+    description: 'Mat, grip socks, and resistance bands. The essentials for reformer or mat classes, without overbuying.',
+    color: 'bg-rose-100',
+    accent: 'text-rose-700',
+  },
+  {
+    name: 'Running',
+    slug: 'running-starter-set',
+    description: 'The right shoes are 90% of it. Plus what to wear and carry so your first few miles don\'t suck.',
+    color: 'bg-green-100',
+    accent: 'text-green-700',
+  },
+  {
+    name: 'Home Gym',
+    slug: 'home-gym-starter-set',
+    description: 'Build a functional setup that doesn\'t take over your living room. Prioritized by what you\'ll actually use.',
+    color: 'bg-yellow-100',
+    accent: 'text-yellow-700',
+  },
+  {
+    name: 'Boxing',
+    slug: 'boxing-starter-set',
+    description: 'Gloves, wraps, and a bag — the minimum to start training without hurting your hands or wasting money.',
+    color: 'bg-orange-100',
+    accent: 'text-orange-700',
+  },
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Fitness-Complete — Starter Kits for Every Sport">
+
+  <!-- Nav -->
+  <header class="border-b border-gray-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="/" class="text-lg font-bold tracking-tight text-gray-900">fitness-complete</a>
+      <nav class="hidden sm:flex gap-6 text-sm text-gray-500">
+        <a href="/gym-starter-set" class="hover:text-gray-900 transition-colors">Gym</a>
+        <a href="/pilates-starter-set" class="hover:text-gray-900 transition-colors">Pilates</a>
+        <a href="/running-starter-set" class="hover:text-gray-900 transition-colors">Running</a>
+        <a href="/home-gym-starter-set" class="hover:text-gray-900 transition-colors">Home Gym</a>
+        <a href="/boxing-starter-set" class="hover:text-gray-900 transition-colors">Boxing</a>
+        <a href="/gifts" class="hover:text-gray-900 transition-colors font-medium text-gray-700">🎁 Gifts</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 pt-16 pb-12 text-center">
+      <p class="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-4">Researched. Honest. Beginner-first.</p>
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight mb-6">
+        The Complete Starter Kit<br class="hidden sm:block" /> for Your Sport
+      </h1>
+      <p class="text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
+        We researched what beginners actually need — no fluff, no upsells. Just the right gear to get started.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="#sports" class="inline-block bg-gray-900 text-white text-sm font-semibold px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors">
+          Browse starter kits
+        </a>
+        <a href="/gifts" class="inline-block border border-gray-200 text-gray-700 text-sm font-semibold px-6 py-3 rounded-lg hover:border-gray-400 transition-colors">
+          Shopping for a gift?
+        </a>
+      </div>
+    </section>
+
+    <!-- Gift angle -->
+    <section class="bg-amber-50 border-y border-amber-100">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-12 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+        <div class="text-4xl">🎁</div>
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 mb-1">The perfect gift for someone starting out</h2>
+          <p class="text-gray-600 text-sm sm:text-base max-w-2xl">
+            Got a friend who just signed up for the gym, started Pilates, or wants to try boxing? A starter kit beats a generic gift card. We've put together the exact gear they'll actually need — organized by sport, with budget and premium options.
+          </p>
+          <a href="/gifts" class="inline-block mt-3 text-sm font-semibold text-amber-700 hover:text-amber-900 transition-colors">
+            See gift recommendations →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sport category cards -->
+    <section id="sports" class="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Pick your sport</h2>
+      <p class="text-gray-500 mb-10">Every kit covers the essentials. Nothing more, nothing less.</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {sports.map((sport) => (
+          <a
+            href={`/${sport.slug}`}
+            class="group block rounded-xl border border-gray-100 hover:border-gray-300 hover:shadow-md transition-all duration-200 overflow-hidden"
+          >
+            <!-- Image placeholder -->
+            <div class={`${sport.color} h-36 w-full flex items-center justify-center`}>
+              <span class={`text-sm font-semibold ${sport.accent} opacity-60`}>{sport.name}</span>
+            </div>
+            <div class="p-5">
+              <h3 class="font-bold text-gray-900 text-base mb-1 group-hover:text-gray-600 transition-colors">
+                {sport.name} Starter Kit
+              </h3>
+              <p class="text-sm text-gray-500 leading-relaxed">{sport.description}</p>
+              <span class={`inline-block mt-3 text-xs font-semibold ${sport.accent}`}>
+                See the kit →
+              </span>
+            </div>
+          </a>
+        ))}
+
+        <!-- Gifts card -->
+        <a
+          href="/gifts"
+          class="group block rounded-xl border border-amber-100 bg-amber-50 hover:border-amber-300 hover:shadow-md transition-all duration-200 overflow-hidden"
+        >
+          <div class="bg-amber-100 h-36 w-full flex items-center justify-center">
+            <span class="text-sm font-semibold text-amber-700 opacity-60">Gifts</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-gray-900 text-base mb-1 group-hover:text-gray-600 transition-colors">
+              Gift Ideas
+            </h3>
+            <p class="text-sm text-gray-500 leading-relaxed">Shopping for someone else? Find the right gear by sport and budget.</p>
+            <span class="inline-block mt-3 text-xs font-semibold text-amber-700">
+              See gift picks →
+            </span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- How we pick products -->
+    <section class="bg-gray-50 border-t border-gray-100">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">How we pick products</h2>
+        <p class="text-gray-500 mb-10 max-w-xl">We have a method. Here's what it is.</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+          <div>
+            <div class="text-2xl mb-3">📖</div>
+            <h3 class="font-bold text-gray-900 mb-2">Reddit community research</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">
+              We comb r/fitness, r/xxfitness, r/beginnerfitness, and sport-specific subreddits to find what real beginners say actually helped them — and what they regret buying.
+            </p>
+          </div>
+          <div>
+            <div class="text-2xl mb-3">⭐</div>
+            <h3 class="font-bold text-gray-900 mb-2">Amazon review analysis</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">
+              We look beyond star ratings — specifically at 3-star reviews, long-term durability mentions, and patterns in 1-star complaints. That's where the real signal is.
+            </p>
+          </div>
+          <div>
+            <div class="text-2xl mb-3">🚫</div>
+            <h3 class="font-bold text-gray-900 mb-2">Commission is never the reason</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">
+              We earn affiliate commissions when you buy — but commission rate is never why we recommend something. It's a tiebreaker at most. Our reputation depends on getting this right.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <p class="text-sm font-bold text-gray-900">fitness-complete.com</p>
+      <p class="text-xs text-gray-400 max-w-md text-left sm:text-right">
+        This site contains affiliate links. We may earn a commission at no extra cost to you.
+      </p>
+    </div>
+  </footer>
+
 </Layout>
