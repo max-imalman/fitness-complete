@@ -90,23 +90,36 @@ const canonicalURL = `https://www.fitness-complete.com${Astro.url.pathname}`;
           This site uses cookies for analytics. By continuing you accept our
           <a href="/privacy-policy" class="underline hover:text-white transition-colors">Privacy Policy</a>.
         </p>
-        <button
-          id="cookie-accept"
-          class="flex-shrink-0 bg-white text-gray-900 text-sm font-semibold px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
-        >
-          Accept
-        </button>
+        <div class="flex gap-3 flex-shrink-0">
+          <button
+            id="cookie-decline"
+            class="border border-slate-600 text-slate-300 text-sm font-semibold px-4 py-2 rounded-lg hover:bg-slate-800 transition-colors"
+          >
+            Decline
+          </button>
+          <button
+            id="cookie-accept"
+            class="bg-white text-gray-900 text-sm font-semibold px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+          >
+            Accept
+          </button>
+        </div>
       </div>
     </div>
 
     <script>
       (function () {
-        if (!localStorage.getItem('cookieAccepted')) {
-          document.getElementById('cookie-banner').style.display = 'block';
+        const banner = document.getElementById('cookie-banner');
+        if (!localStorage.getItem('cookieAccepted') && !localStorage.getItem('cookieDeclined')) {
+          banner.style.display = 'block';
         }
         document.getElementById('cookie-accept').addEventListener('click', function () {
           localStorage.setItem('cookieAccepted', 'true');
-          document.getElementById('cookie-banner').style.display = 'none';
+          banner.style.display = 'none';
+        });
+        document.getElementById('cookie-decline').addEventListener('click', function () {
+          localStorage.setItem('cookieDeclined', 'true');
+          banner.style.display = 'none';
         });
       })();
     </script>
