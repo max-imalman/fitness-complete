@@ -6,6 +6,8 @@ const products = [
     name: 'Gym Bag',
     why: `You need somewhere to put your stuff that isn't a plastic grocery bag. A dedicated gym bag keeps your sweaty gear contained, makes you less likely to forget things, and signals to your brain that this is a real habit. Get one with a separate shoe compartment. It matters more than you'd expect.`,
     topPickReason: `The most recommended gym bag on Reddit: water-resistant, holds everything including shoes, and built to survive daily gym commutes without falling apart.`,
+    quote: `I spent years using a grocery bag and finally bought a real gym bag with a shoe compartment. Wish I had done it on day one.`,
+    quoteSource: 'via r/fitness',
     options: [
       { tier: 'Budget', name: 'FocusGear Ultimate Gym Bag 2.0', price: '$35–45', bestFor: 'Best tested budget bag, wet pockets and shoe compartment, CNN Underscored pick', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Under Armour Undeniable 5.0 Duffel', price: '$45–55', bestFor: 'Most recommended on Reddit, water-resistant, holds up for years', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
@@ -16,6 +18,8 @@ const products = [
     name: 'Water Bottle',
     why: `Hydration directly affects how hard you can train and how fast you recover. A gym water bottle needs to be large (at least 32oz), leak-proof in your bag, and easy to drink from with one hand. Don't overthink it, but don't use a flimsy bottle that leaks on your shoes either.`,
     topPickReason: `The Owala FreeSip replaced the Hydro Flask as our mid-range pick because it solves the single biggest gym bottle problem: drinking one-handed between sets without unscrewing a cap.`,
+    quote: `The Owala FreeSip is genuinely the best gym bottle I have ever used. The straw lid means I never have to unscrew anything mid-set.`,
+    quoteSource: 'via r/Fitness',
     options: [
       { tier: 'Budget', name: 'Nalgene Wide Mouth 32oz', price: '$10–15', bestFor: 'No-nonsense, nearly indestructible', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Owala FreeSip 32oz', price: '$35–45', bestFor: 'Current community favorite, dual drinking options, leakproof, dishwasher safe', link: '#', retailer: 'Buy on Amazon →' },
@@ -26,6 +30,8 @@ const products = [
     name: 'Workout Gloves',
     why: `Calluses are inevitable, but tearing your palms on the bar in week two is avoidable. Gloves protect your hands while you build grip strength and callus tolerance. Go thin. Thick padded gloves reduce grip feedback. Most beginners who skip gloves early regret it.`,
     topPickReason: `The built-in wrist wrap adds support that standalone gloves lack, which matters most in your first weeks when your wrists are still adapting to the load.`,
+    quote: `Gloves are underrated for beginners. Your hands tear before your muscles give out, which cuts sessions short.`,
+    quoteSource: 'via r/beginnerfitness',
     options: [
       { tier: 'Budget', name: 'Ihuan Breathable Fingerless Lifting Gloves', price: '$15–20', bestFor: 'Tested best overall gym glove at this price, designed for lifting not work', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Harbinger Pro Wrist Wrap Gloves', price: '$30–40', bestFor: 'Best combo of protection + wrist support', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
@@ -36,6 +42,8 @@ const products = [
     name: 'Shaker Bottle',
     why: `Protein shakes are the easiest way to hit your protein targets without eating a fourth chicken breast. A good shaker blends powder smooth without clumps and doesn't stink after one use. The BlenderBall wire whisk design is the standard. Any shaker without it is a downgrade.`,
     topPickReason: `The dual compartment lets you pre-load your protein and pre-workout separately, so you're not juggling two bottles or mixing at the gym.`,
+    quote: `BlenderBottle Classic is the only answer. Everything else is just noise.`,
+    quoteSource: 'via r/gainit',
     options: [
       { tier: 'Budget', name: 'BlenderBottle Classic 28oz', price: '$10–12', bestFor: 'The reliable standard, hard to beat at this price', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Hydra Cup Dual Shaker', price: '$18–22', bestFor: 'Carry pre-workout + shake in one bottle', link: '#', retailer: 'Buy on Amazon →' },
@@ -46,6 +54,8 @@ const products = [
     name: 'Gym Towel',
     why: `Most gyms require them and the rest should. Wiping down equipment is basic gym etiquette, and having your own means you're not using the grimy communal ones. Get a microfiber towel. It's lighter, dries faster, and takes up less space in your bag than a regular bath towel.`,
     topPickReason: `Better absorbency than budget options and the clip loop means it stays attached to your bag or machine instead of ending up on the floor.`,
+    quote: `Some gyms will turn you away without one. Just get a microfiber towel, takes up no space.`,
+    quoteSource: 'via r/gym',
     options: [
       { tier: 'Budget', name: 'AmazonBasics Microfiber Towel', price: '$8–12', bestFor: 'Gets the job done, packs small', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Rainleaf Microfiber Gym Towel', price: '$15–20', bestFor: 'Great absorbency, comes with clip loop', link: '#', retailer: 'Buy on Amazon →' },
@@ -96,7 +106,7 @@ const tierColors: Record<string, string> = {
       </figure>
       <p class="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-3">Gym / Weightlifting</p>
       <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight mb-5">
-        Gym Starter Kit
+        Gym Starter Kit: What Beginners Actually Need
       </h1>
       <p class="text-lg sm:text-xl text-gray-500 max-w-2xl leading-relaxed">
         What you actually need for your first 90 days. Researched from real beginners, not gym influencers.
@@ -186,6 +196,12 @@ const tierColors: Record<string, string> = {
               </div>
             ))}
           </div>
+
+          <!-- Reddit quote -->
+          <blockquote class="mt-4 bg-gray-50 border border-gray-100 rounded-xl px-5 py-4">
+            <p class="text-sm text-gray-500 italic leading-relaxed">"{product.quote}"</p>
+            <p class="text-xs text-gray-400 mt-2">{product.quoteSource}</p>
+          </blockquote>
         </div>
       ))}
 
