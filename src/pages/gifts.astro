@@ -1,0 +1,288 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const underFifty = [
+  {
+    sport: 'Gym',
+    pick: 'Under Armour Undeniable 5.0 Duffel',
+    price: '$45–55',
+    note: 'The bag every gym-goer needs before anything else.',
+    link: '#',
+    retailer: "Dick's Sporting Goods",
+    borderColor: 'border-l-orange-500',
+    accent: 'text-orange-700',
+  },
+  {
+    sport: 'Pilates',
+    pick: 'Tavi Noir Savvy Grip Socks 3-pack + Fit Simplify Resistance Bands',
+    price: '$45–59 combined',
+    note: 'Studio-ready from class one.',
+    link: '#',
+    retailer: 'Amazon',
+    borderColor: 'border-l-purple-500',
+    accent: 'text-purple-700',
+  },
+  {
+    sport: 'Running',
+    pick: 'Balega Hidden Comfort Socks + FlipBelt Classic',
+    price: '$42–50 combined',
+    note: 'The two things that make running actually comfortable.',
+    link: '#',
+    retailer: 'Amazon / REI',
+    borderColor: 'border-l-green-500',
+    accent: 'text-green-700',
+  },
+  {
+    sport: 'Home Gym',
+    pick: 'Fit Simplify Resistance Bands + TriggerPoint GRID Foam Roller',
+    price: '$45–59 combined',
+    note: 'Train and recover. The foundation of any home setup.',
+    link: '#',
+    retailer: "Amazon / Dick's",
+    borderColor: 'border-l-blue-500',
+    accent: 'text-blue-700',
+  },
+  {
+    sport: 'Boxing',
+    pick: 'Everlast Gloves + Everlast Hand Wraps',
+    price: '$38–52 combined',
+    note: 'Everything needed to start hitting a bag safely.',
+    link: '#',
+    retailer: "Dick's Sporting Goods",
+    borderColor: 'border-l-red-500',
+    accent: 'text-red-700',
+  },
+];
+
+const sportGifts = [
+  {
+    name: 'Gym',
+    giftAngle: 'A gym membership without a bag is an excuse not to go. The gear below removes that excuse.',
+    borderColor: 'border-t-orange-500',
+    accent: 'text-orange-700',
+    slug: 'gym-starter-set',
+    featured: {
+      name: 'Under Armour Undeniable 5.0 Duffel',
+      price: '$45–55',
+      why: 'The most-recommended beginner gym bag on Reddit. Water-resistant, holds everything including shoes, and built to survive daily commutes.',
+      link: '#',
+      retailer: "Buy at Dick's Sporting Goods →",
+    },
+    tiers: [
+      { tier: 'Budget', range: 'Under $35', name: 'BlenderBottle Classic 28oz + Rainleaf Microfiber Gym Towel', price: '$25–32', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Mid-Range', range: '$45–55', name: 'Under Armour Undeniable 5.0 Duffel', price: '$45–55', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
+      { tier: 'Premium', range: '$145–165', name: 'Aer Gym Duffel 3', price: '$145–165', link: '#', retailer: 'Buy at Aer.io →' },
+    ],
+  },
+  {
+    name: 'Pilates',
+    giftAngle: 'Most beginners show up to their first Pilates class without grip socks and get turned away at the door.',
+    borderColor: 'border-t-purple-500',
+    accent: 'text-purple-700',
+    slug: 'pilates-starter-set',
+    featured: {
+      name: 'Manduka PRO Lite 4.7mm Mat',
+      price: '$78–88',
+      why: 'The mat upgrade serious practitioners use. Dense, grippy, and built to last years of daily class use without compressing.',
+      link: '#',
+      retailer: 'Buy at REI →',
+    },
+    tiers: [
+      { tier: 'Budget', range: 'Under $60', name: 'Tavi Noir Savvy Grip Socks 3-pack + Fit Simplify Resistance Bands', price: '$45–59', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Mid-Range', range: '$78–88', name: 'Manduka PRO Lite 4.7mm Mat', price: '$78–88', link: '#', retailer: 'Buy at REI →' },
+      { tier: 'Premium', range: '$126–152', name: 'Lululemon The Mat 5mm + Alo Yoga Warrior Socks', price: '$126–152', link: '#', retailer: 'Buy at Lululemon / Alo →' },
+    ],
+  },
+  {
+    name: 'Running',
+    giftAngle: 'The right shoes prevent the injuries that stop most beginners in week three. Know their size and this decision is easy.',
+    borderColor: 'border-t-green-500',
+    accent: 'text-green-700',
+    slug: 'running-starter-set',
+    featured: {
+      name: 'Brooks Ghost 17',
+      price: '$130–140',
+      why: 'The most consistently recommended beginner running shoe across running communities. Neutral cushion, smooth ride, works for most gaits.',
+      link: '#',
+      retailer: "Buy at Dick's Sporting Goods →",
+    },
+    tiers: [
+      { tier: 'Budget', range: 'Under $50', name: 'Balega Hidden Comfort Socks + FlipBelt Classic', price: '$42–50', link: '#', retailer: 'Buy on Amazon / REI →' },
+      { tier: 'Mid-Range', range: '$130–140', name: 'Brooks Ghost 17', price: '$130–140', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
+      { tier: 'Premium', range: '$145–160', name: 'HOKA Clifton 10', price: '$145–160', link: '#', retailer: 'Buy at REI →' },
+    ],
+  },
+  {
+    name: 'Home Gym',
+    giftAngle: 'The best home gym gift is something they will use every session, not a machine that becomes a clothes rack.',
+    borderColor: 'border-t-blue-500',
+    accent: 'text-blue-700',
+    slug: 'home-gym-starter-set',
+    featured: {
+      name: 'Bowflex Results Series 552 SelectTech Dumbbells',
+      price: '$280–320',
+      why: 'The gift that replaces an entire dumbbell rack. Adjusts from 5 to 52.5lbs in seconds. The kind of gift that gets mentioned every time they train.',
+      link: '#',
+      retailer: "Buy at Dick's Sporting Goods →",
+    },
+    tiers: [
+      { tier: 'Budget', range: 'Under $60', name: 'Fit Simplify Resistance Bands + TriggerPoint GRID Foam Roller', price: '$45–59', link: '#', retailer: "Buy on Amazon / Dick's →" },
+      { tier: 'Mid-Range', range: '$65–80', name: 'TriggerPoint GRID Foam Roller + Perfect Fitness Multi-Gym Doorframe Bar', price: '$70–90', link: '#', retailer: "Buy on Amazon / Dick's →" },
+      { tier: 'Premium', range: '$280–320', name: 'Bowflex Results Series 552 SelectTech Dumbbells', price: '$280–320', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
+    ],
+  },
+  {
+    name: 'Boxing',
+    giftAngle: 'No one shows up to their first boxing class with the right gear. Be the person who fixes that.',
+    borderColor: 'border-t-red-500',
+    accent: 'text-red-700',
+    slug: 'boxing-starter-set',
+    featured: {
+      name: 'Hayabusa T3 Boxing Gloves',
+      price: '$100–120',
+      why: 'The quality step-up that serious beginners notice immediately. Dual-closure wrist support and leather construction that lasts years.',
+      link: '#',
+      retailer: 'Buy on Amazon →',
+    },
+    tiers: [
+      { tier: 'Budget', range: 'Under $50', name: 'Everlast Pro Style Gloves + Everlast 180" Hand Wraps', price: '$38–52', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
+      { tier: 'Mid-Range', range: '$100–120', name: 'Hayabusa T3 Boxing Gloves', price: '$100–120', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Premium', range: '$142–173', name: 'Hayabusa T3 Gloves + SISU Aero Mouthguard + Title Mexican Hand Wraps', price: '$142–173', link: '#', retailer: 'Buy at Amazon / Title Boxing →' },
+    ],
+  },
+];
+
+const tierColors: Record<string, string> = {
+  Budget: 'bg-green-50 text-green-700',
+  'Mid-Range': 'bg-blue-50 text-blue-700',
+  Premium: 'bg-purple-50 text-purple-700',
+};
+---
+
+<Layout
+  title="Fitness Gift Ideas | fitness-complete.com"
+  description="The perfect gift for someone starting out. Curated fitness gift picks by sport and budget, from under $50 to serious splurges."
+>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="bg-[#0f172a]">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-20 pb-16">
+        <a href="/" class="inline-block text-sm text-slate-400 hover:text-slate-200 transition-colors mb-8">← All starter kits</a>
+        <p class="text-sm font-semibold uppercase tracking-widest text-slate-400 mb-4">Gift Ideas</p>
+        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight mb-5 max-w-3xl">
+          The perfect gift for someone starting out
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-300 max-w-2xl leading-relaxed">
+          A gym membership without the gear is half a gift. Here are our top picks by sport and budget.
+        </p>
+      </div>
+    </section>
+
+    <!-- Under $50 callout -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 pt-12 pb-8">
+      <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 sm:p-8">
+        <div class="mb-6">
+          <p class="text-xs font-semibold uppercase tracking-widest text-amber-600 mb-1">Quick picks</p>
+          <h2 class="text-xl font-extrabold text-gray-900">Under $50, by sport</h2>
+          <p class="text-sm text-gray-500 mt-1">One practical gift for every sport, all under $50.</p>
+        </div>
+        <ul class="space-y-0 divide-y divide-amber-100">
+          {underFifty.map((item) => (
+            <li class={`flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 py-4 border-l-4 pl-4 ${item.borderColor}`}>
+              <span class={`text-xs font-bold uppercase tracking-wide ${item.accent} sm:w-20 flex-shrink-0 pt-0.5`}>{item.sport}</span>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-semibold text-gray-900">{item.pick}</p>
+                <p class="text-xs text-gray-500 mt-0.5">{item.note}</p>
+              </div>
+              <div class="flex items-center gap-3 sm:flex-col sm:items-end flex-shrink-0">
+                <span class="text-sm font-semibold text-gray-700">{item.price}</span>
+                <a href={item.link} class="text-xs font-semibold text-blue-600 hover:text-blue-800 transition-colors whitespace-nowrap">{item.retailer} →</a>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Sport sections -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 pb-16 space-y-12 pt-6">
+
+      {sportGifts.map((sport) => (
+        <div class={`rounded-2xl border border-gray-200 overflow-hidden border-t-4 ${sport.borderColor}`}>
+
+          <!-- Sport header -->
+          <div class="px-6 sm:px-8 pt-7 pb-5 border-b border-gray-100">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h2 class="text-2xl font-extrabold text-gray-900 mb-1">{sport.name}</h2>
+                <p class="text-gray-500 text-sm max-w-2xl">{sport.giftAngle}</p>
+              </div>
+              <a href={`/${sport.slug}`} class={`flex-shrink-0 text-xs font-semibold ${sport.accent} hover:opacity-75 transition-opacity whitespace-nowrap hidden sm:block`}>
+                Full kit →
+              </a>
+            </div>
+          </div>
+
+          <div class="px-6 sm:px-8 py-6 space-y-5">
+
+            <!-- Featured pick -->
+            <div class="bg-blue-50 border border-blue-100 rounded-xl p-4">
+              <p class="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-1">Our top gift pick</p>
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p class="font-semibold text-gray-900 text-sm">{sport.featured.name}</p>
+                  <p class="text-sm text-gray-600 mt-1 max-w-xl">{sport.featured.why}</p>
+                </div>
+                <div class="flex-shrink-0 text-right">
+                  <p class="text-sm font-semibold text-gray-700">{sport.featured.price}</p>
+                  <a href={sport.featured.link} class="text-xs font-semibold text-blue-600 hover:text-blue-800 transition-colors whitespace-nowrap">{sport.featured.retailer}</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gift tiers -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">All budget levels</p>
+              <ul class="space-y-0 divide-y divide-gray-100">
+                {sport.tiers.map((tier) => (
+                  <li class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 py-3">
+                    <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full flex-shrink-0 self-start ${tierColors[tier.tier]}`}>
+                      {tier.tier}
+                    </span>
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm font-medium text-gray-900">{tier.name}</p>
+                      <p class="text-xs text-gray-400">{tier.range}</p>
+                    </div>
+                    <div class="flex items-center gap-3 sm:flex-col sm:items-end flex-shrink-0">
+                      <span class="text-sm text-gray-600 font-medium">{tier.price}</span>
+                      <a href={tier.link} class="text-xs font-semibold text-blue-600 hover:text-blue-800 transition-colors whitespace-nowrap">{tier.retailer}</a>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <a href={`/${sport.slug}`} class={`inline-block text-sm font-semibold ${sport.accent} hover:opacity-75 transition-opacity sm:hidden`}>
+              See the full {sport.name} kit →
+            </a>
+
+          </div>
+        </div>
+      ))}
+
+    </section>
+
+    <!-- Affiliate disclosure -->
+    <section class="border-t border-gray-100">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-10">
+        <p class="text-xs text-gray-400 max-w-3xl leading-relaxed">
+          <span class="font-semibold text-gray-500">Affiliate disclosure:</span> This site earns commissions when you buy through our links, at no extra cost to you. We participate in Amazon Associates US and programs through Impact.com. Commission rate is never why a product is recommended here. See our <a href="/about" class="underline hover:text-gray-600 transition-colors">methodology</a> for full details.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+</Layout>
