@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="About — fitness-complete.com"
+  description="Why fitness-complete.com exists and how we pick the products we recommend."
+>
+
+  <!-- Nav -->
+  <header class="border-b border-gray-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="/" class="text-lg font-bold tracking-tight text-gray-900">fitness-complete</a>
+      <nav class="hidden sm:flex gap-6 text-sm text-gray-500">
+        <a href="/gym-starter-set" class="hover:text-gray-900 transition-colors">Gym</a>
+        <a href="/pilates-starter-set" class="hover:text-gray-900 transition-colors">Pilates</a>
+        <a href="/running-starter-set" class="hover:text-gray-900 transition-colors">Running</a>
+        <a href="/home-gym-starter-set" class="hover:text-gray-900 transition-colors">Home Gym</a>
+        <a href="/boxing-starter-set" class="hover:text-gray-900 transition-colors">Boxing</a>
+        <a href="/gifts" class="hover:text-gray-900 transition-colors font-medium text-gray-700">🎁 Gifts</a>
+        <a href="/about" class="text-gray-900 font-semibold transition-colors">About</a>
+        <a href="/privacy-policy" class="hover:text-gray-900 transition-colors">Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="max-w-3xl mx-auto px-4 sm:px-6 pt-16 pb-20">
+      <a href="/" class="inline-block text-sm text-gray-400 hover:text-gray-600 transition-colors mb-6">← Home</a>
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight mb-10">
+        About Fitness-Complete
+      </h1>
+
+      <div class="space-y-8 text-gray-600 leading-relaxed">
+
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 mb-3">Why this site exists</h2>
+          <p>
+            Starting a new sport is overwhelming. You don't know what you actually need versus what's just marketed at you, and most gear guides are either too generic to be useful or quietly written to push the highest-commission product. We built fitness-complete.com to cut through that noise.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 mb-3">How we research</h2>
+          <p>
+            Our primary sources are Reddit communities — r/fitness, r/beginnerfitness, r/xxfitness, r/running, r/homegym, r/pilates, r/amateur_boxing, and their sport-specific equivalents. These are places where real beginners ask real questions and experienced people give honest answers, including what they regret buying. We cross-reference everything with Amazon reviews, paying specific attention to the 3-star range where the honest tradeoffs show up.
+          </p>
+          <p class="mt-4">
+            We don't contact brands for samples. We don't run sponsored content. If a product gets recommended here it's because the community consensus and review data supports it.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 mb-3">How we make money</h2>
+          <p>
+            We earn affiliate commissions when you buy through our links — that is how we keep the site running. We participate in Amazon Associates US and programs through Impact.com and other affiliate networks. The commission rate is never why we recommend something. It's a tiebreaker at most, and even then only between two otherwise equal options. Our reputation depends on getting this right, and a bad recommendation that earns a 5% commission is a bad trade.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 mb-3">What we don't do</h2>
+          <p>
+            We don't recommend gear because a brand reached out. We don't write "10 best" listicles padded with mediocre picks. We don't include consumer electronics like headphones or smartwatches in sport-specific kits — those are personal decisions that have nothing to do with whether you're ready for the gym. Every product on this site has a specific reason it belongs there.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <p class="text-sm font-bold text-gray-900">fitness-complete.com</p>
+      <p class="text-xs text-gray-400 max-w-md text-left sm:text-right">
+        This site contains affiliate links. We may earn a commission at no extra cost to you.
+      </p>
+    </div>
+  </footer>
+
+</Layout>
