@@ -6,36 +6,41 @@ const sports = [
     name: 'Gym',
     slug: 'gym-starter-set',
     description: 'Lifting shoes, belt, straps, and a decent program. Everything a beginner needs to not look lost on day one.',
-    color: 'bg-blue-100',
     accent: 'text-blue-700',
+    image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800',
+    alt: 'Athlete training with weights in a gym',
   },
   {
     name: 'Pilates',
     slug: 'pilates-starter-set',
     description: 'Mat, grip socks, and resistance bands. The essentials for reformer or mat classes, without overbuying.',
-    color: 'bg-rose-100',
     accent: 'text-rose-700',
+    image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800',
+    alt: 'Person performing Pilates exercises on a mat',
   },
   {
     name: 'Running',
     slug: 'running-starter-set',
     description: 'The right shoes are 90% of it. Plus what to wear and carry so your first few miles don\'t suck.',
-    color: 'bg-green-100',
     accent: 'text-green-700',
+    image: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800',
+    alt: 'Runner on an outdoor trail',
   },
   {
     name: 'Home Gym',
     slug: 'home-gym-starter-set',
     description: 'Build a functional setup that doesn\'t take over your living room. Prioritized by what you\'ll actually use.',
-    color: 'bg-yellow-100',
     accent: 'text-yellow-700',
+    image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=800',
+    alt: 'Home gym setup with dumbbells and exercise equipment',
   },
   {
     name: 'Boxing',
     slug: 'boxing-starter-set',
     description: 'Gloves, wraps, and a bag — the minimum to start training without hurting your hands or wasting money.',
-    color: 'bg-orange-100',
     accent: 'text-orange-700',
+    image: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=800',
+    alt: 'Boxer training with gloves and heavy bag',
   },
 ];
 ---
@@ -80,6 +85,18 @@ const sports = [
       </div>
     </section>
 
+    <!-- Hero image -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 pb-12">
+      <figure>
+        <img
+          src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200"
+          alt="Person working out in a well-equipped gym"
+          class="w-full rounded-2xl object-cover max-h-[400px]"
+        />
+        <figcaption class="text-xs text-gray-400 mt-2">Photo: Unsplash</figcaption>
+      </figure>
+    </section>
+
     <!-- Gift angle -->
     <section class="bg-amber-50 border-y border-amber-100">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-12 flex flex-col sm:flex-row items-start sm:items-center gap-6">
@@ -107,9 +124,14 @@ const sports = [
             href={`/${sport.slug}`}
             class="group block rounded-xl border border-gray-100 hover:border-gray-300 hover:shadow-md transition-all duration-200 overflow-hidden"
           >
-            <!-- Image placeholder -->
-            <div class={`${sport.color} h-36 w-full flex items-center justify-center`}>
-              <span class={`text-sm font-semibold ${sport.accent} opacity-60`}>{sport.name}</span>
+            <div class="relative">
+              <img
+                src={sport.image}
+                alt={sport.alt}
+                class="h-36 w-full object-cover"
+                loading="lazy"
+              />
+              <span class="absolute bottom-1 right-2 text-[10px] text-white/60">Photo: Unsplash</span>
             </div>
             <div class="p-5">
               <h3 class="font-bold text-gray-900 text-base mb-1 group-hover:text-gray-600 transition-colors">
@@ -128,8 +150,14 @@ const sports = [
           href="/gifts"
           class="group block rounded-xl border border-amber-100 bg-amber-50 hover:border-amber-300 hover:shadow-md transition-all duration-200 overflow-hidden"
         >
-          <div class="bg-amber-100 h-36 w-full flex items-center justify-center">
-            <span class="text-sm font-semibold text-amber-700 opacity-60">Gifts</span>
+          <div class="relative">
+            <img
+              src="https://images.unsplash.com/photo-1549366021-9f761d450615?w=800"
+              alt="Fitness gear arranged as a gift"
+              class="h-36 w-full object-cover"
+              loading="lazy"
+            />
+            <span class="absolute bottom-1 right-2 text-[10px] text-white/60">Photo: Unsplash</span>
           </div>
           <div class="p-5">
             <h3 class="font-bold text-gray-900 text-base mb-1 group-hover:text-gray-600 transition-colors">
