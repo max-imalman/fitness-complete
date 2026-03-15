@@ -90,3 +90,14 @@ npm run preview  # Preview production build locally
 - `src/assets/` — Images and SVGs imported and optimized by Astro
 - `public/` — Static files served as-is (favicon, etc.)
 - TypeScript strict mode enabled via `astro/tsconfigs/strict`
+
+## YouTube video IDs to replace
+
+Each sport page has a placeholder video ID in its "See it in action" section. To replace:
+Search YouTube for each sport + "beginner honest review no sponsorship 2025". Pick a channel with under 500k subscribers and no disclosed sponsorship for the products being reviewed. Replace the placeholder in the `src` attribute of the iframe.
+
+- gym-starter-set.astro: `VIDEO_ID_GYM`
+- pilates-starter-set.astro: `VIDEO_ID_PILATES`
+- running-starter-set.astro: `VIDEO_ID_RUNNING`
+- home-gym-starter-set.astro: `VIDEO_ID_HOMEGYM`
+- boxing-starter-set.astro: `VIDEO_ID_BOXING`
