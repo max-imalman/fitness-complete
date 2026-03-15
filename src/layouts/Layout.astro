@@ -3,8 +3,14 @@ import '../styles/global.css'
 interface Props {
   title?: string;
   description?: string;
+  schema?: string;
 }
-const { title = 'Fitness-Complete — Starter Kits for Every Sport', description = 'The best gear for beginners, researched from Reddit and real reviews. No fluff, no upsells.' } = Astro.props;
+const {
+  title = 'Fitness-Complete — Starter Kits for Every Sport',
+  description = 'Curated starter kits for gym, Pilates, running, home gym, and boxing. Researched from real beginners, not influencers.',
+  schema,
+} = Astro.props;
+const canonicalURL = `https://www.fitness-complete.com${Astro.url.pathname}`;
 ---
 <!doctype html>
 <html lang="en">
@@ -15,6 +21,12 @@ const { title = 'Fitness-Complete — Starter Kits for Every Sport', description
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+    {schema && <Fragment set:html={`<script type="application/ld+json">${schema}</script>`} />}
     <title>{title}</title>
   </head>
   <body class="bg-white text-gray-900 antialiased">

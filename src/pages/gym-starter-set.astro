@@ -69,11 +69,29 @@ const tierColors: Record<string, string> = {
   'Mid-Range': 'bg-blue-50 text-blue-700',
   Premium: 'bg-purple-50 text-purple-700',
 };
+
+const schemaData = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Gym Starter Kit',
+  description: 'The exact gear a beginner needs for their first 90 days at the gym.',
+  url: 'https://www.fitness-complete.com/gym-starter-set',
+  itemListElement: products.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Product',
+      name: p.options[1].name,
+      description: p.topPickReason,
+    },
+  })),
+};
 ---
 
 <Layout
   title="Gym Starter Kit | fitness-complete.com"
   description="The exact gear a beginner needs for their first 90 days at the gym. Researched from Reddit and real Amazon reviews, with no influencer picks."
+  schema={JSON.stringify(schemaData)}
 >
 
   <!-- Nav -->
