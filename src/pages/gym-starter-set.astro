@@ -5,6 +5,7 @@ const products = [
   {
     name: 'Gym Bag',
     why: `You need somewhere to put your stuff that isn't a plastic grocery bag. A dedicated gym bag keeps your sweaty gear contained, makes you less likely to forget things, and signals to your brain that this is a real habit. Get one with a separate shoe compartment. It matters more than you'd expect.`,
+    topPickReason: `Durable enough for daily use and sized right for a full gym kit, without being so big it becomes a burden on the commute.`,
     options: [
       { tier: 'Budget', name: 'Amazon Basics Gym Bag', price: '$20–30', bestFor: 'Just getting started, light packer', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Nike Brasilia Duffel (M)', price: '$45–55', bestFor: 'Solid build and great size, works for most beginners', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
@@ -14,6 +15,7 @@ const products = [
   {
     name: 'Water Bottle',
     why: `Hydration directly affects how hard you can train and how fast you recover. A gym water bottle needs to be large (at least 32oz), leak-proof in your bag, and easy to drink from with one hand. Don't overthink it, but don't use a flimsy bottle that leaks on your shoes either.`,
+    topPickReason: `Keeps water cold for the entire session and the wide mouth lid is genuinely easy to open one-handed between sets.`,
     options: [
       { tier: 'Budget', name: 'Nalgene Wide Mouth 32oz', price: '$10–15', bestFor: 'No-nonsense, nearly indestructible', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Hydro Flask 32oz Wide Mouth', price: '$40–50', bestFor: 'Keeps water cold for hours, great lid', link: '#', retailer: 'Buy at REI →' },
@@ -23,6 +25,7 @@ const products = [
   {
     name: 'Workout Gloves',
     why: `Calluses are inevitable, but tearing your palms on the bar in week two is avoidable. Gloves protect your hands while you build grip strength and callus tolerance. Go thin. Thick padded gloves reduce grip feedback. Most beginners who skip gloves early regret it.`,
+    topPickReason: `The built-in wrist wrap adds support that standalone gloves lack, which matters most in your first weeks when your wrists are still adapting to the load.`,
     options: [
       { tier: 'Budget', name: 'Mechanix Wear Original Gloves', price: '$20–25', bestFor: 'Durable, no-frills hand protection', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Harbinger Pro Wrist Wrap Gloves', price: '$30–40', bestFor: 'Best combo of protection + wrist support', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
@@ -32,6 +35,7 @@ const products = [
   {
     name: 'Shaker Bottle',
     why: `Protein shakes are the easiest way to hit your protein targets without eating a fourth chicken breast. A good shaker blends powder smooth without clumps and doesn't stink after one use. The BlenderBall wire whisk design is the standard. Any shaker without it is a downgrade.`,
+    topPickReason: `The dual compartment lets you pre-load your protein and pre-workout separately, so you're not juggling two bottles or mixing at the gym.`,
     options: [
       { tier: 'Budget', name: 'BlenderBottle Classic 28oz', price: '$10–12', bestFor: 'The reliable standard, hard to beat at this price', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Hydra Cup Dual Shaker', price: '$18–22', bestFor: 'Carry pre-workout + shake in one bottle', link: '#', retailer: 'Buy on Amazon →' },
@@ -41,6 +45,7 @@ const products = [
   {
     name: 'Gym Towel',
     why: `Most gyms require them and the rest should. Wiping down equipment is basic gym etiquette, and having your own means you're not using the grimy communal ones. Get a microfiber towel. It's lighter, dries faster, and takes up less space in your bag than a regular bath towel.`,
+    topPickReason: `Better absorbency than budget options and the clip loop means it stays attached to your bag or machine instead of ending up on the floor.`,
     options: [
       { tier: 'Budget', name: 'AmazonBasics Microfiber Towel', price: '$8–12', bestFor: 'Gets the job done, packs small', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Rainleaf Microfiber Gym Towel', price: '$15–20', bestFor: 'Great absorbency, comes with clip loop', link: '#', retailer: 'Buy on Amazon →' },
@@ -122,7 +127,14 @@ const tierColors: Record<string, string> = {
             <h2 class="text-2xl font-bold text-gray-900">{product.name}</h2>
           </div>
 
-          <p class="text-gray-600 leading-relaxed mb-6 max-w-3xl">{product.why}</p>
+          <p class="text-gray-600 leading-relaxed mb-5 max-w-3xl">{product.why}</p>
+
+          <!-- Top pick callout -->
+          <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6">
+            <p class="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-1">Our top pick</p>
+            <p class="font-semibold text-gray-900 text-sm">{product.options[1].name}</p>
+            <p class="text-sm text-gray-600 mt-1">{product.topPickReason}</p>
+          </div>
 
           <!-- Comparison table — desktop -->
           <div class="hidden sm:block overflow-hidden rounded-xl border border-gray-100">
@@ -201,11 +213,18 @@ const tierColors: Record<string, string> = {
 
   <!-- Footer -->
   <footer class="border-t border-gray-100">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-      <p class="text-sm font-bold text-gray-900">fitness-complete.com</p>
-      <p class="text-xs text-gray-400 max-w-md text-left sm:text-right">
-        This site contains affiliate links. We may earn a commission at no extra cost to you.
-      </p>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <p class="text-sm font-bold text-gray-900">fitness-complete.com</p>
+        <div class="flex gap-5 text-xs">
+          <a href="/about" class="text-gray-400 hover:text-gray-600 transition-colors">About</a>
+          <a href="/privacy-policy" class="text-gray-400 hover:text-gray-600 transition-colors">Privacy Policy</a>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+        <p class="text-xs text-gray-400">This site contains affiliate links. We may earn a commission at no extra cost to you.</p>
+        <p class="text-xs text-gray-400">Last updated: March 2026</p>
+      </div>
     </div>
   </footer>
 

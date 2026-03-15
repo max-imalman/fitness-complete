@@ -19,5 +19,32 @@ const { title = 'Fitness-Complete — Starter Kits for Every Sport', description
   </head>
   <body class="bg-white text-gray-900 antialiased">
     <slot />
+
+    <!-- Cookie banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white z-50" style="display:none">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-3 justify-between">
+        <p class="text-sm text-gray-300">
+          This site uses cookies for analytics. By continuing you accept our
+          <a href="/privacy-policy" class="underline hover:text-white transition-colors">Privacy Policy</a>.
+        </p>
+        <button
+          id="cookie-accept"
+          class="flex-shrink-0 bg-white text-gray-900 text-sm font-semibold px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+        >
+          Accept
+        </button>
+      </div>
+    </div>
+    <script>
+      (function () {
+        if (!localStorage.getItem('cookieAccepted')) {
+          document.getElementById('cookie-banner').style.display = 'block';
+        }
+        document.getElementById('cookie-accept').addEventListener('click', function () {
+          localStorage.setItem('cookieAccepted', 'true');
+          document.getElementById('cookie-banner').style.display = 'none';
+        });
+      })();
+    </script>
   </body>
 </html>

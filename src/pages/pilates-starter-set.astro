@@ -5,6 +5,7 @@ const products = [
   {
     name: 'Pilates Mat',
     why: `A yoga mat won't cut it. Pilates involves sustained spine, hip, and knee contact with the floor. You need at least 6mm of cushioning or you'll be shifting and grimacing instead of focusing on form. A thicker mat also stays put better on studio floors. This is the one item worth spending up on.`,
+    topPickReason: `Dense enough to protect your spine and knees through a full class, without the instability that extra-thick mats create during standing balance work.`,
     options: [
       { tier: 'Budget', name: 'Gaiam Essentials Thick Yoga Mat', price: '$25–35', bestFor: 'Getting started without overspending', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Manduka PRO Lite 4.7mm', price: '$78–88', bestFor: 'Dense, grippy and built to last, best for most beginners', link: '#', retailer: 'Buy at REI →' },
@@ -14,6 +15,7 @@ const products = [
   {
     name: 'Grip Socks',
     why: `Most studios require them. You won't be let in without them. The grippy rubber dots on the sole prevent slipping on reformer platforms and mats, which matters a lot when you're in a wide squat at full spring tension. Don't use regular socks or bare feet as a workaround.`,
+    topPickReason: `Individual toe pockets improve your connection to the reformer platform, which is exactly the sensory feedback your instructor is cueing you toward.`,
     options: [
       { tier: 'Budget', name: 'Tavi Noir Savvy Sock', price: '$12–16', bestFor: 'Meets studio requirements without the price tag', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'ToeSox Full Toe Crew', price: '$18–24', bestFor: 'Individual toe design improves reformer feedback', link: '#', retailer: 'Buy on Amazon →' },
@@ -23,6 +25,7 @@ const products = [
   {
     name: 'Resistance Bands',
     why: `Mat Pilates classes use resistance bands constantly. They come up in arm series, leg work, and assisted stretching. Buying a single band is a mistake; get a set with multiple resistance levels so you can match the band to the exercise and your strength. Fabric loops are easier to work with than latex tubes for hip work.`,
+    topPickReason: `Physical-therapy grade quality means they hold up to daily class use without snapping or losing resistance over time, unlike cheaper latex alternatives.`,
     options: [
       { tier: 'Budget', name: 'Fit Simplify Resistance Loop Bands', price: '$10–14', bestFor: '5-band set, covers every resistance level', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Theraband Professional Loops', price: '$18–25', bestFor: 'Physical-therapy grade, color-coded resistance', link: '#', retailer: 'Buy on Amazon →' },
@@ -32,6 +35,7 @@ const products = [
   {
     name: 'Water Bottle',
     why: `Pilates is lower-intensity than a HIIT class but you still sweat, and staying hydrated keeps your concentration sharp. You need a bottle that's leakproof when it inevitably gets knocked over, easy to open one-handed between exercises, and large enough to last a 60-minute class without a refill.`,
+    topPickReason: `The leak-proof lid handles being knocked over in a reformer studio and keeps water cold through the full 60 minutes without insulation trade-offs.`,
     options: [
       { tier: 'Budget', name: 'Nalgene Wide Mouth 32oz', price: '$10–15', bestFor: 'Indestructible, simple, no frills', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Hydro Flask 32oz Wide Mouth', price: '$40–50', bestFor: 'Keeps water cold, great leakproof lid', link: '#', retailer: 'Buy at REI →' },
@@ -41,6 +45,7 @@ const products = [
   {
     name: 'Grip Gloves',
     why: `Optional for mat classes, but useful for reformer work where your hands are on smooth bars for extended holds. They prevent the callusing that comes with repetitive bar contact and give you more confidence holding positions. If your studio does a lot of arm work, you'll be glad you have them.`,
+    topPickReason: `The wrist wrap support becomes genuinely useful during the extended reformer bar holds that put repetitive stress on the wrist joint.`,
     options: [
       { tier: 'Budget', name: 'Trideer Half Finger Gloves', price: '$12–16', bestFor: 'Basic palm protection, fits most hand sizes', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Harbinger Pro Wrist Wrap Gloves', price: '$30–40', bestFor: 'Adds wrist support for reformer bar holds', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
@@ -122,7 +127,14 @@ const tierColors: Record<string, string> = {
             <h2 class="text-2xl font-bold text-gray-900">{product.name}</h2>
           </div>
 
-          <p class="text-gray-600 leading-relaxed mb-6 max-w-3xl">{product.why}</p>
+          <p class="text-gray-600 leading-relaxed mb-5 max-w-3xl">{product.why}</p>
+
+          <!-- Top pick callout -->
+          <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6">
+            <p class="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-1">Our top pick</p>
+            <p class="font-semibold text-gray-900 text-sm">{product.options[1].name}</p>
+            <p class="text-sm text-gray-600 mt-1">{product.topPickReason}</p>
+          </div>
 
           <!-- Comparison table — desktop -->
           <div class="hidden sm:block overflow-hidden rounded-xl border border-gray-100">
@@ -201,11 +213,18 @@ const tierColors: Record<string, string> = {
 
   <!-- Footer -->
   <footer class="border-t border-gray-100">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-      <p class="text-sm font-bold text-gray-900">fitness-complete.com</p>
-      <p class="text-xs text-gray-400 max-w-md text-left sm:text-right">
-        This site contains affiliate links. We may earn a commission at no extra cost to you.
-      </p>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <p class="text-sm font-bold text-gray-900">fitness-complete.com</p>
+        <div class="flex gap-5 text-xs">
+          <a href="/about" class="text-gray-400 hover:text-gray-600 transition-colors">About</a>
+          <a href="/privacy-policy" class="text-gray-400 hover:text-gray-600 transition-colors">Privacy Policy</a>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+        <p class="text-xs text-gray-400">This site contains affiliate links. We may earn a commission at no extra cost to you.</p>
+        <p class="text-xs text-gray-400">Last updated: March 2026</p>
+      </div>
     </div>
   </footer>
 

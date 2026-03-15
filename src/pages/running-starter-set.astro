@@ -5,6 +5,7 @@ const products = [
   {
     name: 'Running Shoes',
     why: `This is the single most important purchase you'll make as a beginner runner. The wrong shoe causes injuries like shin splints, knee pain, and plantar fasciitis that end runs before habits form. Get fitted at a local running specialty store if you can (they'll watch you walk and recommend based on your gait). If you're ordering online, at least know whether you overpronate.`,
+    topPickReason: `The most consistently recommended beginner shoe across running communities because the neutral cushion and smooth heel-to-toe transition works for most gaits without overpromising.`,
     options: [
       { tier: 'Budget', name: 'ASICS Gel-Contend 8', price: '$55–70', bestFor: 'Reliable cushion, neutral, great entry price', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Brooks Ghost 16', price: '$130–140', bestFor: 'Best all-rounder for most beginners, smooth ride', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
@@ -14,6 +15,7 @@ const products = [
   {
     name: 'Running Socks',
     why: `Cotton socks cause blisters. This is not a preference. It is physics. Cotton holds moisture against your skin, which creates friction, which creates blisters. Moisture-wicking synthetic or merino wool socks fix this entirely. Most beginners learn this the hard way after their second run.`,
+    topPickReason: `Merino wool handles moisture and odor better than synthetics, and the lifetime warranty means you buy running socks exactly once.`,
     options: [
       { tier: 'Budget', name: 'Balega Hidden Comfort No-Show', price: '$14–18', bestFor: 'Best value running sock, cushioned heel and toe', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Darn Tough Run No Show Tab', price: '$22–26', bestFor: 'Merino wool, lifetime warranty, extremely durable', link: '#', retailer: 'Buy at REI →' },
@@ -23,6 +25,7 @@ const products = [
   {
     name: 'Running Belt / Hydration',
     why: `You need somewhere to put your phone, keys, and cards that isn't your hand. Holding your phone changes your arm swing and throws off your form. A running belt solves this cleanly. Get one that fits your phone model snugly and doesn't bounce. For runs over 45 minutes, add a handheld water bottle or upgrade to a vest.`,
+    topPickReason: `Combines phone and key storage with a water bottle for longer runs, solving two problems with one purchase instead of buying separately.`,
     options: [
       { tier: 'Budget', name: 'FlipBelt Classic', price: '$28–35', bestFor: 'Minimalist tube belt, no bounce, holds most phones', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Nathan SpeedShot Plus Handheld', price: '$30–38', bestFor: 'Adds hydration for longer runs, hands-free grip', link: '#', retailer: 'Buy at REI →' },
@@ -32,6 +35,7 @@ const products = [
   {
     name: 'Moisture-Wicking Shirt',
     why: `Cotton shirts become heavy, cold, and chafe-inducing once they're wet, which happens within ten minutes of running. Synthetic fabrics move sweat away from your skin and dry fast. This doesn't need to be expensive: a $25 tech tee does everything a $90 one does for a beginner. Buy at least two so you're not doing laundry before every run.`,
+    topPickReason: `Reliable moisture-wicking in a wide size range with men's and women's cuts available, cheap enough to buy two at once without overthinking it.`,
     options: [
       { tier: 'Budget', name: "Amazon Essentials Men's Tech Stretch Tee", price: '$14–18', bestFor: 'Functional, cheap, buy three and move on', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Mid-Range', name: 'Nike Dri-FIT Short Sleeve', price: '$30–40', bestFor: 'Great fit, wide size range, reliable wicking', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
@@ -113,7 +117,14 @@ const tierColors: Record<string, string> = {
             <h2 class="text-2xl font-bold text-gray-900">{product.name}</h2>
           </div>
 
-          <p class="text-gray-600 leading-relaxed mb-6 max-w-3xl">{product.why}</p>
+          <p class="text-gray-600 leading-relaxed mb-5 max-w-3xl">{product.why}</p>
+
+          <!-- Top pick callout -->
+          <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6">
+            <p class="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-1">Our top pick</p>
+            <p class="font-semibold text-gray-900 text-sm">{product.options[1].name}</p>
+            <p class="text-sm text-gray-600 mt-1">{product.topPickReason}</p>
+          </div>
 
           <!-- Comparison table — desktop -->
           <div class="hidden sm:block overflow-hidden rounded-xl border border-gray-100">
@@ -192,11 +203,18 @@ const tierColors: Record<string, string> = {
 
   <!-- Footer -->
   <footer class="border-t border-gray-100">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-      <p class="text-sm font-bold text-gray-900">fitness-complete.com</p>
-      <p class="text-xs text-gray-400 max-w-md text-left sm:text-right">
-        This site contains affiliate links. We may earn a commission at no extra cost to you.
-      </p>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <p class="text-sm font-bold text-gray-900">fitness-complete.com</p>
+        <div class="flex gap-5 text-xs">
+          <a href="/about" class="text-gray-400 hover:text-gray-600 transition-colors">About</a>
+          <a href="/privacy-policy" class="text-gray-400 hover:text-gray-600 transition-colors">Privacy Policy</a>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+        <p class="text-xs text-gray-400">This site contains affiliate links. We may earn a commission at no extra cost to you.</p>
+        <p class="text-xs text-gray-400">Last updated: March 2026</p>
+      </div>
     </div>
   </footer>
 
