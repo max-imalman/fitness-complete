@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 const products = [
   {
     name: 'Running Shoes',
-    why: `This is the single most important purchase you'll make as a beginner runner. The wrong shoe causes injuries like shin splints, knee pain, and plantar fasciitis that end runs before habits form. Get fitted at a local running specialty store if you can (they'll watch you walk and recommend based on your gait). If you're ordering online, at least know whether you overpronate.`,
+    why: `This is the single most important purchase you'll make as a beginner runner. The wrong shoe causes shin splints, knee pain, and plantar fasciitis that end runs before habits form.`,
     topPickReason: `The most consistently recommended beginner shoe across running communities because the neutral cushion and smooth heel-to-toe transition works for most gaits without overpromising.`,
     options: [
       { tier: 'Budget', name: 'ASICS Gel-Contend 8', price: '$55–70', bestFor: 'Reliable cushion, neutral, great entry price. Get fitted at a running specialty store like Fleet Feet if possible. Shoe fit is personal and the right model depends on your gait.', link: '#', retailer: 'Buy on Amazon →' },
@@ -14,7 +14,7 @@ const products = [
   },
   {
     name: 'Running Socks',
-    why: `Cotton socks cause blisters. This is not a preference. It is physics. Cotton holds moisture against your skin, which creates friction, which creates blisters. Moisture-wicking synthetic or merino wool socks fix this entirely. Most beginners learn this the hard way after their second run.`,
+    why: `Cotton socks cause blisters because they hold moisture against your skin. Switch to moisture-wicking synthetic or merino wool socks and you will not have this problem.`,
     topPickReason: `Merino wool handles moisture and odor better than synthetics, and the lifetime warranty means you buy running socks exactly once.`,
     options: [
       { tier: 'Budget', name: 'Balega Hidden Comfort No-Show', price: '$14–18', bestFor: 'Best value running sock, cushioned heel and toe', link: '#', retailer: 'Buy on Amazon →' },
@@ -24,7 +24,7 @@ const products = [
   },
   {
     name: 'Running Belt / Hydration',
-    why: `You need somewhere to put your phone, keys, and cards that isn't your hand. Holding your phone changes your arm swing and throws off your form. A running belt solves this cleanly. Get one that fits your phone model snugly and doesn't bounce. For runs over 45 minutes, add a handheld water bottle or upgrade to a vest.`,
+    why: `You need somewhere to put your phone, keys, and cards that is not your hand. Holding your phone changes your arm swing and throws off your form.`,
     topPickReason: `Combines phone and key storage with a water bottle for longer runs, solving two problems with one purchase instead of buying separately.`,
     options: [
       { tier: 'Budget', name: 'FlipBelt Classic', price: '$28–35', bestFor: 'Minimalist tube belt, no bounce, holds most phones', link: '#', retailer: 'Buy on Amazon →' },
@@ -34,7 +34,7 @@ const products = [
   },
   {
     name: 'Moisture-Wicking Shirt',
-    why: `Cotton shirts become heavy, cold, and chafe-inducing once they're wet, which happens within ten minutes of running. Synthetic fabrics move sweat away from your skin and dry fast. This doesn't need to be expensive: a $25 tech tee does everything a $90 one does for a beginner. Buy at least two so you're not doing laundry before every run.`,
+    why: `Cotton shirts become heavy, cold, and chafe-inducing once wet, which happens within ten minutes of running. Synthetic tech fabric solves this and does not need to be expensive.`,
     topPickReason: `Reliable moisture-wicking in a wide size range with men's and women's cuts available, cheap enough to buy two at once without overthinking it.`,
     options: [
       { tier: 'Budget', name: "Amazon Essentials Men's Tech Stretch Tee", price: '$14–18', bestFor: 'Functional, cheap, buy three and move on', link: '#', retailer: 'Buy on Amazon →' },
@@ -100,7 +100,7 @@ const tierColors: Record<string, string> = {
       <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
         <h2 class="font-bold text-gray-900 mb-2">How these picks were made</h2>
         <p class="text-sm text-gray-500 leading-relaxed max-w-3xl">
-          These picks were researched across four sources: Reddit community discussions, independent test sites (Garage Gym Reviews, CNN Underscored, Wirecutter), Amazon verified purchase reviews filtered for 3-star honesty and long-term durability, and YouTube reviews from channels without sponsorship conflicts. Commission rate played no role.
+          Researched across Reddit communities, independent test sites, and Amazon verified purchase reviews. Commission rate played no role.
         </p>
       </div>
     </section>
@@ -187,7 +187,6 @@ const tierColors: Record<string, string> = {
                       <th class="text-left px-5 py-3 font-semibold text-white w-24">Tier</th>
                       <th class="text-left px-5 py-3 font-semibold text-white">Product</th>
                       <th class="text-left px-5 py-3 font-semibold text-white w-32">Price</th>
-                      <th class="text-left px-5 py-3 font-semibold text-white">Best For</th>
                       <th class="text-left px-5 py-3 font-semibold text-white w-24">Link</th>
                     </tr>
                   </thead>
@@ -204,7 +203,6 @@ const tierColors: Record<string, string> = {
                           {j === 1 && <span class="ml-2 text-xs font-semibold text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full whitespace-nowrap">Best for beginners</span>}
                         </td>
                         <td class="px-5 py-4 text-gray-500">{opt.price}</td>
-                        <td class="px-5 py-4 text-gray-500">{opt.bestFor}</td>
                         <td class="px-5 py-4">
                           <a href={opt.link} class="text-blue-600 hover:text-blue-800 font-semibold transition-colors">
                             {opt.retailer}

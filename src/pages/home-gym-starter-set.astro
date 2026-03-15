@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 const products = [
   {
     name: 'Adjustable Dumbbells',
-    why: `This is the single best investment for a home gym. A good set of adjustable dumbbells replaces an entire rack and takes up about as much space as a shoebox. Most beginners need 5–50lbs to cover everything from lateral raises to goblet squats. Don't cheap out here. Flimsy adjustable dumbbells slip and wobble mid-set, which is both annoying and dangerous.`,
+    why: `A good set of adjustable dumbbells replaces an entire rack and takes up about as much space as a shoebox. Do not buy the cheap ones; flimsy models slip and wobble mid-set, which is dangerous.`,
     topPickReason: `The updated Results Series dial adjustment moves from 5 to 52.5lbs in seconds, which makes drop sets and supersets actually practical instead of a two-minute production.`,
     safetyNote: `If you own the original Bowflex SelectTech 552 (pre-2025), stop using it immediately. It was recalled due to a safety hazard. Visit Bowflex.com for refund information.`,
     options: [
@@ -15,7 +15,7 @@ const products = [
   },
   {
     name: 'Resistance Bands',
-    why: `Bands fill the gaps between dumbbell weights, make every exercise harder at the top of the movement where dumbbells feel light, and are essential for warmup work and banded exercises. A set of loop bands plus one long resistance band covers nearly everything. They're also the cheapest thing on this list and the most overlooked.`,
+    why: `Bands fill the gaps between dumbbell weights and are essential for warmup work and banded exercises. A set of loop bands plus one long resistance band covers nearly everything, and they're the cheapest thing on this list.`,
     topPickReason: `The door anchor and handle system opens up rows, presses, and cable-style exercises that loop bands alone cannot replicate.`,
     options: [
       { tier: 'Budget', name: 'Fit Simplify Resistance Loop Bands', price: '$10–14', bestFor: 'Five bands covering light to heavy, hard to beat', link: '#', retailer: 'Buy on Amazon →' },
@@ -25,7 +25,7 @@ const products = [
   },
   {
     name: 'Pull-Up Bar',
-    why: `A doorframe pull-up bar unlocks back and bicep training without machines, and it costs $30. It also works for hanging core exercises, inverted rows with a table, and assisted stretching. Get one that fits over the door frame rather than screwing into the wall. It installs in seconds and moves with you.`,
+    why: `A doorframe pull-up bar unlocks back and bicep training without machines, and it costs $30. Get one that fits over the frame without screwing into the wall.`,
     topPickReason: `More grip positions than the budget option with no permanent installation, so it works in any doorframe and moves with you if you change rooms.`,
     options: [
       { tier: 'Budget', name: 'Iron Gym Total Upper Body Workout Bar', price: '$28–35', bestFor: 'Classic doorframe design, holds up to 300lbs', link: '#', retailer: 'Buy on Amazon →' },
@@ -35,7 +35,7 @@ const products = [
   },
   {
     name: 'Exercise Mat',
-    why: `Your floor is not a gym mat. Hard floors cause wrist, knee, and spine discomfort during floor exercises, and gym mats prevent slipping on hardwood or tile. You also need something to protect your floor from dumbbell drops (because it will happen). A 6mm mat handles most floor work; go thicker if you have joint issues.`,
+    why: `Hard floors cause wrist, knee, and spine discomfort during floor work, and a mat also protects your floor from dumbbell drops. A 6mm mat handles most exercises; go thicker if you have joint issues.`,
     topPickReason: `The right balance of cushion and surface grip for floor work, at a size that fits most spaces without feeling like you're exercising on a postage stamp.`,
     options: [
       { tier: 'Budget', name: 'BalanceFrom GoYoga All-Purpose Mat', price: '$18–25', bestFor: 'Gets the job done, good thickness for the price', link: '#', retailer: 'Buy on Amazon →' },
@@ -45,7 +45,7 @@ const products = [
   },
   {
     name: 'Foam Roller',
-    why: `Most beginners skip this and regret it around week four when their legs feel like concrete. Foam rolling isn't a cure-all but it significantly reduces DOMS (delayed onset muscle soreness), improves mobility, and keeps you training consistently. Use it for 5–10 minutes after every session on your quads, hamstrings, and upper back.`,
+    why: `Most beginners skip the foam roller and regret it around week four when their legs feel like concrete. Use it for 5 to 10 minutes after every session on your quads, hamstrings, and upper back.`,
     topPickReason: `The multi-density grid surface releases muscle tension more effectively than flat foam rollers, which is the difference between recovery that actually feels like something and one that doesn't.`,
     options: [
       { tier: 'Budget', name: 'AmazonBasics High-Density Foam Roller', price: '$18–25', bestFor: 'Firm, durable, does exactly what a foam roller should', link: '#', retailer: 'Buy on Amazon →' },
@@ -111,7 +111,7 @@ const tierColors: Record<string, string> = {
       <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
         <h2 class="font-bold text-gray-900 mb-2">How these picks were made</h2>
         <p class="text-sm text-gray-500 leading-relaxed max-w-3xl">
-          These picks were researched across four sources: Reddit community discussions, independent test sites (Garage Gym Reviews, CNN Underscored, Wirecutter), Amazon verified purchase reviews filtered for 3-star honesty and long-term durability, and YouTube reviews from channels without sponsorship conflicts. Commission rate played no role.
+          Researched across Reddit communities, independent test sites, and Amazon verified purchase reviews. Commission rate played no role.
         </p>
       </div>
     </section>
@@ -198,7 +198,6 @@ const tierColors: Record<string, string> = {
                       <th class="text-left px-5 py-3 font-semibold text-white w-24">Tier</th>
                       <th class="text-left px-5 py-3 font-semibold text-white">Product</th>
                       <th class="text-left px-5 py-3 font-semibold text-white w-32">Price</th>
-                      <th class="text-left px-5 py-3 font-semibold text-white">Best For</th>
                       <th class="text-left px-5 py-3 font-semibold text-white w-24">Link</th>
                     </tr>
                   </thead>
@@ -215,7 +214,6 @@ const tierColors: Record<string, string> = {
                           {j === 1 && <span class="ml-2 text-xs font-semibold text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full whitespace-nowrap">Best for beginners</span>}
                         </td>
                         <td class="px-5 py-4 text-gray-500">{opt.price}</td>
-                        <td class="px-5 py-4 text-gray-500">{opt.bestFor}</td>
                         <td class="px-5 py-4">
                           <a href={opt.link} class="text-blue-600 hover:text-blue-800 font-semibold transition-colors">
                             {opt.retailer}

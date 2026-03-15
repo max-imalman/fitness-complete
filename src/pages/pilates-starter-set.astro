@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 const products = [
   {
     name: 'Pilates Mat',
-    why: `A yoga mat won't cut it. Pilates involves sustained spine, hip, and knee contact with the floor. You need at least 6mm of cushioning or you'll be shifting and grimacing instead of focusing on form. A thicker mat also stays put better on studio floors. This is the one item worth spending up on.`,
+    why: `A yoga mat won't cut it. You need at least 6mm of cushioning or you'll spend the class shifting and grimacing instead of focusing on form.`,
     topPickReason: `Dense enough to protect your spine and knees through a full class, without the instability that extra-thick mats create during standing balance work.`,
     options: [
       { tier: 'Budget', name: 'Gaiam Essentials Thick Yoga Mat', price: '$25–35', bestFor: 'Getting started without overspending', link: '#', retailer: 'Buy on Amazon →' },
@@ -14,7 +14,7 @@ const products = [
   },
   {
     name: 'Grip Socks',
-    why: `Most studios require them. You won't be let in without them. The grippy rubber dots on the sole prevent slipping on reformer platforms and mats, which matters a lot when you're in a wide squat at full spring tension. Don't use regular socks or bare feet as a workaround.`,
+    why: `Most studios require grip socks and won't let you in without them. The rubber dots prevent slipping on reformer platforms, which matters when you're in a wide squat at full spring tension.`,
     topPickReason: `Individual toe pockets improve your connection to the reformer platform, which is exactly the sensory feedback your instructor is cueing you toward.`,
     options: [
       { tier: 'Budget', name: 'Tavi Noir Savvy Sock', price: '$12–16', bestFor: 'Meets studio requirements without the price tag', link: '#', retailer: 'Buy on Amazon →' },
@@ -24,7 +24,7 @@ const products = [
   },
   {
     name: 'Resistance Bands',
-    why: `Mat Pilates classes use resistance bands constantly. They come up in arm series, leg work, and assisted stretching. Buying a single band is a mistake; get a set with multiple resistance levels so you can match the band to the exercise and your strength. Fabric loops are easier to work with than latex tubes for hip work.`,
+    why: `Mat Pilates classes use resistance bands constantly, from arm series to leg work to assisted stretching. Get a set with multiple resistance levels and choose fabric loops over latex for hip work.`,
     topPickReason: `Physical-therapy grade quality means they hold up to daily class use without snapping or losing resistance over time, unlike cheaper latex alternatives.`,
     options: [
       { tier: 'Budget', name: 'Fit Simplify Resistance Loop Bands', price: '$10–14', bestFor: '5-band set, covers every resistance level', link: '#', retailer: 'Buy on Amazon →' },
@@ -44,7 +44,7 @@ const products = [
   },
   {
     name: 'Grip Gloves',
-    why: `Optional for mat classes, but useful for reformer work where your hands are on smooth bars for extended holds. They prevent the callusing that comes with repetitive bar contact and give you more confidence holding positions. If your studio does a lot of arm work, you'll be glad you have them.`,
+    why: `Optional for mat classes, but useful for reformer work where your hands are on smooth bars for extended holds. They prevent callusing and give you more confidence through the arm series.`,
     topPickReason: `The wrist wrap support becomes genuinely useful during the extended reformer bar holds that put repetitive stress on the wrist joint.`,
     options: [
       { tier: 'Budget', name: 'Trideer Half Finger Gloves', price: '$12–16', bestFor: 'Basic palm protection, fits most hand sizes', link: '#', retailer: 'Buy on Amazon →' },
@@ -110,7 +110,7 @@ const tierColors: Record<string, string> = {
       <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
         <h2 class="font-bold text-gray-900 mb-2">How these picks were made</h2>
         <p class="text-sm text-gray-500 leading-relaxed max-w-3xl">
-          These picks were researched across four sources: Reddit community discussions, independent test sites (Garage Gym Reviews, CNN Underscored, Wirecutter), Amazon verified purchase reviews filtered for 3-star honesty and long-term durability, and YouTube reviews from channels without sponsorship conflicts. Commission rate played no role.
+          Researched across Reddit communities, independent test sites, and Amazon verified purchase reviews. Commission rate played no role.
         </p>
       </div>
     </section>
@@ -197,7 +197,6 @@ const tierColors: Record<string, string> = {
                       <th class="text-left px-5 py-3 font-semibold text-white w-24">Tier</th>
                       <th class="text-left px-5 py-3 font-semibold text-white">Product</th>
                       <th class="text-left px-5 py-3 font-semibold text-white w-32">Price</th>
-                      <th class="text-left px-5 py-3 font-semibold text-white">Best For</th>
                       <th class="text-left px-5 py-3 font-semibold text-white w-24">Link</th>
                     </tr>
                   </thead>
@@ -214,7 +213,6 @@ const tierColors: Record<string, string> = {
                           {j === 1 && <span class="ml-2 text-xs font-semibold text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full whitespace-nowrap">Best for beginners</span>}
                         </td>
                         <td class="px-5 py-4 text-gray-500">{opt.price}</td>
-                        <td class="px-5 py-4 text-gray-500">{opt.bestFor}</td>
                         <td class="px-5 py-4">
                           <a href={opt.link} class="text-blue-600 hover:text-blue-800 font-semibold transition-colors">
                             {opt.retailer}

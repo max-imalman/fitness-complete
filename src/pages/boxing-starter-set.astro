@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 const products = [
   {
     name: 'Boxing Gloves',
-    why: `Your gloves protect your hands and your sparring partner's face. Both matter. The wrong gloves cause wrist injuries and joint pain that sideline beginners within weeks. Bag gloves and sparring gloves are different products; if you're only buying one pair, get a 12oz or 14oz all-purpose glove. Weight matters: heavier gloves (16oz) are required for most sparring scenarios.`,
+    why: `Your gloves protect your hands and your sparring partner's face, and the wrong pair causes wrist injuries that sideline beginners within weeks. If you're only buying one pair, get a 12oz or 14oz all-purpose glove.`,
     topPickReason: `The dual-closure wrist system provides real wrist support that beginners immediately notice, and the leather construction holds up to bag work far longer than entry-level synthetics.`,
     options: [
       { tier: 'Budget', name: 'Everlast Pro Style Training Gloves', price: '$30–40', bestFor: 'Reliable beginner glove, works for bag and pads', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
@@ -14,7 +14,7 @@ const products = [
   },
   {
     name: 'Hand Wraps',
-    why: `Gloves alone are not enough. Hand wraps stabilize your wrist, compress your knuckles, and protect your thumb joint. These are the parts of your hand that absorb impact before the glove padding does. Wear them every single session. 180" wraps are the right length for most adults; anything shorter leaves your wrist unsupported.`,
+    why: `Gloves alone are not enough. Hand wraps stabilize your wrist, compress your knuckles, and protect your thumb joint from impact before the glove padding does.`,
     topPickReason: `The 180-inch length gives full knuckle-to-wrist coverage that shorter wraps cannot match, and the stretch cotton conforms to your hand shape over time.`,
     options: [
       { tier: 'Budget', name: 'Everlast 120" Cotton Hand Wraps', price: '$8–12', bestFor: 'Gets the job done, machine washable, easy to find', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
@@ -24,7 +24,7 @@ const products = [
   },
   {
     name: 'Mouthguard',
-    why: `Non-negotiable for any sparring. It is a good idea even for bag work. You clench your jaw harder than you think on heavy shots, and a mouthguard prevents tooth grinding and jaw stress. Don't use the $5 boil-and-bite from a convenience store. Fit matters. A guard that fits poorly won't stay in and gives you false confidence.`,
+    why: `Non-negotiable for any sparring, and a good idea even for bag work. You clench your jaw harder than you think on heavy shots, and a guard that fits poorly won't stay in.`,
     topPickReason: `Thin enough to breathe and talk through during sparring, which sounds minor until you're trying to receive instruction from a coach mid-round.`,
     options: [
       { tier: 'Budget', name: 'Shock Doctor Gel Max Mouthguard', price: '$18–25', bestFor: 'Best boil-and-bite on the market, tight custom fit', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
@@ -34,7 +34,7 @@ const products = [
   },
   {
     name: 'Jump Rope',
-    why: `Jump rope is the standard boxing conditioning tool for a reason: it builds footwork, coordination, and cardiovascular endurance simultaneously. Ten minutes of jump rope is harder than it looks. Beginners should start with a basic speed rope. The weighted fitness jump ropes are a different training tool and not what boxing coaches use.`,
+    why: `Jump rope builds footwork, coordination, and cardiovascular endurance simultaneously, which is why it's the standard boxing conditioning tool. Start with a basic speed rope.`,
     topPickReason: `Ball-bearing handles and a fast wire cable let you build the rotational speed that boxing conditioning requires, at a price that makes sense before you fully commit to the sport.`,
     options: [
       { tier: 'Budget', name: 'XYLsports Jump Rope', price: '$8–12', bestFor: 'Lightweight speed rope, adjustable, fine to learn on', link: '#', retailer: 'Buy on Amazon →' },
@@ -44,7 +44,7 @@ const products = [
   },
   {
     name: 'Heavy Bag',
-    why: `If you're training at home, a bag changes everything. Shadowboxing is useful but hitting something real teaches you about power transfer, distance, and proper form in a way nothing else does. A 70lb bag is right for most adults. It is heavy enough to not swing wildly on every punch and light enough to install without a structural engineer. Make sure your ceiling can handle the mount.`,
+    why: `Shadowboxing is useful but hitting something real teaches power transfer, distance, and proper form in a way nothing else does. A 70lb bag is right for most adults.`,
     topPickReason: `No ceiling mount required means you can set it up in any room without involving a structural engineer, and the weighted base provides real stability on any floor.`,
     options: [
       { tier: 'Budget', name: 'Everlast 70lb Heavy Bag Kit', price: '$80–110', bestFor: 'Includes gloves and wraps, good starter combo', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
@@ -110,7 +110,7 @@ const tierColors: Record<string, string> = {
       <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
         <h2 class="font-bold text-gray-900 mb-2">How these picks were made</h2>
         <p class="text-sm text-gray-500 leading-relaxed max-w-3xl">
-          These picks were researched across four sources: Reddit community discussions, independent test sites (Garage Gym Reviews, CNN Underscored, Wirecutter), Amazon verified purchase reviews filtered for 3-star honesty and long-term durability, and YouTube reviews from channels without sponsorship conflicts. Commission rate played no role.
+          Researched across Reddit communities, independent test sites, and Amazon verified purchase reviews. Commission rate played no role.
         </p>
       </div>
     </section>
@@ -197,7 +197,6 @@ const tierColors: Record<string, string> = {
                       <th class="text-left px-5 py-3 font-semibold text-white w-24">Tier</th>
                       <th class="text-left px-5 py-3 font-semibold text-white">Product</th>
                       <th class="text-left px-5 py-3 font-semibold text-white w-32">Price</th>
-                      <th class="text-left px-5 py-3 font-semibold text-white">Best For</th>
                       <th class="text-left px-5 py-3 font-semibold text-white w-24">Link</th>
                     </tr>
                   </thead>
@@ -214,7 +213,6 @@ const tierColors: Record<string, string> = {
                           {j === 1 && <span class="ml-2 text-xs font-semibold text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full whitespace-nowrap">Best for beginners</span>}
                         </td>
                         <td class="px-5 py-4 text-gray-500">{opt.price}</td>
-                        <td class="px-5 py-4 text-gray-500">{opt.bestFor}</td>
                         <td class="px-5 py-4">
                           <a href={opt.link} class="text-blue-600 hover:text-blue-800 font-semibold transition-colors">
                             {opt.retailer}
