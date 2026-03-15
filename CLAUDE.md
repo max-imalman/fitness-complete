@@ -29,6 +29,7 @@ Domain: fitness-complete.com
 - Never recommend a product because of commission rate — commission is a tiebreaker only
 - Never use em dashes (—), en dashes (–), or hyphens used as dashes in any website content, product descriptions, or page text. Rewrite sentences to flow naturally without dashes.
 - Never include general consumer electronics (headphones, smartwatches, fitness trackers) in starter kits. These are personal choices that exist outside the sport-specific gear decision.
+- Always check for product recalls before recommending fitness equipment. The Bowflex SelectTech 552 original model was recalled June 2025. We recommend the replacement Results Series 552 instead.
 
 ## Tech stack
 - Astro (static site generator)

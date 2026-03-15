@@ -5,10 +5,11 @@ const products = [
   {
     name: 'Adjustable Dumbbells',
     why: `This is the single best investment for a home gym. A good set of adjustable dumbbells replaces an entire rack and takes up about as much space as a shoebox. Most beginners need 5–50lbs to cover everything from lateral raises to goblet squats. Don't cheap out here. Flimsy adjustable dumbbells slip and wobble mid-set, which is both annoying and dangerous.`,
-    topPickReason: `The dial adjustment moves from 5 to 52.5lbs in seconds, which makes drop sets and supersets actually practical instead of a two-minute production.`,
+    topPickReason: `The updated Results Series dial adjustment moves from 5 to 52.5lbs in seconds, which makes drop sets and supersets actually practical instead of a two-minute production.`,
+    safetyNote: `If you own the original Bowflex SelectTech 552 (pre-2025), stop using it immediately. It was recalled due to a safety hazard. Visit Bowflex.com for refund information.`,
     options: [
       { tier: 'Budget', name: 'Amazon Basics Adjustable Dumbbell', price: '$40–60', bestFor: 'Single dumbbell, basic adjustment, tight budget', link: '#', retailer: 'Buy on Amazon →' },
-      { tier: 'Mid-Range', name: 'Bowflex SelectTech 552', price: '$280–320', bestFor: 'Best all-rounder, 5–52.5lbs, fast dial adjustment', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
+      { tier: 'Mid-Range', name: 'Bowflex Results Series 552 SelectTech', price: '$280–320', bestFor: 'The recalled original 552 has been replaced by this updated Results Series model. Same dial system, same 5-52.5lb range, same beginner-friendly approach. Best adjustable dumbbell for anyone who does not need to lift over 50lbs.', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
       { tier: 'Premium', name: 'POWERBLOCK Elite EXP', price: '$350–430', bestFor: 'More compact than Bowflex, expandable to 90lbs', link: '#', retailer: 'Buy at POWERBLOCK →' },
     ],
   },
@@ -186,6 +187,12 @@ const tierColors: Record<string, string> = {
               </div>
             ))}
           </div>
+
+          {product.safetyNote && (
+            <div class="mt-4 bg-red-50 border border-red-100 rounded-xl px-5 py-4">
+              <p class="text-sm text-red-700 leading-relaxed"><span class="font-semibold">Safety note:</span> {product.safetyNote}</p>
+            </div>
+          )}
         </div>
       ))}
 
