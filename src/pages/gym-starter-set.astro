@@ -64,6 +64,8 @@ const products = [
   },
 ];
 
+const slugify = (s: string) => s.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+
 const tierColors: Record<string, string> = {
   Budget: 'bg-green-50 text-green-700',
   'Mid-Range': 'bg-blue-50 text-blue-700',
@@ -104,7 +106,7 @@ const schemaData = {
         <a href="/running-starter-set" class="hover:text-gray-900 transition-colors">Running</a>
         <a href="/home-gym-starter-set" class="hover:text-gray-900 transition-colors">Home Gym</a>
         <a href="/boxing-starter-set" class="hover:text-gray-900 transition-colors">Boxing</a>
-        <a href="/gifts" class="hover:text-gray-900 transition-colors font-medium text-gray-700">🎁 Gifts</a>
+        <a href="/gifts" class="hover:text-gray-900 transition-colors font-medium text-gray-700">Gifts</a>
       </nav>
     </div>
   </header>
@@ -141,88 +143,132 @@ const schemaData = {
       </div>
     </section>
 
-    <!-- Product sections -->
-    <section class="max-w-5xl mx-auto px-4 sm:px-6 pb-16 space-y-16">
+    <!-- Mobile section nav -->
+    <div class="lg:hidden overflow-x-auto border-b border-gray-200 sticky top-0 z-10 bg-[#fafaf8]">
+      <div class="flex gap-2 px-4 sm:px-6 py-3">
+        {products.map((p) => (
+          <a
+            href={`#${slugify(p.name)}`}
+            class="flex-shrink-0 text-sm font-medium px-4 py-1.5 rounded-full bg-white border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900 transition-all whitespace-nowrap"
+          >
+            {p.name}
+          </a>
+        ))}
+      </div>
+    </div>
 
-      {products.map((product, i) => (
-        <div>
-          <div class="flex items-center gap-3 mb-4">
-            <span class="bg-gray-900 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">
-              {i + 1}
-            </span>
-            <h2 class="text-2xl font-bold text-gray-900">{product.name}</h2>
+    <!-- Product sections with sidebar -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 pb-16">
+      <div class="flex gap-12 items-start pt-12">
+
+        <!-- Sidebar TOC -->
+        <aside class="hidden lg:block w-48 flex-shrink-0">
+          <div class="sticky top-8">
+            <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">In this kit</p>
+            <nav>
+              {products.map((p) => (
+                <a
+                  href={`#${slugify(p.name)}`}
+                  class="toc-link block py-2 text-sm text-slate-400 border-l-2 border-transparent pl-3 transition-all hover:text-gray-900"
+                  data-section={slugify(p.name)}
+                >
+                  {p.name}
+                </a>
+              ))}
+            </nav>
           </div>
+        </aside>
 
-          <p class="text-gray-600 leading-relaxed mb-5 max-w-3xl">{product.why}</p>
+        <!-- Main content -->
+        <div class="flex-1 min-w-0 space-y-16">
 
-          <!-- Top pick callout -->
-          <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6">
-            <p class="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-1">Our top pick</p>
-            <p class="font-semibold text-gray-900 text-sm">{product.options[1].name}</p>
-            <p class="text-sm text-gray-600 mt-1">{product.topPickReason}</p>
-          </div>
+          {products.map((product, i) => (
+            <div id={slugify(product.name)} data-product-section>
+              <div class="flex items-center gap-3 mb-4">
+                <span class="bg-gray-900 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">
+                  {i + 1}
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">{product.name}</h2>
+              </div>
 
-          <!-- Comparison table — desktop -->
-          <div class="hidden sm:block overflow-hidden rounded-xl border border-gray-100">
-            <table class="w-full text-sm">
-              <thead>
-                <tr class="bg-gray-50 border-b border-gray-100">
-                  <th class="text-left px-5 py-3 font-semibold text-gray-500 w-24">Tier</th>
-                  <th class="text-left px-5 py-3 font-semibold text-gray-500">Product</th>
-                  <th class="text-left px-5 py-3 font-semibold text-gray-500 w-32">Price</th>
-                  <th class="text-left px-5 py-3 font-semibold text-gray-500">Best For</th>
-                  <th class="text-left px-5 py-3 font-semibold text-gray-500 w-24">Link</th>
-                </tr>
-              </thead>
-              <tbody>
+              <p class="text-gray-600 leading-relaxed mb-5 max-w-3xl">{product.why}</p>
+
+              <!-- Top pick callout -->
+              <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6">
+                <p class="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-1">Our top pick</p>
+                <p class="font-semibold text-gray-900 text-sm">{product.options[1].name}</p>
+                <p class="text-sm text-gray-600 mt-1">{product.topPickReason}</p>
+              </div>
+
+              <!-- Comparison table — desktop -->
+              <div class="hidden sm:block overflow-hidden rounded-xl border border-gray-200">
+                <table class="w-full text-sm">
+                  <thead>
+                    <tr class="bg-[#0f172a]">
+                      <th class="text-left px-5 py-3 font-semibold text-white w-24">Tier</th>
+                      <th class="text-left px-5 py-3 font-semibold text-white">Product</th>
+                      <th class="text-left px-5 py-3 font-semibold text-white w-32">Price</th>
+                      <th class="text-left px-5 py-3 font-semibold text-white">Best For</th>
+                      <th class="text-left px-5 py-3 font-semibold text-white w-24">Link</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {product.options.map((opt, j) => (
+                      <tr class={`${j < product.options.length - 1 ? 'border-b border-gray-100' : ''} ${j === 1 ? 'bg-blue-50/40' : 'bg-white'}`}>
+                        <td class="px-5 py-4">
+                          <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full ${tierColors[opt.tier]}`}>
+                            {opt.tier}
+                          </span>
+                        </td>
+                        <td class="px-5 py-4 font-medium text-gray-900">
+                          {opt.name}
+                          {j === 1 && <span class="ml-2 text-xs font-semibold text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full whitespace-nowrap">Best for beginners</span>}
+                        </td>
+                        <td class="px-5 py-4 text-gray-500">{opt.price}</td>
+                        <td class="px-5 py-4 text-gray-500">{opt.bestFor}</td>
+                        <td class="px-5 py-4">
+                          <a href={opt.link} class="text-blue-600 hover:text-blue-800 font-semibold transition-colors">
+                            {opt.retailer}
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Comparison cards — mobile -->
+              <div class="sm:hidden space-y-3">
                 {product.options.map((opt, j) => (
-                  <tr class={j < product.options.length - 1 ? 'border-b border-gray-100' : ''}>
-                    <td class="px-5 py-4">
+                  <div class={`rounded-xl border p-4 ${j === 1 ? 'border-blue-200 bg-blue-50/40' : 'border-gray-100 bg-white'}`}>
+                    <div class="flex items-center justify-between mb-2">
                       <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full ${tierColors[opt.tier]}`}>
                         {opt.tier}
                       </span>
-                    </td>
-                    <td class="px-5 py-4 font-medium text-gray-900">{opt.name}</td>
-                    <td class="px-5 py-4 text-gray-500">{opt.price}</td>
-                    <td class="px-5 py-4 text-gray-500">{opt.bestFor}</td>
-                    <td class="px-5 py-4">
-                      <a href={opt.link} class="text-blue-600 hover:text-blue-800 font-semibold transition-colors">
-                        {opt.retailer}
-                      </a>
-                    </td>
-                  </tr>
+                      <span class="text-sm text-gray-500 font-medium">{opt.price}</span>
+                    </div>
+                    <div class="flex items-center gap-2 mb-1 flex-wrap">
+                      <p class="font-semibold text-gray-900 text-sm">{opt.name}</p>
+                      {j === 1 && <span class="text-xs font-semibold text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full">Best for beginners</span>}
+                    </div>
+                    <p class="text-xs text-gray-500 mb-3">{opt.bestFor}</p>
+                    <a href={opt.link} class="inline-block text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">
+                      {opt.retailer}
+                    </a>
+                  </div>
                 ))}
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Comparison cards — mobile -->
-          <div class="sm:hidden space-y-3">
-            {product.options.map((opt) => (
-              <div class="rounded-xl border border-gray-100 p-4">
-                <div class="flex items-center justify-between mb-2">
-                  <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full ${tierColors[opt.tier]}`}>
-                    {opt.tier}
-                  </span>
-                  <span class="text-sm text-gray-500 font-medium">{opt.price}</span>
-                </div>
-                <p class="font-semibold text-gray-900 text-sm mb-1">{opt.name}</p>
-                <p class="text-xs text-gray-500 mb-3">{opt.bestFor}</p>
-                <a href={opt.link} class="inline-block text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">
-                  {opt.retailer}
-                </a>
               </div>
-            ))}
-          </div>
 
-          <!-- Reddit quote -->
-          <blockquote class="mt-4 bg-gray-50 border border-gray-100 rounded-xl px-5 py-4">
-            <p class="text-sm text-gray-500 italic leading-relaxed">"{product.quote}"</p>
-            <p class="text-xs text-gray-400 mt-2">{product.quoteSource}</p>
-          </blockquote>
+              <!-- Reddit quote -->
+              <blockquote class="mt-4 bg-gray-50 border border-gray-100 rounded-xl px-5 py-4">
+                <p class="text-sm text-gray-500 italic leading-relaxed">"{product.quote}"</p>
+                <p class="text-xs text-gray-400 mt-2">{product.quoteSource}</p>
+              </blockquote>
+            </div>
+          ))}
+
         </div>
-      ))}
-
+      </div>
     </section>
 
     <!-- Gift callout -->
@@ -243,21 +289,5 @@ const schemaData = {
 
   </main>
 
-  <!-- Footer -->
-  <footer class="border-t border-gray-100">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-4">
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <p class="text-sm font-bold text-gray-900">fitness-complete.com</p>
-        <div class="flex gap-5 text-xs">
-          <a href="/about" class="text-gray-400 hover:text-gray-600 transition-colors">About</a>
-          <a href="/privacy-policy" class="text-gray-400 hover:text-gray-600 transition-colors">Privacy Policy</a>
-        </div>
-      </div>
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-        <p class="text-xs text-gray-400">This site contains affiliate links. We may earn a commission at no extra cost to you.</p>
-        <p class="text-xs text-gray-400">Last updated: March 2026</p>
-      </div>
-    </div>
-  </footer>
 
 </Layout>

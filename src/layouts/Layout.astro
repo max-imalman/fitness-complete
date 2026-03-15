@@ -29,8 +29,59 @@ const canonicalURL = `https://www.fitness-complete.com${Astro.url.pathname}`;
     {schema && <Fragment set:html={`<script type="application/ld+json">${schema}</script>`} />}
     <title>{title}</title>
   </head>
-  <body class="bg-white text-gray-900 antialiased">
+  <body class="text-gray-900 antialiased">
     <slot />
+
+    <!-- Shared footer -->
+    <footer class="bg-[#0f172a] text-white mt-16">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-10">
+
+          <!-- Column 1: Navigation -->
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-4">Starter Kits</p>
+            <ul class="space-y-2">
+              <li><a href="/gym-starter-set" class="text-sm text-slate-300 hover:text-white transition-colors">Gym</a></li>
+              <li><a href="/pilates-starter-set" class="text-sm text-slate-300 hover:text-white transition-colors">Pilates</a></li>
+              <li><a href="/running-starter-set" class="text-sm text-slate-300 hover:text-white transition-colors">Running</a></li>
+              <li><a href="/home-gym-starter-set" class="text-sm text-slate-300 hover:text-white transition-colors">Home Gym</a></li>
+              <li><a href="/boxing-starter-set" class="text-sm text-slate-300 hover:text-white transition-colors">Boxing</a></li>
+              <li><a href="/gifts" class="text-sm text-slate-300 hover:text-white transition-colors">Gift Ideas</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 2: Research Sources -->
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-4">Research Sources</p>
+            <ul class="space-y-2">
+              <li><span class="text-sm text-slate-400">r/fitness</span></li>
+              <li><span class="text-sm text-slate-400">r/beginnerfitness</span></li>
+              <li><span class="text-sm text-slate-400">r/xxfitness</span></li>
+              <li><span class="text-sm text-slate-400">Wirecutter</span></li>
+              <li><span class="text-sm text-slate-400">Garage Gym Reviews</span></li>
+              <li><span class="text-sm text-slate-400">CNN Underscored</span></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Legal -->
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-4">Legal</p>
+            <ul class="space-y-2">
+              <li><a href="/about" class="text-sm text-slate-300 hover:text-white transition-colors">About</a></li>
+              <li><a href="/privacy-policy" class="text-sm text-slate-300 hover:text-white transition-colors">Privacy Policy</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="border-t border-slate-700 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <p class="text-sm font-bold text-white">fitness-complete.com</p>
+          <p class="text-xs text-slate-500">This site contains affiliate links. We may earn a commission at no extra cost to you.</p>
+          <p class="text-xs text-slate-500">Last updated: March 2026</p>
+        </div>
+      </div>
+    </footer>
 
     <!-- Cookie banner -->
     <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white z-50" style="display:none">
@@ -47,6 +98,7 @@ const canonicalURL = `https://www.fitness-complete.com${Astro.url.pathname}`;
         </button>
       </div>
     </div>
+
     <script>
       (function () {
         if (!localStorage.getItem('cookieAccepted')) {
@@ -57,6 +109,33 @@ const canonicalURL = `https://www.fitness-complete.com${Astro.url.pathname}`;
           document.getElementById('cookie-banner').style.display = 'none';
         });
       })();
+    </script>
+
+    <script>
+      // Sticky TOC scroll tracking for sport pages
+      const sections = document.querySelectorAll('[data-product-section]');
+      const tocLinks = document.querySelectorAll('.toc-link');
+      if (sections.length > 0 && tocLinks.length > 0) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                tocLinks.forEach((link) => {
+                  link.classList.remove('border-gray-900', 'text-gray-900', 'font-semibold');
+                  link.classList.add('border-transparent', 'text-slate-400');
+                });
+                const activeLink = document.querySelector(`.toc-link[data-section="${entry.target.id}"]`);
+                if (activeLink) {
+                  activeLink.classList.remove('border-transparent', 'text-slate-400');
+                  activeLink.classList.add('border-gray-900', 'text-gray-900', 'font-semibold');
+                }
+              }
+            });
+          },
+          { rootMargin: '-10% 0px -70% 0px' }
+        );
+        sections.forEach((section) => observer.observe(section));
+      }
     </script>
   </body>
 </html>

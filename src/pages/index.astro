@@ -6,7 +6,8 @@ const sports = [
     name: 'Gym',
     slug: 'gym-starter-set',
     description: 'Lifting shoes, belt, straps, and a decent program. Everything a beginner needs to not look lost on day one.',
-    accent: 'text-blue-700',
+    accent: 'text-orange-700',
+    borderColor: 'border-t-orange-500',
     image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800',
     alt: 'Athlete training with weights in a gym',
   },
@@ -14,7 +15,8 @@ const sports = [
     name: 'Pilates',
     slug: 'pilates-starter-set',
     description: 'Mat, grip socks, and resistance bands. The essentials for reformer or mat classes, without overbuying.',
-    accent: 'text-rose-700',
+    accent: 'text-purple-700',
+    borderColor: 'border-t-purple-500',
     image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800',
     alt: 'Person performing Pilates exercises on a mat',
   },
@@ -23,6 +25,7 @@ const sports = [
     slug: 'running-starter-set',
     description: 'The right shoes are 90% of it. Plus what to wear and carry so your first few miles don\'t suck.',
     accent: 'text-green-700',
+    borderColor: 'border-t-green-500',
     image: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800',
     alt: 'Runner on an outdoor trail',
   },
@@ -30,7 +33,8 @@ const sports = [
     name: 'Home Gym',
     slug: 'home-gym-starter-set',
     description: 'Build a functional setup that doesn\'t take over your living room. Prioritized by what you\'ll actually use.',
-    accent: 'text-yellow-700',
+    accent: 'text-blue-700',
+    borderColor: 'border-t-blue-500',
     image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=800',
     alt: 'Home gym setup with dumbbells and exercise equipment',
   },
@@ -38,7 +42,8 @@ const sports = [
     name: 'Boxing',
     slug: 'boxing-starter-set',
     description: 'Gloves, wraps, and a bag. The minimum to start training without hurting your hands or wasting money.',
-    accent: 'text-orange-700',
+    accent: 'text-red-700',
+    borderColor: 'border-t-red-500',
     image: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=800',
     alt: 'Boxer training with gloves and heavy bag',
   },
@@ -48,7 +53,7 @@ const sports = [
 <Layout title="Fitness-Complete: Starter Kits for Every Sport">
 
   <!-- Nav -->
-  <header class="border-b border-gray-100">
+  <header class="border-b border-gray-200 bg-[#fafaf8]">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
       <a href="/" class="text-lg font-bold tracking-tight text-gray-900">fitness-complete</a>
       <nav class="hidden sm:flex gap-6 text-sm text-gray-500">
@@ -57,34 +62,36 @@ const sports = [
         <a href="/running-starter-set" class="hover:text-gray-900 transition-colors">Running</a>
         <a href="/home-gym-starter-set" class="hover:text-gray-900 transition-colors">Home Gym</a>
         <a href="/boxing-starter-set" class="hover:text-gray-900 transition-colors">Boxing</a>
-        <a href="/gifts" class="hover:text-gray-900 transition-colors font-medium text-gray-700">🎁 Gifts</a>
+        <a href="/gifts" class="hover:text-gray-900 transition-colors font-medium text-gray-700">Gifts</a>
       </nav>
     </div>
   </header>
 
   <main>
 
-    <!-- Hero -->
-    <section class="max-w-5xl mx-auto px-4 sm:px-6 pt-16 pb-12 text-center">
-      <p class="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-4">Researched. Honest. Beginner-first.</p>
-      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight mb-6">
-        The Complete Starter Kit<br class="hidden sm:block" /> for Your Sport
-      </h1>
-      <p class="text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
-        We researched what beginners actually need. No fluff, no upsells. Just the right gear to get started.
-      </p>
-      <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="#sports" class="inline-block bg-gray-900 text-white text-sm font-semibold px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors">
-          Browse starter kits
-        </a>
-        <a href="/gifts" class="inline-block border border-gray-200 text-gray-700 text-sm font-semibold px-6 py-3 rounded-lg hover:border-gray-400 transition-colors">
-          Shopping for a gift?
-        </a>
+    <!-- Hero — dark navy -->
+    <section class="bg-[#0f172a]">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-20 pb-16 text-center">
+        <p class="text-sm font-semibold uppercase tracking-widest text-slate-400 mb-4">Researched. Honest. Beginner-first.</p>
+        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight mb-6">
+          The Complete Starter Kit<br class="hidden sm:block" /> for Your Sport
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
+          We researched what beginners actually need. No fluff, no upsells. Just the right gear to get started.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="#sports" class="inline-block bg-white text-gray-900 text-sm font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors">
+            Browse starter kits
+          </a>
+          <a href="/gifts" class="inline-block border border-slate-600 text-slate-200 text-sm font-semibold px-6 py-3 rounded-lg hover:border-slate-400 transition-colors">
+            Shopping for a gift?
+          </a>
+        </div>
       </div>
     </section>
 
     <!-- Hero image -->
-    <section class="max-w-5xl mx-auto px-4 sm:px-6 pb-12">
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
       <figure>
         <img
           src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200"
@@ -98,7 +105,7 @@ const sports = [
     <!-- Gift angle -->
     <section class="bg-amber-50 border-y border-amber-100">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-12 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-        <div class="text-4xl">🎁</div>
+        <div class="w-1 self-stretch bg-amber-300 rounded-full flex-shrink-0 hidden sm:block"></div>
         <div>
           <h2 class="text-lg font-bold text-gray-900 mb-1">The perfect gift for someone starting out</h2>
           <p class="text-gray-600 text-sm sm:text-base max-w-2xl">
@@ -120,18 +127,18 @@ const sports = [
         {sports.map((sport) => (
           <a
             href={`/${sport.slug}`}
-            class="group block rounded-xl border border-gray-100 hover:border-gray-300 hover:shadow-md transition-all duration-200 overflow-hidden"
+            class={`group block rounded-xl border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all duration-200 overflow-hidden border-t-4 ${sport.borderColor}`}
           >
             <div class="relative">
               <img
                 src={sport.image}
                 alt={sport.alt}
-                class="h-36 w-full object-cover"
+                class="h-48 w-full object-cover"
                 loading="lazy"
               />
               <span class="absolute bottom-1 right-2 text-[10px] text-white/60">Photo: Unsplash</span>
             </div>
-            <div class="p-5">
+            <div class="p-6">
               <h3 class="font-bold text-gray-900 text-base mb-1 group-hover:text-gray-600 transition-colors">
                 {sport.name} Starter Kit
               </h3>
@@ -146,18 +153,18 @@ const sports = [
         <!-- Gifts card -->
         <a
           href="/gifts"
-          class="group block rounded-xl border border-amber-100 bg-amber-50 hover:border-amber-300 hover:shadow-md transition-all duration-200 overflow-hidden"
+          class="group block rounded-xl border border-amber-200 bg-amber-50 hover:border-amber-300 hover:shadow-md transition-all duration-200 overflow-hidden border-t-4 border-t-amber-500"
         >
           <div class="relative">
             <img
               src="https://images.unsplash.com/photo-1549366021-9f761d450615?w=800"
               alt="Fitness gear arranged as a gift"
-              class="h-36 w-full object-cover"
+              class="h-48 w-full object-cover"
               loading="lazy"
             />
             <span class="absolute bottom-1 right-2 text-[10px] text-white/60">Photo: Unsplash</span>
           </div>
-          <div class="p-5">
+          <div class="p-6">
             <h3 class="font-bold text-gray-900 text-base mb-1 group-hover:text-gray-600 transition-colors">
               Gift Ideas
             </h3>
@@ -222,7 +229,7 @@ const sports = [
           </div>
         </div>
 
-        <div class="bg-gray-900 text-white rounded-xl p-5">
+        <div class="bg-[#0f172a] text-white rounded-xl p-5">
           <p class="text-sm leading-relaxed">
             <span class="font-semibold">Commission is never a source.</span> Affiliate commission rate plays no role in product selection. It is a tiebreaker only when two products are genuinely equivalent.
           </p>
@@ -241,22 +248,5 @@ const sports = [
     </section>
 
   </main>
-
-  <!-- Footer -->
-  <footer class="border-t border-gray-100">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-4">
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <p class="text-sm font-bold text-gray-900">fitness-complete.com</p>
-        <div class="flex gap-5 text-xs">
-          <a href="/about" class="text-gray-400 hover:text-gray-600 transition-colors">About</a>
-          <a href="/privacy-policy" class="text-gray-400 hover:text-gray-600 transition-colors">Privacy Policy</a>
-        </div>
-      </div>
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-        <p class="text-xs text-gray-400">This site contains affiliate links. We may earn a commission at no extra cost to you.</p>
-        <p class="text-xs text-gray-400">Last updated: March 2026</p>
-      </div>
-    </div>
-  </footer>
 
 </Layout>
