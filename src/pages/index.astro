@@ -80,10 +80,9 @@ const sports = [
       <figure>
         <img
           src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200"
-          alt="Person working out in a well-equipped gym"
-          class="w-full rounded-2xl object-cover max-h-[400px]"
+          alt="Person working out in a well-equipped gym. Photo: Unsplash"
+          class="w-full rounded-2xl object-cover max-h-[35vh] sm:max-h-[45vh]"
         />
-        <figcaption class="text-xs text-gray-400 mt-2">Photo: Unsplash</figcaption>
       </figure>
     </section>
 
@@ -120,7 +119,6 @@ const sports = [
                 class="h-48 w-full object-cover"
                 loading="lazy"
               />
-              <span class="absolute bottom-1 right-2 text-[10px] text-white/60">Photo: Unsplash</span>
             </div>
             <div class="p-6">
               <h3 class="font-bold text-gray-900 text-base mb-1 group-hover:text-gray-600 transition-colors">
@@ -161,62 +159,12 @@ const sports = [
       </div>
     </section>
 
-    <!-- How we pick products -->
+    <!-- Methodology note -->
     <section class="bg-gray-50 border-t border-gray-100">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-16">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-10">How we pick products</h2>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-          <div class="bg-white rounded-xl border border-gray-100 p-6">
-            <h3 class="font-bold text-gray-900 mb-2">1. Reddit communities</h3>
-            <p class="text-sm text-gray-600 leading-relaxed mb-4">
-              We read through r/fitness, r/beginnerfitness, r/xxfitness and sport-specific subreddits. We look for what beginners say actually helped them, not what gets upvoted by experienced athletes. We specifically look for posts asking "what do I actually need starting out" and the replies that follow.
-            </p>
-            <div class="space-y-1 text-xs text-gray-500">
-              <p><span class="font-semibold text-gray-700">Why Reddit:</span> Real people with no financial incentive to recommend anything.</p>
-              <p><span class="font-semibold text-gray-700">Limitation:</span> Posts can be years old. We always check if products are still available.</p>
-            </div>
-          </div>
-
-          <div class="bg-white rounded-xl border border-gray-100 p-6">
-            <h3 class="font-bold text-gray-900 mb-2">2. Independent test sites</h3>
-            <p class="text-sm text-gray-600 leading-relaxed mb-4">
-              We cross-reference with tested picks from Wirecutter, Garage Gym Reviews, CNN Underscored, and similar sites that physically test products. These catch things Reddit misses, like long-term durability and quality control issues.
-            </p>
-            <div class="space-y-1 text-xs text-gray-500">
-              <p><span class="font-semibold text-gray-700">Why these sites:</span> Physical testing reveals problems that specs and marketing hide.</p>
-              <p><span class="font-semibold text-gray-700">Limitation:</span> Some sites have affiliate relationships too. We check whether their top pick matches what communities recommend.</p>
-            </div>
-          </div>
-
-          <div class="bg-white rounded-xl border border-gray-100 p-6">
-            <h3 class="font-bold text-gray-900 mb-2">3. Amazon reviews (the right way)</h3>
-            <p class="text-sm text-gray-600 leading-relaxed mb-4">
-              We do not look at star ratings. We read 3-star reviews, because that is where honest tradeoffs live. We look for patterns in 1-star reviews about durability after 6+ months, and we filter for Verified Purchase reviews only.
-            </p>
-            <div class="space-y-1 text-xs text-gray-500">
-              <p><span class="font-semibold text-gray-700">Why Amazon:</span> Volume of real-world feedback on exact products at exact price points.</p>
-              <p><span class="font-semibold text-gray-700">Limitation:</span> Reviews can be gamed. Cross-referencing with other sources filters most of this out.</p>
-            </div>
-          </div>
-
-          <div class="bg-white rounded-xl border border-gray-100 p-6">
-            <h3 class="font-bold text-gray-900 mb-2">4. YouTube reviews from mid-size channels</h3>
-            <p class="text-sm text-gray-600 leading-relaxed mb-4">
-              We look for honest video reviews from channels with 10k to 500k subscribers, specifically avoiding channels that disclose sponsorship deals for the products they review.
-            </p>
-            <div class="space-y-1 text-xs text-gray-500">
-              <p><span class="font-semibold text-gray-700">Why YouTube:</span> Shows real-world use, sizing, and quality in a way photos cannot.</p>
-              <p><span class="font-semibold text-gray-700">Limitation:</span> Not all channels are transparent about sponsorship. We check disclosure statements.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-[#0f172a] text-white rounded-xl p-5">
-          <p class="text-sm leading-relaxed">
-            <span class="font-semibold">Commission is never a source.</span> Affiliate commission rate plays no role in product selection. It is a tiebreaker only when two products are genuinely equivalent.
-          </p>
-        </div>
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8">
+        <p class="text-sm text-gray-600">
+          <span class="font-semibold text-gray-900">How we pick:</span> Reddit community consensus, independently tested by Wirecutter and Garage Gym Reviews, Amazon verified purchase patterns. Commission rate plays no role. <a href="/how-we-pick" class="text-blue-600 hover:text-blue-800 underline transition-colors">Full methodology →</a>
+        </p>
       </div>
     </section>
 

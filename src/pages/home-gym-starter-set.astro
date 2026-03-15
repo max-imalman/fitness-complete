@@ -77,10 +77,9 @@ const tierColors: Record<string, string> = {
       <figure class="mb-8">
         <img
           src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=800"
-          alt="Home gym setup with dumbbells and exercise equipment"
-          class="w-full rounded-2xl object-cover max-h-[400px]"
+          alt="Home gym setup with dumbbells and exercise equipment. Photo: Unsplash"
+          class="w-full rounded-2xl object-cover max-h-[35vh] sm:max-h-[45vh]"
         />
-        <figcaption class="text-xs text-gray-400 mt-2">Photo: Unsplash</figcaption>
       </figure>
       <p class="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-3">Home Gym</p>
       <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight mb-5">
@@ -189,17 +188,17 @@ const tierColors: Record<string, string> = {
                   <tbody>
                     {product.options.map((opt, j) => (
                       <tr class={`${j < product.options.length - 1 ? 'border-b border-gray-100' : ''} ${j === 1 ? 'bg-blue-50/40' : 'bg-white'}`}>
-                        <td class="px-5 py-4">
+                        <td class="px-5 py-3">
                           <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full ${tierColors[opt.tier]}`}>
                             {opt.tier}
                           </span>
                         </td>
-                        <td class="px-5 py-4 font-medium text-gray-900">
+                        <td class="px-5 py-3 font-medium text-gray-900">
                           {opt.name}
-                          {j === 1 && <span class="ml-2 text-xs font-semibold text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full whitespace-nowrap">Best for beginners</span>}
+                          {j === 1 && <div class="mt-1.5"><span class="text-xs font-semibold text-green-700 bg-green-100 px-2 py-0.5 rounded-full">Best for beginners</span></div>}
                         </td>
-                        <td class="px-5 py-4 text-gray-500">{opt.price}</td>
-                        <td class="px-5 py-4">
+                        <td class="px-5 py-3 text-gray-500">{opt.price}</td>
+                        <td class="px-5 py-3">
                           <a href={opt.link} class="text-blue-600 hover:text-blue-800 font-semibold transition-colors">
                             {opt.retailer}
                           </a>
@@ -220,9 +219,9 @@ const tierColors: Record<string, string> = {
                       </span>
                       <span class="text-sm text-gray-500 font-medium">{opt.price}</span>
                     </div>
-                    <div class="flex items-center gap-2 mb-1 flex-wrap">
+                    <div class="mb-1">
                       <p class="font-semibold text-gray-900 text-sm">{opt.name}</p>
-                      {j === 1 && <span class="text-xs font-semibold text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full">Best for beginners</span>}
+                      {j === 1 && <span class="mt-1 inline-block text-xs font-semibold text-green-700 bg-green-100 px-2 py-0.5 rounded-full">Best for beginners</span>}
                     </div>
                     <p class="text-xs text-gray-500 mb-3">{opt.bestFor}</p>
                     <a href={opt.link} class="inline-block text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">
