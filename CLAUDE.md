@@ -91,6 +91,37 @@ npm run preview  # Preview production build locally
 - `public/` — Static files served as-is (favicon, etc.)
 - TypeScript strict mode enabled via `astro/tsconfigs/strict`
 
+## Product Scoring System
+
+Every product recommendation is scored out of 100 points across three criteria:
+
+### Amazon Verified Purchase Reviews (50 points)
+- 40-50: Strong positive pattern in reviews written 6+ months after purchase, high volume of verified reviews, no recurring quality complaints
+- 25-39: Decent reviews but some durability concerns or low volume
+- 0-24: Mixed or poor long-term reviews
+
+### Independent Physical Tests (35 points)
+- 30-35: Tested and recommended by 2+ independent sources (Wirecutter, Garage Gym Reviews, CNN Underscored, OutdoorGearLab, GearJunkie)
+- 15-29: Recommended by 1 independent source
+- 0-14: No independent test found, or tested but not recommended
+
+### Beginner Failure Prevention (15 points)
+- 12-15: Product design actively prevents common beginner mistakes
+- 6-11: Neutral, does not cause or prevent beginner mistakes
+- 0-5: Product design could lead beginners into common mistakes
+
+### Commission rule
+Commission rate is never a scoring factor. If two products score identically, the one with lower commission wins our recommendation to prove independence.
+
+### Score thresholds for tier placement
+- Budget pick: Best scoring product under $30
+- Mid-Range pick: Best scoring product $30-80
+- Premium pick: Best scoring product over $80
+- Minimum score to be included: 45/100
+
+For each product on the site, store the score breakdown in a comment in the .astro file directly above the product recommendation, like this:
+<!-- SCORE: Amazon=45/50 (1200+ verified reviews, strong 6mo+ pattern) | Tests=30/35 (Wirecutter #1, GGR recommended) | Beginner=14/15 (FreeSip spout solves one-handed drinking) | TOTAL=89/100 -->
+
 ## YouTube video IDs to replace
 
 Each sport page has a placeholder video ID in its "See it in action" section. To replace:
