@@ -54,57 +54,13 @@ const sports = [
 
   <main>
 
-    <!-- Hero — dark navy -->
-    <section class="bg-[#0f172a]">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-20 pb-16 text-center">
-        <p class="text-sm font-semibold uppercase tracking-widest text-slate-400 mb-4">Researched. Honest. Beginner-first.</p>
-        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight mb-6">
-          The Complete Starter Kit<br class="hidden sm:block" /> for Your Sport
-        </h1>
-        <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-          We researched what beginners actually need. No fluff, no upsells. Just the right gear to get started.
-        </p>
-        <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-          <a href="#sports" class="inline-block bg-white text-gray-900 text-sm font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors">
-            Browse starter kits
-          </a>
-          <a href="/gifts" class="inline-block border border-slate-600 text-slate-200 text-sm font-semibold px-6 py-3 rounded-lg hover:border-slate-400 transition-colors">
-            Shopping for a gift?
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Hero image -->
-    <section class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
-      <figure>
-        <img
-          src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200"
-          alt="Person working out in a well-equipped gym. Photo: Unsplash"
-          class="w-full rounded-2xl object-cover max-h-[35vh] sm:max-h-[45vh]"
-        />
-      </figure>
-    </section>
-
-    <!-- Gift angle -->
-    <section class="bg-amber-50 border-y border-amber-100">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-12 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-        <div class="w-1 self-stretch bg-amber-300 rounded-full flex-shrink-0 hidden sm:block"></div>
-        <div>
-          <h2 class="text-lg font-bold text-gray-900 mb-1">The perfect gift for someone starting out</h2>
-          <p class="text-gray-600 text-sm sm:text-base max-w-2xl">
-            Got a friend who just signed up for the gym, started Pilates, or wants to try boxing? A starter kit beats a generic gift card. We've put together the exact gear they'll actually need, organized by sport with budget and premium options.
-          </p>
-          <a href="/gifts" class="inline-block mt-3 text-sm font-semibold text-amber-700 hover:text-amber-900 transition-colors">
-            See gift recommendations →
-          </a>
-        </div>
-      </div>
-    </section>
+    <!-- Page subtitle -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-5 pb-8">
+      <p class="text-sm text-gray-500">Curated starter kits for gym, Pilates, running, home gym, and boxing. Researched from real beginners.</p>
+    </div>
 
     <!-- Sport category cards -->
-    <section id="sports" class="max-w-5xl mx-auto px-4 sm:px-6 py-16">
-      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-10">Pick your sport</h2>
+    <section id="sports" class="max-w-5xl mx-auto px-4 sm:px-6 pb-12">
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {sports.map((sport) => (
@@ -156,6 +112,22 @@ const sports = [
             </span>
           </div>
         </a>
+      </div>
+    </section>
+
+    <!-- Gift angle -->
+    <section class="bg-amber-50 border-y border-amber-100">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-12 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+        <div class="w-1 self-stretch bg-amber-300 rounded-full flex-shrink-0 hidden sm:block"></div>
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 mb-1">The perfect gift for someone starting out</h2>
+          <p class="text-gray-600 text-sm sm:text-base max-w-2xl">
+            Got a friend who just signed up for the gym, started Pilates, or wants to try boxing? A starter kit beats a generic gift card. We've put together the exact gear they'll actually need, organized by sport with budget and premium options.
+          </p>
+          <a href="/gifts" class="inline-block mt-3 text-sm font-semibold text-amber-700 hover:text-amber-900 transition-colors">
+            See gift recommendations →
+          </a>
+        </div>
       </div>
     </section>
 
