@@ -37,7 +37,7 @@ const products = [
   },
   {
     name: 'Water Bottle',
-    why: `Pilates is lower-intensity than a HIIT class but you still sweat, and staying hydrated keeps your concentration sharp. You need a bottle that's leakproof when it inevitably gets knocked over, easy to open one-handed between exercises, and large enough to last a 60-minute class without a refill.`,
+    why: `You need a leakproof bottle because it will get knocked over on the reformer. Get at least 32oz to last a 60-minute class without a refill.`,
     topPickReason: `The leak-proof lid handles being knocked over in a reformer studio and keeps water cold through the full 60 minutes without insulation trade-offs.`,
     options: [
       { tier: 'Best value', name: 'Nalgene Wide Mouth 32oz', price: '$10–15', bestFor: 'Indestructible, simple, no frills', link: '#', retailer: 'Buy on Amazon →' },
@@ -161,7 +161,7 @@ const tierColors: Record<string, string> = {
                     <span class="score-tip">{product.score}</span>
                   </span>
                 </p>
-                <p class="text-sm text-gray-600 mt-1 w-full">{product.topPickReason}</p>
+                <p class="text-sm text-gray-600 mt-1 leading-relaxed">{product.topPickReason}</p>
               </div>
 
               <!-- Comparison table — desktop -->

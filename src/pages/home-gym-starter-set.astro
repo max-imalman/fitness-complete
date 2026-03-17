@@ -50,7 +50,7 @@ const products = [
   {
     name: 'Foam Roller',
     why: `Most beginners skip the foam roller and regret it around week four when their legs feel like concrete. Use it for 5 to 10 minutes after every session on your quads, hamstrings, and upper back.`,
-    topPickReason: `The multi-density grid surface releases muscle tension more effectively than flat foam rollers, which is the difference between recovery that actually feels like something and one that doesn't.`,
+    topPickReason: `The multi-density grid surface penetrates muscle tissue more effectively than flat foam, producing better results on dense areas like quads and IT bands.`,
     options: [
       { tier: 'Best value', name: 'AmazonBasics High-Density Foam Roller', price: '$18–25', bestFor: 'Firm, durable, does exactly what a foam roller should', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Our pick', name: 'TriggerPoint GRID Foam Roller', price: '$35–45', bestFor: 'Multi-density surface, better myofascial release', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
@@ -168,7 +168,7 @@ const tierColors: Record<string, string> = {
                     <span class="score-tip">{product.score}</span>
                   </span>
                 </p>
-                <p class="text-sm text-gray-600 mt-1 w-full">{product.topPickReason}</p>
+                <p class="text-sm text-gray-600 mt-1 leading-relaxed">{product.topPickReason}</p>
               </div>
 
               <!-- Comparison table — desktop -->

@@ -47,7 +47,7 @@ const products = [
   {
     name: 'Shaker Bottle',
     why: `A shaker without a BlenderBall wire whisk leaves lumps. That is the only spec that matters.`,
-    topPickReason: `The dual compartment lets you pre-load your protein and pre-workout separately, so you're not juggling two bottles or mixing at the gym.`,
+    topPickReason: `The BlenderBall wire whisk produces a smooth, lump-free shake every time, and the leakproof lid handles a gym bag without issues.`,
     image: 'https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=160',
     quote: `BlenderBottle Classic is the only answer.`,
     quoteSource: 'via r/gainit',
@@ -187,7 +187,7 @@ const schemaData = {
               <!-- Top pick callout -->
               <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6 flex gap-4 items-center">
                 <img src={product.image} alt={product.name} class="w-20 h-20 rounded-lg object-cover flex-shrink-0" loading="lazy" />
-                <div>
+                <div class="min-w-0 flex-1">
                   <p class="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-1">Our top pick</p>
                   <p class="font-semibold text-gray-900 text-sm flex items-center gap-1.5">
                     {product.options.find(o => o.tier === 'Our pick')?.name}
@@ -196,7 +196,7 @@ const schemaData = {
                       <span class="score-tip">{product.score}</span>
                     </span>
                   </p>
-                  <p class="text-sm text-gray-600 mt-1 w-full">{product.topPickReason}</p>
+                  <p class="text-sm text-gray-600 mt-1 leading-relaxed">{product.topPickReason}</p>
                 </div>
               </div>
 
