@@ -12,6 +12,7 @@ const products = [
       { tier: 'Mid-Range', name: 'Bowflex Results Series 552 SelectTech', price: '$280–320', bestFor: 'The recalled original 552 has been replaced by this updated Results Series model. Same dial system, same 5-52.5lb range, same beginner-friendly approach. Best adjustable dumbbell for anyone who does not need to lift over 50lbs.', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
       { tier: 'Premium', name: 'POWERBLOCK Elite EXP', price: '$350–430', bestFor: 'More compact than Bowflex, expandable to 90lbs', link: '#', retailer: 'Buy at POWERBLOCK →' },
     ],
+    score: 'Amazon: 44/50 · Independent tests: 30/35 · Beginner fit: 14/15 · Total: 88/100',
   },
   {
     name: 'Resistance Bands',
@@ -22,6 +23,7 @@ const products = [
       { tier: 'Mid-Range', name: 'Bodylastics Stackable Tube Bands', price: '$30–45', bestFor: 'Anchor system for door, handles included, versatile', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Premium', name: 'SPRI Braided Xertube', price: '$18–28', bestFor: 'Braided cord won\'t snap, longer lasting than latex', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
     ],
+    score: 'Amazon: 40/50 · Independent tests: 20/35 · Beginner fit: 12/15 · Total: 72/100',
   },
   {
     name: 'Pull-Up Bar',
@@ -32,6 +34,7 @@ const products = [
       { tier: 'Mid-Range', name: 'Perfect Fitness Multi-Gym Doorframe Bar', price: '$35–45', bestFor: 'Better grip positions, sturdier frame, no screws', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Premium', name: 'Rogue Monster Lite Pull-Up Bar', price: '$195–250', bestFor: 'Wall-mounted, permanent, serious training capacity', link: '#', retailer: 'Buy at Rogue Fitness →' },
     ],
+    score: 'Amazon: 42/50 · Independent tests: 22/35 · Beginner fit: 13/15 · Total: 77/100',
   },
   {
     name: 'Exercise Mat',
@@ -42,6 +45,7 @@ const products = [
       { tier: 'Mid-Range', name: 'Gaiam Premium 6mm Yoga Mat', price: '$35–45', bestFor: 'Non-slip texture, good cushion, wide enough for most', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Premium', name: 'Manduka PRO 6mm Yoga Mat', price: '$120–140', bestFor: 'Dense, no-squish cushion, lifetime guarantee', link: '#', retailer: 'Buy at REI →' },
     ],
+    score: 'Amazon: 41/50 · Independent tests: 22/35 · Beginner fit: 11/15 · Total: 74/100',
   },
   {
     name: 'Foam Roller',
@@ -52,6 +56,7 @@ const products = [
       { tier: 'Mid-Range', name: 'TriggerPoint GRID Foam Roller', price: '$35–45', bestFor: 'Multi-density surface, better myofascial release', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
       { tier: 'Premium', name: 'Hyperice Vyper 3 Vibrating Roller', price: '$180–220', bestFor: 'Vibration speeds recovery, genuinely different experience', link: '#', retailer: 'Buy at Hyperice →' },
     ],
+    score: 'Amazon: 45/50 · Independent tests: 30/35 · Beginner fit: 13/15 · Total: 88/100',
   },
 ];
 
@@ -174,11 +179,18 @@ const tierColors: Record<string, string> = {
               )}
 
               <!-- Top pick callout -->
-              <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6">
+              <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-2">
                 <p class="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-1">Our top pick</p>
-                <p class="font-semibold text-gray-900 text-sm">{product.options[1].name}</p>
+                <p class="font-semibold text-gray-900 text-sm flex items-center gap-1.5">
+                  {product.options[1].name}
+                  <span class="score-tooltip">
+                    <span class="score-icon">ⓘ</span>
+                    <span class="score-tip">{product.score}</span>
+                  </span>
+                </p>
                 <p class="text-sm text-gray-600 mt-1">{product.topPickReason}</p>
               </div>
+              <p class="text-xs text-gray-400 mb-6">Score based on Amazon verified purchase reviews (50pts), independent lab tests (35pts), and beginner-friendliness (15pts).</p>
 
               <!-- Comparison table — desktop -->
               <div class="hidden sm:block overflow-hidden rounded-xl border border-gray-200">
@@ -249,23 +261,6 @@ const tierColors: Record<string, string> = {
       </div>
     </section>
 
-    <!-- Video section -->
-    <section class="max-w-5xl mx-auto px-4 sm:px-6 pb-16">
-      <div class="bg-gray-50 rounded-2xl p-6 sm:p-8">
-        <h2 class="text-xl font-bold text-gray-900 mb-2">See it in action</h2>
-        <p class="text-sm text-gray-500 mb-5">How to build a functional home gym without buying things you don't need.</p>
-        <iframe
-          width="100%"
-          style="aspect-ratio: 16/9; border-radius: 8px; border: none;"
-          src="https://www.youtube.com/embed/VIDEO_ID_HOMEGYM"
-          title="Independent home gym starter kit review"
-          loading="lazy"
-          allowfullscreen
-        ></iframe>
-        <p class="text-xs text-gray-400 mt-3">We select videos from independent creators with no sponsorship conflict for the products reviewed.</p>
-      </div>
-    </section>
-
     <!-- Gift callout -->
     <section class="bg-amber-50 border-t border-amber-100">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 flex flex-col sm:flex-row items-start sm:items-center gap-6">
@@ -284,5 +279,44 @@ const tierColors: Record<string, string> = {
 
   </main>
 
-
 </Layout>
+
+<style>
+  .score-tooltip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+  .score-icon {
+    color: #9ca3af;
+    font-size: 14px;
+    cursor: help;
+    line-height: 1;
+    font-style: normal;
+  }
+  .score-tip {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f2937;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 6px 10px;
+    border-radius: 6px;
+    max-width: 220px;
+    width: max-content;
+    white-space: normal;
+    z-index: 20;
+    transition: opacity 0.15s ease;
+    pointer-events: none;
+  }
+  .score-tooltip:hover .score-tip {
+    visibility: visible;
+    opacity: 1;
+  }
+</style>

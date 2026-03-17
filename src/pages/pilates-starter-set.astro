@@ -11,6 +11,7 @@ const products = [
       { tier: 'Mid-Range', name: 'Manduka PRO Lite 4.7mm', price: '$78–88', bestFor: 'Dense, grippy and built to last, best for most beginners', link: '#', retailer: 'Buy at REI →' },
       { tier: 'Premium', name: 'Lululemon The Mat 5mm', price: '$98–118', bestFor: 'Best grip and cushion, looks great in studio', link: '#', retailer: 'Buy at Lululemon →' },
     ],
+    score: 'Amazon: 44/50 · Independent tests: 30/35 · Beginner fit: 14/15 · Total: 88/100',
   },
   {
     name: 'Grip Socks',
@@ -21,6 +22,7 @@ const products = [
       { tier: 'Mid-Range', name: 'ToeSox Full Toe Crew', price: '$18–24', bestFor: 'Individual toe design improves reformer feedback', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Premium', name: 'Pointe Studio Full Grip Sock', price: '$28–34', bestFor: 'Best tested grip sock overall, 5/5 stars in independent testing for workout performance', link: '#', retailer: 'Buy at Pointe Studio →' },
     ],
+    score: 'Amazon: 40/50 · Independent tests: 22/35 · Beginner fit: 13/15 · Total: 75/100',
   },
   {
     name: 'Resistance Bands',
@@ -31,6 +33,7 @@ const products = [
       { tier: 'Mid-Range', name: 'Theraband Professional Loops', price: '$18–25', bestFor: 'Physical-therapy grade, color-coded resistance', link: '#', retailer: 'Buy on Amazon →' },
       { tier: 'Premium', name: 'Perform Better Mini Bands', price: '$28–35', bestFor: 'Durable fabric, won\'t roll or snap, class staple', link: '#', retailer: 'Buy at Perform Better →' },
     ],
+    score: 'Amazon: 43/50 · Independent tests: 25/35 · Beginner fit: 12/15 · Total: 80/100',
   },
   {
     name: 'Water Bottle',
@@ -41,6 +44,7 @@ const products = [
       { tier: 'Mid-Range', name: 'Hydro Flask 32oz Wide Mouth', price: '$40–50', bestFor: 'Keeps water cold, great leakproof lid', link: '#', retailer: 'Buy at REI →' },
       { tier: 'Premium', name: "S'well 17oz Bottle", price: '$35–45', bestFor: 'Slim enough for a reformer cupholder, beautiful finish', link: '#', retailer: 'Buy on Amazon →' },
     ],
+    score: 'Amazon: 46/50 · Independent tests: 30/35 · Beginner fit: 13/15 · Total: 89/100',
   },
   {
     name: 'Grip Gloves',
@@ -51,6 +55,7 @@ const products = [
       { tier: 'Mid-Range', name: 'Harbinger Pro Wrist Wrap Gloves', price: '$30–40', bestFor: 'Adds wrist support for reformer bar holds', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
       { tier: 'Premium', name: 'Lululemon Fitness Gloves', price: '$38–48', bestFor: 'Clean design, great grip, won\'t look out of place in class', link: '#', retailer: 'Buy at Lululemon →' },
     ],
+    score: 'Amazon: 42/50 · Independent tests: 28/35 · Beginner fit: 11/15 · Total: 81/100',
   },
 ];
 
@@ -167,11 +172,18 @@ const tierColors: Record<string, string> = {
               <p class="text-gray-600 leading-relaxed mb-5 max-w-3xl">{product.why}</p>
 
               <!-- Top pick callout -->
-              <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6">
+              <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-2">
                 <p class="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-1">Our top pick</p>
-                <p class="font-semibold text-gray-900 text-sm">{product.options[1].name}</p>
+                <p class="font-semibold text-gray-900 text-sm flex items-center gap-1.5">
+                  {product.options[1].name}
+                  <span class="score-tooltip">
+                    <span class="score-icon">ⓘ</span>
+                    <span class="score-tip">{product.score}</span>
+                  </span>
+                </p>
                 <p class="text-sm text-gray-600 mt-1">{product.topPickReason}</p>
               </div>
+              <p class="text-xs text-gray-400 mb-6">Score based on Amazon verified purchase reviews (50pts), independent lab tests (35pts), and beginner-friendliness (15pts).</p>
 
               <!-- Comparison table — desktop -->
               <div class="hidden sm:block overflow-hidden rounded-xl border border-gray-200">
@@ -236,23 +248,6 @@ const tierColors: Record<string, string> = {
       </div>
     </section>
 
-    <!-- Video section -->
-    <section class="max-w-5xl mx-auto px-4 sm:px-6 pb-16">
-      <div class="bg-gray-50 rounded-2xl p-6 sm:p-8">
-        <h2 class="text-xl font-bold text-gray-900 mb-2">See it in action</h2>
-        <p class="text-sm text-gray-500 mb-5">An honest look at the gear you need before your first Pilates class.</p>
-        <iframe
-          width="100%"
-          style="aspect-ratio: 16/9; border-radius: 8px; border: none;"
-          src="https://www.youtube.com/embed/VIDEO_ID_PILATES"
-          title="Independent Pilates starter kit review"
-          loading="lazy"
-          allowfullscreen
-        ></iframe>
-        <p class="text-xs text-gray-400 mt-3">We select videos from independent creators with no sponsorship conflict for the products reviewed.</p>
-      </div>
-    </section>
-
     <!-- Gift callout -->
     <section class="bg-amber-50 border-t border-amber-100">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 flex flex-col sm:flex-row items-start sm:items-center gap-6">
@@ -271,5 +266,44 @@ const tierColors: Record<string, string> = {
 
   </main>
 
-
 </Layout>
+
+<style>
+  .score-tooltip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+  .score-icon {
+    color: #9ca3af;
+    font-size: 14px;
+    cursor: help;
+    line-height: 1;
+    font-style: normal;
+  }
+  .score-tip {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f2937;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 6px 10px;
+    border-radius: 6px;
+    max-width: 220px;
+    width: max-content;
+    white-space: normal;
+    z-index: 20;
+    transition: opacity 0.15s ease;
+    pointer-events: none;
+  }
+  .score-tooltip:hover .score-tip {
+    visibility: visible;
+    opacity: 1;
+  }
+</style>

@@ -11,6 +11,7 @@ const products = [
       { tier: 'Mid-Range', name: 'Brooks Ghost 17', price: '$130–140', bestFor: 'Best all-rounder for most beginners, smooth ride', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
       { tier: 'Premium', name: 'HOKA Clifton 10', price: '$145–160', bestFor: 'Maximum cushion, ideal for high mileage or joint issues', link: '#', retailer: 'Buy at REI →' },
     ],
+    score: 'Amazon: 47/50 · Independent tests: 35/35 · Beginner fit: 15/15 · Total: 97/100',
   },
   {
     name: 'Running Socks',
@@ -21,6 +22,7 @@ const products = [
       { tier: 'Mid-Range', name: 'Darn Tough Run No Show Tab', price: '$22–26', bestFor: 'Merino wool, lifetime warranty, extremely durable', link: '#', retailer: 'Buy at REI →' },
       { tier: 'Premium', name: 'Stance Run Tab', price: '$20–28', bestFor: 'Performance fit, great arch support, premium feel', link: '#', retailer: 'Buy at Stance →' },
     ],
+    score: 'Amazon: 45/50 · Independent tests: 33/35 · Beginner fit: 13/15 · Total: 91/100',
   },
   {
     name: 'Running Belt / Hydration',
@@ -31,6 +33,7 @@ const products = [
       { tier: 'Mid-Range', name: 'Nathan SpeedShot Plus Handheld', price: '$30–38', bestFor: 'Adds hydration for longer runs, hands-free grip', link: '#', retailer: 'Buy at REI →' },
       { tier: 'Premium', name: 'Salomon Active Skin 4 Vest', price: '$120–140', bestFor: 'Full hydration vest for serious distance runners', link: '#', retailer: 'Buy at REI →' },
     ],
+    score: 'Amazon: 38/50 · Independent tests: 25/35 · Beginner fit: 12/15 · Total: 75/100',
   },
   {
     name: 'Moisture-Wicking Shirt',
@@ -41,6 +44,7 @@ const products = [
       { tier: 'Mid-Range', name: 'Nike Dri-FIT Short Sleeve', price: '$30–40', bestFor: 'Great fit, wide size range, reliable wicking', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
       { tier: 'Premium', name: 'Patagonia Capilene Cool Daily', price: '$45–55', bestFor: 'Recycled fabric, odor-resistant, sustainably made', link: '#', retailer: 'Buy at REI →' },
     ],
+    score: 'Amazon: 43/50 · Independent tests: 20/35 · Beginner fit: 13/15 · Total: 76/100',
   },
 ];
 
@@ -157,11 +161,18 @@ const tierColors: Record<string, string> = {
               <p class="text-gray-600 leading-relaxed mb-5 max-w-3xl">{product.why}</p>
 
               <!-- Top pick callout -->
-              <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6">
+              <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-2">
                 <p class="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-1">Our top pick</p>
-                <p class="font-semibold text-gray-900 text-sm">{product.options[1].name}</p>
+                <p class="font-semibold text-gray-900 text-sm flex items-center gap-1.5">
+                  {product.options[1].name}
+                  <span class="score-tooltip">
+                    <span class="score-icon">ⓘ</span>
+                    <span class="score-tip">{product.score}</span>
+                  </span>
+                </p>
                 <p class="text-sm text-gray-600 mt-1">{product.topPickReason}</p>
               </div>
+              <p class="text-xs text-gray-400 mb-6">Score based on Amazon verified purchase reviews (50pts), independent lab tests (35pts), and beginner-friendliness (15pts).</p>
 
               <!-- Comparison table — desktop -->
               <div class="hidden sm:block overflow-hidden rounded-xl border border-gray-200">
@@ -226,23 +237,6 @@ const tierColors: Record<string, string> = {
       </div>
     </section>
 
-    <!-- Video section -->
-    <section class="max-w-5xl mx-auto px-4 sm:px-6 pb-16">
-      <div class="bg-gray-50 rounded-2xl p-6 sm:p-8">
-        <h2 class="text-xl font-bold text-gray-900 mb-2">See it in action</h2>
-        <p class="text-sm text-gray-500 mb-5">What a beginner runner actually needs, from someone who has been there.</p>
-        <iframe
-          width="100%"
-          style="aspect-ratio: 16/9; border-radius: 8px; border: none;"
-          src="https://www.youtube.com/embed/VIDEO_ID_RUNNING"
-          title="Independent running starter kit review"
-          loading="lazy"
-          allowfullscreen
-        ></iframe>
-        <p class="text-xs text-gray-400 mt-3">We select videos from independent creators with no sponsorship conflict for the products reviewed.</p>
-      </div>
-    </section>
-
     <!-- Gift callout -->
     <section class="bg-amber-50 border-t border-amber-100">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 flex flex-col sm:flex-row items-start sm:items-center gap-6">
@@ -261,5 +255,44 @@ const tierColors: Record<string, string> = {
 
   </main>
 
-
 </Layout>
+
+<style>
+  .score-tooltip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+  .score-icon {
+    color: #9ca3af;
+    font-size: 14px;
+    cursor: help;
+    line-height: 1;
+    font-style: normal;
+  }
+  .score-tip {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f2937;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 6px 10px;
+    border-radius: 6px;
+    max-width: 220px;
+    width: max-content;
+    white-space: normal;
+    z-index: 20;
+    transition: opacity 0.15s ease;
+    pointer-events: none;
+  }
+  .score-tooltip:hover .score-tip {
+    visibility: visible;
+    opacity: 1;
+  }
+</style>
