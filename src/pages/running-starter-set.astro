@@ -124,30 +124,9 @@ const tierColors: Record<string, string> = {
       </div>
     </div>
 
-    <!-- Product sections with sidebar -->
+    <!-- Product sections -->
     <section class="max-w-5xl mx-auto px-4 sm:px-6 pb-16">
-      <div class="lg:grid lg:grid-cols-[200px_1fr] lg:gap-10 items-start pt-12">
-
-        <!-- Sidebar TOC -->
-        <aside class="hidden lg:block">
-          <div class="sticky top-8">
-            <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">In this kit</p>
-            <nav>
-              {products.map((p) => (
-                <a
-                  href={`#${slugify(p.name)}`}
-                  class="toc-link block py-2 text-sm text-slate-400 border-l-2 border-transparent pl-3 transition-all hover:text-gray-900"
-                  data-section={slugify(p.name)}
-                >
-                  {p.name}
-                </a>
-              ))}
-            </nav>
-          </div>
-        </aside>
-
-        <!-- Main content -->
-        <div class="space-y-16">
+      <div class="space-y-16 pt-12">
 
           {products.map((product, i) => (
             <div id={slugify(product.name)} data-product-section>
@@ -231,7 +210,6 @@ const tierColors: Record<string, string> = {
             </div>
           ))}
 
-        </div>
       </div>
     </section>
 
