@@ -167,6 +167,12 @@ const tierColors: Record<string, string> = {
 
               <p class="text-gray-600 leading-relaxed mb-5 max-w-3xl">{product.why}</p>
 
+              {product.name === 'Pull-Up Bar' && (
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
+                  <p class="text-sm text-amber-900"><span class="font-semibold">Note:</span> Doorframe pull-up bars require at least 0.5 inches of door trim overhang to grip onto. Flush-mounted doorframes (no trim visible) will not work. Check your doorframe before buying.</p>
+                </div>
+              )}
+
               <!-- Top pick callout -->
               <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6">
                 <p class="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-1">Our top pick</p>
