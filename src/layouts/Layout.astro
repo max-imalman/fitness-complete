@@ -44,6 +44,23 @@ const path = Astro.url.pathname;
           <a href="/pickleball-starter-set" class={`transition-colors ${path === '/pickleball-starter-set' ? 'text-gray-900 font-semibold' : 'hover:text-gray-900'}`}>Pickleball</a>
           <a href="/gifts" class={`transition-colors font-medium ${path === '/gifts' ? 'text-gray-900 font-semibold' : 'text-gray-700 hover:text-gray-900'}`}>🎁 Gifts</a>
         </nav>
+        <!-- Hamburger button (mobile only) -->
+        <button id="menu-toggle" class="sm:hidden flex flex-col justify-center gap-[5px] p-2 -mr-2" aria-label="Toggle menu" aria-expanded="false">
+          <span class="block w-6 h-0.5 bg-gray-900 transition-all duration-200" id="bar1"></span>
+          <span class="block w-6 h-0.5 bg-gray-900 transition-all duration-200" id="bar2"></span>
+          <span class="block w-6 h-0.5 bg-gray-900 transition-all duration-200" id="bar3"></span>
+        </button>
+      </div>
+      <!-- Mobile dropdown menu -->
+      <div id="mobile-menu" class="sm:hidden hidden bg-[#fafaf8] border-t border-gray-100">
+        <nav class="max-w-[1400px] mx-auto px-4 py-3 flex flex-col">
+          <a href="/gym-starter-set" class={`py-3 text-sm border-b border-gray-100 transition-colors ${path === '/gym-starter-set' ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}>Gym</a>
+          <a href="/pilates-starter-set" class={`py-3 text-sm border-b border-gray-100 transition-colors ${path === '/pilates-starter-set' ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}>Pilates</a>
+          <a href="/running-starter-set" class={`py-3 text-sm border-b border-gray-100 transition-colors ${path === '/running-starter-set' ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}>Running</a>
+          <a href="/home-gym-starter-set" class={`py-3 text-sm border-b border-gray-100 transition-colors ${path === '/home-gym-starter-set' ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}>Home Gym</a>
+          <a href="/pickleball-starter-set" class={`py-3 text-sm border-b border-gray-100 transition-colors ${path === '/pickleball-starter-set' ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}>Pickleball</a>
+          <a href="/gifts" class={`py-3 text-sm transition-colors font-medium ${path === '/gifts' ? 'text-gray-900 font-semibold' : 'text-gray-700 hover:text-gray-900'}`}>🎁 Gifts</a>
+        </nav>
       </div>
     </header>
 
@@ -124,6 +141,20 @@ const path = Astro.url.pathname;
         </div>
       </div>
     </div>
+
+    <script>
+      (function () {
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('mobile-menu');
+        if (toggle && menu) {
+          toggle.addEventListener('click', function () {
+            const isOpen = !menu.classList.contains('hidden');
+            menu.classList.toggle('hidden');
+            toggle.setAttribute('aria-expanded', String(!isOpen));
+          });
+        }
+      })();
+    </script>
 
     <script>
       (function () {
