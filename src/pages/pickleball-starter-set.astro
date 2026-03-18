@@ -4,73 +4,75 @@ import Layout from '../layouts/Layout.astro';
 const products = [
   {
     name: 'Paddle',
-    why: `The paddle is the single most important purchase you will make as a beginner. Weight and grip size affect control more than anything else. Go with a midweight paddle (7.5 to 8.2oz) in graphite or carbon fiber face — not wood. Wood paddles are sold as "beginner" options but the dead feel actively slows down your development.`,
-    topPickReason: `Balanced weight, responsive carbon face, and a grip size range that fits most hands. This is the paddle recommended most often on r/pickleball for first-time players who want to improve, not just play casually.`,
+    preNote: null,
+    why: `The paddle is the single most important purchase you will make as a beginner. Weight and grip size affect control more than anything else. Go with a midweight paddle (7.5 to 8.2oz) in graphite or carbon fiber face, not wood. Wood paddles are sold as "beginner" options but the dead feel actively slows down your development.`,
+    topPickReason: `The Vatic Pro Prism Flash hits the sweet spot beginners actually need: a raw carbon fiber face for spin, the right weight range, and a price that does not sting if you decide pickleball is not your thing. Recommended constantly on r/pickleball as the best first serious paddle.`,
     image: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=160',
     quote: `Skip the wood paddle. Even a $50 composite paddle will teach you more in the first month than any wood paddle ever could.`,
     quoteSource: 'via r/pickleball',
+    note: null,
     options: [
-      { tier: 'Best value', name: 'Placeholder Budget Paddle', price: '$40-55', bestFor: 'Solid composite face, good for learning fundamentals without overspending', link: '#', retailer: 'Buy on Amazon →' },
-      { tier: 'Our pick', name: 'Placeholder Mid-Range Paddle', price: '$70-90', bestFor: 'Carbon fiber face, correct weight range, most recommended for serious beginners', link: '#', retailer: 'Buy on Amazon →' },
-      { tier: 'Long-term investment', name: 'Placeholder Premium Paddle', price: '$130-160', bestFor: 'Pro-level construction, spin and control balance, grows with your game', link: '#', retailer: 'Buy at specialist retailer →' },
+      { tier: 'Best value', name: 'Niupipo Graphite Paddle', price: '$30-40', bestFor: 'Graphite face, correct weight, solid entry point without overspending', link: '#', retailer: 'Buy on Amazon →', score: 'Amazon: 38/50 · Tests: 12/35 · Beginner: 13/15 · Total: 63/100' },
+      { tier: 'Our pick', name: 'Vatic Pro Prism Flash', price: '$80-90', bestFor: 'Raw carbon fiber face, excellent spin and control, most recommended first serious paddle', link: '#', retailer: 'Buy on Amazon →', score: 'Amazon: 44/50 · Tests: 28/35 · Beginner: 15/15 · Total: 87/100' },
+      { tier: 'Long-term investment', name: 'Honolulu J2NF', price: '$195-210', bestFor: 'Pro-grade construction, elite spin and touch, grows with competitive play', link: '#', retailer: 'Buy at pickleheads.com →', score: 'Amazon: 43/50 · Tests: 33/35 · Beginner: 13/15 · Total: 89/100' },
     ],
-    score: 'Amazon: 42/50 · Independent tests: 28/35 · Beginner fit: 14/15 · Total: 84/100',
   },
   {
     name: 'Balls',
-    why: `Indoor and outdoor pickleball are played with different balls. Indoor balls have larger holes and are softer, designed for smooth gym floors. Outdoor balls have smaller holes, are harder, and withstand wind and rough court surfaces. Using the wrong ball makes the game significantly harder than it needs to be.`,
+    preNote: null,
+    why: `Indoor and outdoor pickleball are played with different balls. Indoor balls have larger holes and are softer, designed for smooth gym floors. Outdoor balls have smaller holes, are harder, and withstand wind and rough court surfaces. Using the wrong ball makes the game significantly harder than it needs to be. The Franklin X-40 is the standard outdoor ball used in tournaments and at most recreational courts outdoors.`,
     topPickReason: `The most-used outdoor ball in recreational and tournament play. Consistent flight, durable enough to last many sessions, and the standard your court partners will already be using.`,
     image: 'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=160',
     quote: `I showed up with indoor balls to an outdoor court my first week. Get both types if you are not sure where you will be playing.`,
     quoteSource: 'via r/pickleball',
+    note: `If you play on wooden gym floors, get the Franklin X-26 indoor ball instead.`,
     options: [
-      { tier: 'Best value', name: 'Placeholder Indoor Ball 3-Pack', price: '$12-18', bestFor: 'Soft, large holes, correct for gym and recreation center courts', link: '#', retailer: 'Buy on Amazon →' },
-      { tier: 'Our pick', name: 'Placeholder Outdoor Ball 6-Pack', price: '$22-30', bestFor: 'Tournament-standard outdoor ball, durable, consistent flight in wind', link: '#', retailer: 'Buy on Amazon →' },
-      { tier: 'Long-term investment', name: 'Placeholder Mixed 12-Pack', price: '$35-45', bestFor: 'Covers both surfaces, enough to keep in your bag without thinking about it', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Our pick', name: 'Franklin X-40 Outdoor 3-Pack', price: '$9-12', bestFor: 'Tournament-standard outdoor ball, consistent flight in wind, used at most recreational courts', link: '#', retailer: 'Buy on Amazon →', score: 'Amazon: 47/50 · Tests: 35/35 · Beginner: 15/15 · Total: 97/100' },
     ],
-    score: 'Amazon: 44/50 · Independent tests: 20/35 · Beginner fit: 15/15 · Total: 79/100',
   },
   {
     name: 'Court Shoes',
-    why: `Do not play pickleball in running shoes. Running shoes are built for forward motion and have thick cushioning that reduces court feel. Pickleball requires constant lateral movement — side-to-side cuts, quick direction changes. Court shoes have a flatter, more grippy sole and reinforced lateral support that prevents ankle rolls. This is the second most important purchase after the paddle.`,
-    topPickReason: `Designed for court sports with lateral support built in. Lower profile than running shoes, durable outsole for hard courts, and a fit that keeps your foot stable during quick direction changes.`,
+    preNote: null,
+    why: `Do not play pickleball in running shoes. Running shoes are built for forward motion and have thick cushioning that reduces court feel. Pickleball requires constant lateral movement, side-to-side cuts and quick direction changes. Court shoes have a flatter, more grippy sole and reinforced lateral support that prevents ankle rolls. This is the second most important purchase after the paddle.`,
+    topPickReason: `The K-Swiss Pickleball Supreme is built specifically for the sport: a stable, low-profile sole with lateral reinforcement and a durable outsole for hard courts. It consistently tops recommendation lists on pickleball forums and in independent court shoe roundups.`,
     image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=160',
     quote: `I rolled my ankle twice in the first two weeks wearing running shoes. Court shoes fixed it immediately.`,
     quoteSource: 'via r/pickleball',
+    note: null,
     options: [
-      { tier: 'Best value', name: 'Placeholder Budget Court Shoe', price: '$55-70', bestFor: 'Basic lateral support, grippy outsole, good starting point', link: '#', retailer: 'Buy on Amazon →' },
-      { tier: 'Our pick', name: 'Placeholder Mid Court Shoe', price: '$85-110', bestFor: 'Most recommended court shoe in pickleball communities, durable toe box, stable sole', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
-      { tier: 'Long-term investment', name: 'Placeholder Premium Court Shoe', price: '$130-150', bestFor: 'Maximum lateral support, responsive cushioning, built for high-frequency play', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
+      { tier: 'Best value', name: 'Skechers Viper Court Pro', price: '$90-110', bestFor: 'Court-specific outsole, lateral support, excellent value for a pickleball-specific shoe', link: '#', retailer: 'Buy on Amazon →', score: 'Amazon: 43/50 · Tests: 28/35 · Beginner: 13/15 · Total: 84/100' },
+      { tier: 'Our pick', name: 'K-Swiss Pickleball Supreme', price: '$100-120', bestFor: 'Built specifically for pickleball, stable low-profile sole, top-rated in community and independent tests', link: '#', retailer: 'Buy on Amazon →', score: 'Amazon: 44/50 · Tests: 32/35 · Beginner: 14/15 · Total: 90/100' },
+      { tier: 'Long-term investment', name: 'Babolat Jet Mach 3 Pickleball', price: '$130-150', bestFor: 'Maximum lateral support, premium cushioning, built for high-frequency competitive play', link: '#', retailer: 'Buy on Amazon →', score: 'Amazon: 45/50 · Tests: 33/35 · Beginner: 12/15 · Total: 90/100' },
     ],
-    score: 'Amazon: 40/50 · Independent tests: 30/35 · Beginner fit: 15/15 · Total: 85/100',
   },
   {
     name: 'Bag',
+    preNote: null,
     why: `A standard gym bag works, but a paddle bag is worth it because of one thing: the paddle sleeve. Paddles get damaged when they knock around loose against water bottles and shoes. A bag with a dedicated paddle pocket protects the face and keeps the grip clean. You also want enough room for extra balls and a change of clothes.`,
-    topPickReason: `Dedicated paddle compartment that holds two paddles, a ball pocket, and enough main compartment space for everything else. Compact enough to carry on a shoulder without feeling like a hiking pack.`,
+    topPickReason: `The CRBN Pro Team Backpack holds two paddles securely, has a separate ball pocket, and carries comfortably without feeling oversized. Well-built and bought by players who treat their gear seriously.`,
     image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=160',
     quote: `Just get a bag with a paddle sleeve. Everything else is a nice to have, that part is actually necessary.`,
     quoteSource: 'via r/pickleball',
+    note: null,
     options: [
-      { tier: 'Best value', name: 'Placeholder Budget Paddle Bag', price: '$25-35', bestFor: 'Holds one paddle safely, basic pockets, does the job', link: '#', retailer: 'Buy on Amazon →' },
-      { tier: 'Our pick', name: 'Placeholder Mid Paddle Bag', price: '$45-60', bestFor: 'Holds two paddles, separate ball pocket, comfortable carry', link: '#', retailer: 'Buy on Amazon →' },
-      { tier: 'Long-term investment', name: 'Placeholder Premium Paddle Backpack', price: '$80-100', bestFor: 'Backpack format, padded paddle sleeves, shoe compartment, premium build', link: '#', retailer: 'Buy at specialist retailer →' },
+      { tier: 'Best value', name: 'Mangrove Pickleball Sling Bag', price: '$40-55', bestFor: 'Dedicated paddle pocket, lightweight sling format, solid for casual play', link: '#', retailer: 'Buy on Amazon →', score: 'Amazon: 42/50 · Tests: 15/35 · Beginner: 14/15 · Total: 71/100' },
+      { tier: 'Our pick', name: 'CRBN Pro Team Backpack', price: '$90-110', bestFor: 'Holds two paddles, ball pocket, comfortable backpack carry, well-built', link: '#', retailer: 'Buy at crbn.com →', score: 'Amazon: 43/50 · Tests: 22/35 · Beginner: 13/15 · Total: 78/100' },
+      { tier: 'Long-term investment', name: 'Six Zero Pro Tour Bag', price: '$135-150', bestFor: 'Full tournament bag, multiple paddle slots, shoe compartment, maximum capacity', link: '#', retailer: 'Buy at sixzeropickleball.com →', score: 'Amazon: 41/50 · Tests: 28/35 · Beginner: 10/15 · Total: 79/100' },
     ],
-    score: 'Amazon: 38/50 · Independent tests: 18/35 · Beginner fit: 12/15 · Total: 68/100',
   },
   {
     name: 'Eyewear',
-    why: `Most beginners skip this and regret it. A pickleball travels at 25 to 40 mph and will hit you in the face — it is a question of when, not if. Standard sunglasses shatter and can cause more damage than the ball itself. Sport-specific eyewear uses polycarbonate lenses rated for impact. If you play indoors, clear lenses. If you play outdoors, tinted or photochromic.`,
-    topPickReason: `Polycarbonate lenses, wraparound frame that stays put during movement, and a price that makes this a no-brainer. The most commonly recommended protective eyewear for new pickleball players.`,
+    preNote: `Optional for beginners. Becomes important when playing outdoors in bright sun or in competitive settings where a ball to the face is a real risk.`,
+    why: `A pickleball travels at 25 to 40 mph and will hit you in the face. It is a question of when, not if. Standard sunglasses shatter on impact and can cause more damage than the ball itself. Sport-specific eyewear uses polycarbonate lenses rated for impact. If you play indoors, clear lenses. If you play outdoors, tinted. The Oakley Flak 2.0 XL is overkill for casual beginners, but if you play outdoors regularly, it is the right call.`,
+    topPickReason: `The Oakley Flak 2.0 XL has polycarbonate lenses that meet impact standards, a secure wraparound fit that does not shift during movement, and optics clear enough that you will forget you are wearing them mid-game.`,
     image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=160',
     quote: `Got hit in the eye on week three. Wearing protective glasses every session now. Do not skip this.`,
     quoteSource: 'via r/pickleball',
+    note: null,
     options: [
-      { tier: 'Best value', name: 'Placeholder Budget Sport Glasses', price: '$18-25', bestFor: 'Polycarbonate lenses, basic UV protection, covers the safety requirement', link: '#', retailer: 'Buy on Amazon →' },
-      { tier: 'Our pick', name: 'Placeholder Mid Sport Glasses', price: '$35-50', bestFor: 'Anti-fog coating, wraparound fit, comfortable for extended sessions', link: '#', retailer: 'Buy on Amazon →' },
-      { tier: 'Long-term investment', name: 'Placeholder Premium Sport Glasses', price: '$70-90', bestFor: 'Photochromic lenses for indoor and outdoor, premium fit, prescription-compatible frames', link: '#', retailer: 'Buy at specialist retailer →' },
+      { tier: 'Best value', name: 'HEAD Impulse Sunglasses', price: '$20-30', bestFor: 'Sport frame, polycarbonate lenses, covers the safety requirement without overspending', link: '#', retailer: 'Buy on Amazon →', score: 'Amazon: 38/50 · Tests: 10/35 · Beginner: 12/15 · Total: 60/100' },
+      { tier: 'Our pick', name: 'Oakley Flak 2.0 XL', price: '$160-180', bestFor: 'Polycarbonate lenses, impact-rated, wraparound fit that stays put, clear optics mid-game', link: '#', retailer: 'Buy on Amazon →', score: 'Amazon: 47/50 · Tests: 30/35 · Beginner: 11/15 · Total: 88/100' },
     ],
-    score: 'Amazon: 36/50 · Independent tests: 22/35 · Beginner fit: 15/15 · Total: 73/100',
   },
 ];
 
@@ -154,6 +156,10 @@ const schemaData = {
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">{product.name}</h2>
               </div>
 
+              {product.preNote && (
+                <p class="text-sm text-gray-400 italic mb-4 max-w-3xl">{product.preNote}</p>
+              )}
+
               <p class="text-gray-600 leading-relaxed mb-5 max-w-3xl">{product.why}</p>
 
               <!-- Top pick callout -->
@@ -165,7 +171,7 @@ const schemaData = {
                     {product.options.find(o => o.tier === 'Our pick')?.name}
                     <span class="score-tooltip">
                       <span class="score-icon">ⓘ</span>
-                      <span class="score-tip">{product.score}</span>
+                      <span class="score-tip">{product.options.find(o => o.tier === 'Our pick')?.score}</span>
                     </span>
                   </p>
                   <p class="text-sm text-gray-600 mt-1 leading-relaxed">{product.topPickReason}</p>
@@ -192,7 +198,13 @@ const schemaData = {
                           </span>
                         </td>
                         <td class="px-5 py-3 font-medium text-gray-900">
-                          {opt.name}
+                          <span class="inline-flex items-center gap-1.5">
+                            {opt.name}
+                            <span class="score-tooltip">
+                              <span class="score-icon">ⓘ</span>
+                              <span class="score-tip">{opt.score}</span>
+                            </span>
+                          </span>
                         </td>
                         <td class="px-5 py-3 text-gray-500">{opt.price}</td>
                         <td class="px-5 py-3">
@@ -217,7 +229,13 @@ const schemaData = {
                       <span class="text-sm text-gray-500 font-medium">{opt.price}</span>
                     </div>
                     <div class="mb-1">
-                      <p class="font-semibold text-gray-900 text-sm">{opt.name}</p>
+                      <p class="font-semibold text-gray-900 text-sm inline-flex items-center gap-1.5">
+                        {opt.name}
+                        <span class="score-tooltip">
+                          <span class="score-icon">ⓘ</span>
+                          <span class="score-tip">{opt.score}</span>
+                        </span>
+                      </p>
                     </div>
                     <p class="text-xs text-gray-500 mb-3">{opt.bestFor}</p>
                     <a href={opt.link} class="inline-block text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">
@@ -226,6 +244,10 @@ const schemaData = {
                   </div>
                 ))}
               </div>
+
+              {product.note && (
+                <p class="mt-3 text-sm text-gray-500 bg-gray-50 border border-gray-100 rounded-lg px-4 py-3">{product.note}</p>
+              )}
 
               <!-- Reddit quote -->
               <blockquote class="mt-4 bg-gray-50 border border-gray-100 rounded-xl px-5 py-4">
