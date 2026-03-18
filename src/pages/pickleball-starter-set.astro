@@ -1,0 +1,304 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const products = [
+  {
+    name: 'Paddle',
+    why: `The paddle is the single most important purchase you will make as a beginner. Weight and grip size affect control more than anything else. Go with a midweight paddle (7.5 to 8.2oz) in graphite or carbon fiber face — not wood. Wood paddles are sold as "beginner" options but the dead feel actively slows down your development.`,
+    topPickReason: `Balanced weight, responsive carbon face, and a grip size range that fits most hands. This is the paddle recommended most often on r/pickleball for first-time players who want to improve, not just play casually.`,
+    image: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=160',
+    quote: `Skip the wood paddle. Even a $50 composite paddle will teach you more in the first month than any wood paddle ever could.`,
+    quoteSource: 'via r/pickleball',
+    options: [
+      { tier: 'Best value', name: 'Placeholder Budget Paddle', price: '$40-55', bestFor: 'Solid composite face, good for learning fundamentals without overspending', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Our pick', name: 'Placeholder Mid-Range Paddle', price: '$70-90', bestFor: 'Carbon fiber face, correct weight range, most recommended for serious beginners', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Long-term investment', name: 'Placeholder Premium Paddle', price: '$130-160', bestFor: 'Pro-level construction, spin and control balance, grows with your game', link: '#', retailer: 'Buy at specialist retailer →' },
+    ],
+    score: 'Amazon: 42/50 · Independent tests: 28/35 · Beginner fit: 14/15 · Total: 84/100',
+  },
+  {
+    name: 'Balls',
+    why: `Indoor and outdoor pickleball are played with different balls. Indoor balls have larger holes and are softer, designed for smooth gym floors. Outdoor balls have smaller holes, are harder, and withstand wind and rough court surfaces. Using the wrong ball makes the game significantly harder than it needs to be.`,
+    topPickReason: `The most-used outdoor ball in recreational and tournament play. Consistent flight, durable enough to last many sessions, and the standard your court partners will already be using.`,
+    image: 'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=160',
+    quote: `I showed up with indoor balls to an outdoor court my first week. Get both types if you are not sure where you will be playing.`,
+    quoteSource: 'via r/pickleball',
+    options: [
+      { tier: 'Best value', name: 'Placeholder Indoor Ball 3-Pack', price: '$12-18', bestFor: 'Soft, large holes, correct for gym and recreation center courts', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Our pick', name: 'Placeholder Outdoor Ball 6-Pack', price: '$22-30', bestFor: 'Tournament-standard outdoor ball, durable, consistent flight in wind', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Long-term investment', name: 'Placeholder Mixed 12-Pack', price: '$35-45', bestFor: 'Covers both surfaces, enough to keep in your bag without thinking about it', link: '#', retailer: 'Buy on Amazon →' },
+    ],
+    score: 'Amazon: 44/50 · Independent tests: 20/35 · Beginner fit: 15/15 · Total: 79/100',
+  },
+  {
+    name: 'Court Shoes',
+    why: `Do not play pickleball in running shoes. Running shoes are built for forward motion and have thick cushioning that reduces court feel. Pickleball requires constant lateral movement — side-to-side cuts, quick direction changes. Court shoes have a flatter, more grippy sole and reinforced lateral support that prevents ankle rolls. This is the second most important purchase after the paddle.`,
+    topPickReason: `Designed for court sports with lateral support built in. Lower profile than running shoes, durable outsole for hard courts, and a fit that keeps your foot stable during quick direction changes.`,
+    image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=160',
+    quote: `I rolled my ankle twice in the first two weeks wearing running shoes. Court shoes fixed it immediately.`,
+    quoteSource: 'via r/pickleball',
+    options: [
+      { tier: 'Best value', name: 'Placeholder Budget Court Shoe', price: '$55-70', bestFor: 'Basic lateral support, grippy outsole, good starting point', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Our pick', name: 'Placeholder Mid Court Shoe', price: '$85-110', bestFor: 'Most recommended court shoe in pickleball communities, durable toe box, stable sole', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
+      { tier: 'Long-term investment', name: 'Placeholder Premium Court Shoe', price: '$130-150', bestFor: 'Maximum lateral support, responsive cushioning, built for high-frequency play', link: '#', retailer: "Buy at Dick's Sporting Goods →" },
+    ],
+    score: 'Amazon: 40/50 · Independent tests: 30/35 · Beginner fit: 15/15 · Total: 85/100',
+  },
+  {
+    name: 'Bag',
+    why: `A standard gym bag works, but a paddle bag is worth it because of one thing: the paddle sleeve. Paddles get damaged when they knock around loose against water bottles and shoes. A bag with a dedicated paddle pocket protects the face and keeps the grip clean. You also want enough room for extra balls and a change of clothes.`,
+    topPickReason: `Dedicated paddle compartment that holds two paddles, a ball pocket, and enough main compartment space for everything else. Compact enough to carry on a shoulder without feeling like a hiking pack.`,
+    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=160',
+    quote: `Just get a bag with a paddle sleeve. Everything else is a nice to have, that part is actually necessary.`,
+    quoteSource: 'via r/pickleball',
+    options: [
+      { tier: 'Best value', name: 'Placeholder Budget Paddle Bag', price: '$25-35', bestFor: 'Holds one paddle safely, basic pockets, does the job', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Our pick', name: 'Placeholder Mid Paddle Bag', price: '$45-60', bestFor: 'Holds two paddles, separate ball pocket, comfortable carry', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Long-term investment', name: 'Placeholder Premium Paddle Backpack', price: '$80-100', bestFor: 'Backpack format, padded paddle sleeves, shoe compartment, premium build', link: '#', retailer: 'Buy at specialist retailer →' },
+    ],
+    score: 'Amazon: 38/50 · Independent tests: 18/35 · Beginner fit: 12/15 · Total: 68/100',
+  },
+  {
+    name: 'Eyewear',
+    why: `Most beginners skip this and regret it. A pickleball travels at 25 to 40 mph and will hit you in the face — it is a question of when, not if. Standard sunglasses shatter and can cause more damage than the ball itself. Sport-specific eyewear uses polycarbonate lenses rated for impact. If you play indoors, clear lenses. If you play outdoors, tinted or photochromic.`,
+    topPickReason: `Polycarbonate lenses, wraparound frame that stays put during movement, and a price that makes this a no-brainer. The most commonly recommended protective eyewear for new pickleball players.`,
+    image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=160',
+    quote: `Got hit in the eye on week three. Wearing protective glasses every session now. Do not skip this.`,
+    quoteSource: 'via r/pickleball',
+    options: [
+      { tier: 'Best value', name: 'Placeholder Budget Sport Glasses', price: '$18-25', bestFor: 'Polycarbonate lenses, basic UV protection, covers the safety requirement', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Our pick', name: 'Placeholder Mid Sport Glasses', price: '$35-50', bestFor: 'Anti-fog coating, wraparound fit, comfortable for extended sessions', link: '#', retailer: 'Buy on Amazon →' },
+      { tier: 'Long-term investment', name: 'Placeholder Premium Sport Glasses', price: '$70-90', bestFor: 'Photochromic lenses for indoor and outdoor, premium fit, prescription-compatible frames', link: '#', retailer: 'Buy at specialist retailer →' },
+    ],
+    score: 'Amazon: 36/50 · Independent tests: 22/35 · Beginner fit: 15/15 · Total: 73/100',
+  },
+];
+
+const slugify = (s: string) => s.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+
+const tierColors: Record<string, string> = {
+  'Best value': 'bg-green-50 text-green-700',
+  'Our pick': 'bg-blue-50 text-blue-700',
+  'Long-term investment': 'bg-purple-50 text-purple-700',
+};
+
+const schemaData = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Pickleball Starter Kit',
+  description: 'The exact gear a beginner needs before their first pickleball game.',
+  url: 'https://www.fitness-complete.com/pickleball-starter-set',
+  itemListElement: products.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Product',
+      name: p.options.find(o => o.tier === 'Our pick')?.name ?? '',
+      description: p.topPickReason,
+    },
+  })),
+};
+---
+
+<Layout
+  title="Pickleball Starter Kit | fitness-complete.com"
+  description="The exact gear a beginner needs before their first pickleball game. Paddle, court shoes, balls for your surface, and the safety gear most beginners skip."
+  schema={JSON.stringify(schemaData)}
+>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 pt-16 pb-8">
+      <a href="/" class="inline-block text-sm text-gray-400 hover:text-gray-600 transition-colors mb-6">← All starter kits</a>
+      <figure class="mb-5">
+        <img
+          src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=1200"
+          alt="Pickleball court with paddle and balls. Photo: Unsplash"
+          class="w-full rounded-xl object-cover h-[180px]"
+        />
+      </figure>
+      <p class="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-3">Pickleball</p>
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight mb-5">
+        Pickleball Starter Kit: What Beginners Actually Need
+      </h1>
+      <p class="text-lg sm:text-xl text-gray-500 max-w-2xl leading-relaxed">
+        Paddle, shoes with lateral support, and the right balls for your surface. Everything you need before your first game.
+      </p>
+    </section>
+
+    <!-- Mobile section nav -->
+    <div class="lg:hidden overflow-x-auto border-b border-gray-200 sticky top-0 z-10 bg-[#fafaf8]">
+      <div class="flex gap-2 px-4 sm:px-6 py-3">
+        {products.map((p) => (
+          <a
+            href={`#${slugify(p.name)}`}
+            class="flex-shrink-0 text-sm font-medium px-4 py-1.5 rounded-full bg-white border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900 transition-all whitespace-nowrap"
+          >
+            {p.name}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Product sections -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 pb-16">
+      <div class="space-y-16 pt-12">
+
+          {products.map((product, i) => (
+            <div id={slugify(product.name)} data-product-section>
+              <div class="flex items-baseline gap-3 mb-4">
+                <span class="bg-gray-900 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">
+                  {i + 1}
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">{product.name}</h2>
+              </div>
+
+              <p class="text-gray-600 leading-relaxed mb-5 max-w-3xl">{product.why}</p>
+
+              <!-- Top pick callout -->
+              <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6 flex gap-4 items-center">
+                <img src={product.image} alt={product.name} class="w-20 h-20 rounded-lg object-cover flex-shrink-0" loading="lazy" />
+                <div class="min-w-0 flex-1">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-1">Our top pick</p>
+                  <p class="font-semibold text-gray-900 text-sm flex items-center gap-1.5">
+                    {product.options.find(o => o.tier === 'Our pick')?.name}
+                    <span class="score-tooltip">
+                      <span class="score-icon">ⓘ</span>
+                      <span class="score-tip">{product.score}</span>
+                    </span>
+                  </p>
+                  <p class="text-sm text-gray-600 mt-1 leading-relaxed">{product.topPickReason}</p>
+                </div>
+              </div>
+
+              <!-- Comparison table — desktop -->
+              <div class="hidden sm:block overflow-hidden rounded-xl border border-gray-200">
+                <table class="w-full text-sm">
+                  <thead>
+                    <tr class="bg-[#0f172a]">
+                      <th class="text-left px-5 py-3 font-semibold text-white w-24">Tier</th>
+                      <th class="text-left px-5 py-3 font-semibold text-white">Product</th>
+                      <th class="text-left px-5 py-3 font-semibold text-white w-32">Price</th>
+                      <th class="text-left px-5 py-3 font-semibold text-white w-24">Link</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {product.options.map((opt, j) => (
+                      <tr class={`${j < product.options.length - 1 ? 'border-b border-gray-100' : ''} ${opt.tier === 'Our pick' ? 'bg-blue-50/40' : 'bg-white'}`}>
+                        <td class="px-5 py-3">
+                          <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full ${tierColors[opt.tier]}`}>
+                            {opt.tier}
+                          </span>
+                        </td>
+                        <td class="px-5 py-3 font-medium text-gray-900">
+                          {opt.name}
+                        </td>
+                        <td class="px-5 py-3 text-gray-500">{opt.price}</td>
+                        <td class="px-5 py-3">
+                          <a href={opt.link} class="text-blue-600 hover:text-blue-800 font-semibold transition-colors">
+                            {opt.retailer}
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Comparison cards — mobile -->
+              <div class="sm:hidden space-y-3">
+                {product.options.map((opt, j) => (
+                  <div class={`rounded-xl border p-4 ${opt.tier === 'Our pick' ? 'border-blue-200 bg-blue-50/40' : 'border-gray-100 bg-white'}`}>
+                    <div class="flex items-center justify-between mb-2">
+                      <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full ${tierColors[opt.tier]}`}>
+                        {opt.tier}
+                      </span>
+                      <span class="text-sm text-gray-500 font-medium">{opt.price}</span>
+                    </div>
+                    <div class="mb-1">
+                      <p class="font-semibold text-gray-900 text-sm">{opt.name}</p>
+                    </div>
+                    <p class="text-xs text-gray-500 mb-3">{opt.bestFor}</p>
+                    <a href={opt.link} class="inline-block text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">
+                      {opt.retailer}
+                    </a>
+                  </div>
+                ))}
+              </div>
+
+              <!-- Reddit quote -->
+              <blockquote class="mt-4 bg-gray-50 border border-gray-100 rounded-xl px-5 py-4">
+                <p class="text-sm text-gray-500 italic leading-relaxed">"{product.quote}"</p>
+                <p class="text-xs text-gray-400 mt-2">{product.quoteSource}</p>
+              </blockquote>
+            </div>
+          ))}
+
+      </div>
+    </section>
+
+    <!-- Methodology footer -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 py-8 border-t border-gray-100">
+      <p class="text-xs text-gray-400">How we pick: Amazon verified reviews, independent tests, beginner fit. No commission influence. <a href="/how-we-pick" class="underline hover:text-gray-600 transition-colors">Full methodology →</a></p>
+    </section>
+
+    <!-- Gift callout -->
+    <section class="bg-amber-50 border-t border-amber-100">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+        <div class="w-1 self-stretch bg-amber-300 rounded-full flex-shrink-0 hidden sm:block"></div>
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 mb-1">Gift this kit</h2>
+          <p class="text-gray-600 text-sm sm:text-base max-w-2xl">
+            Know someone who just picked up pickleball? A paddle and court shoes is a better gift than a gift card. It shows you thought about what they actually need to start well. Pick one item or build the whole kit from the options above.
+          </p>
+          <a href="/gifts" class="inline-block mt-3 text-sm font-semibold text-amber-700 hover:text-amber-900 transition-colors">
+            See the full gift guide →
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</Layout>
+
+<style>
+  .score-tooltip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+  .score-icon {
+    color: #9ca3af;
+    font-size: 14px;
+    cursor: help;
+    line-height: 1;
+    font-style: normal;
+  }
+  .score-tip {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f2937;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 6px 10px;
+    border-radius: 6px;
+    max-width: 220px;
+    width: max-content;
+    white-space: normal;
+    z-index: 20;
+    transition: opacity 0.15s ease;
+    pointer-events: none;
+  }
+  .score-tooltip:hover .score-tip {
+    visibility: visible;
+    opacity: 1;
+  }
+</style>
