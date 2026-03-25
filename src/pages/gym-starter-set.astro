@@ -158,7 +158,7 @@ const schemaData = {
 
               <!-- Top pick callout -->
               {product.options.filter(o => o.tier === 'Our pick').map(pick => (
-                <a href={pick.link} target="_blank" rel="noopener noreferrer" class="block no-underline bg-blue-50 border border-blue-100 hover:border-blue-300 rounded-xl p-4 mb-6 transition-colors">
+                <a href={pick.link !== '#' ? pick.link : (product.options.find(o => o.tier === 'Best value')?.link ?? '#')} target="_blank" rel="noopener noreferrer" class="block no-underline bg-blue-50 border border-blue-100 hover:border-blue-300 rounded-xl p-4 mb-6 transition-colors">
                   <p class="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-1">Our top pick</p>
                   <p class="font-semibold text-gray-900 text-sm flex items-center gap-1.5">
                     {pick.name}
@@ -172,7 +172,7 @@ const schemaData = {
               ))}
 
               <!-- Comparison table — desktop -->
-              <div class="hidden sm:block overflow-x-auto overflow-hidden rounded-xl border border-gray-200">
+              <div class="overflow-x-auto overflow-hidden rounded-xl border border-gray-200">
                 <table class="w-full text-sm">
                   <thead>
                     <tr class="bg-[#0f172a]">
@@ -203,25 +203,6 @@ const schemaData = {
                     ))}
                   </tbody>
                 </table>
-              </div>
-
-              <!-- Comparison cards — mobile -->
-              <div class="sm:hidden space-y-3">
-                {product.options.map((opt, j) => (
-                  <a href={opt.link} target="_blank" rel="noopener noreferrer" class={`block no-underline rounded-xl border p-4 hover:shadow-sm transition-shadow ${opt.tier === 'Our pick' ? 'border-blue-200 bg-blue-50/40' : 'border-gray-100 bg-white'}`}>
-                    <div class="flex items-center justify-between mb-2">
-                      <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full ${tierColors[opt.tier]}`}>
-                        {opt.tier}
-                      </span>
-                      <span class="text-sm text-gray-500 font-medium">{opt.price}</span>
-                    </div>
-                    <p class="font-semibold text-gray-900 text-sm mb-1">{opt.name}</p>
-                    <p class="text-xs text-gray-500 mb-3">{opt.bestFor}</p>
-                    <span class="inline-block text-sm font-semibold text-blue-600">
-                      {opt.retailer}
-                    </span>
-                  </a>
-                ))}
               </div>
 
               <!-- Reddit quote -->
