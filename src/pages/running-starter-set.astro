@@ -50,12 +50,6 @@ const products = [
 
 const slugify = (s: string) => s.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 
-const getAmazonImage = (link: string): string | null => {
-  const m = link.match(/\/dp\/([A-Z0-9]{10})/);
-  if (!m) return null;
-  return `https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=${m[1]}&Format=_SL160_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1&tag=fitnesscomple-20`;
-};
-
 const tierColors: Record<string, string> = {
   'Best value': 'bg-green-50 text-green-700',
   'Our pick': 'bg-blue-50 text-blue-700',
@@ -120,7 +114,7 @@ const tierColors: Record<string, string> = {
 
               <!-- Top pick callout -->
               <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6 flex gap-4 items-start">
-                {(() => { const pick = product.options.find(o => o.tier === 'Our pick'); if (!pick) return null; const src = getAmazonImage(pick.link); if (!src) return null; return <img src={src} alt={pick.name} class="w-20 h-20 object-contain rounded-lg flex-shrink-0 bg-white" loading="lazy" />; })()}
+                {(() => { const pick = product.options.find(o => o.tier === 'Our pick'); if (!pick) return null; return <div class="w-20 h-20 rounded-lg flex-shrink-0 bg-[#f3f4f6] flex items-center justify-center p-2 text-center"><span class="text-[10px] text-gray-400 leading-tight">{pick.name}</span></div>; })()}
                 <div class="min-w-0 flex-1">
                   <p class="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-1">Our top pick</p>
                   <p class="font-semibold text-gray-900 text-sm flex items-center gap-1.5">
@@ -155,7 +149,7 @@ const tierColors: Record<string, string> = {
                         </td>
                         <td class="px-5 py-3 font-medium text-gray-900">
                           <div class="flex items-center gap-3">
-                            {(() => { const src = getAmazonImage(opt.link); return src ? <img src={src} alt={opt.name} class="w-12 h-12 object-contain rounded bg-white flex-shrink-0 border border-gray-100" loading="lazy" /> : null; })()}
+                            <div class="w-12 h-12 rounded flex-shrink-0 bg-[#f3f4f6] border border-gray-100 flex items-center justify-center p-1 text-center"><span class="text-[9px] text-gray-400 leading-tight">{opt.name}</span></div>
                             {opt.name}
                           </div>
                         </td>
@@ -174,7 +168,7 @@ const tierColors: Record<string, string> = {
               <!-- Comparison cards — mobile -->
               <div class="sm:hidden space-y-3">
                 {product.options.map((opt, j) => (
-                  <div class={`rounded-xl border p-4 ${opt.tier === 'Our pick' ? 'border-blue-200 bg-blue-50/40' : 'border-gray-100 bg-white'}`}>
+                  <a href={opt.link} target="_blank" rel="noopener noreferrer" class={`block no-underline rounded-xl border p-4 hover:shadow-sm transition-shadow ${opt.tier === 'Our pick' ? 'border-blue-200 bg-blue-50/40' : 'border-gray-100 bg-white'}`}>
                     <div class="flex items-center justify-between mb-2">
                       <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full ${tierColors[opt.tier]}`}>
                         {opt.tier}
@@ -182,14 +176,14 @@ const tierColors: Record<string, string> = {
                       <span class="text-sm text-gray-500 font-medium">{opt.price}</span>
                     </div>
                     <div class="flex items-start gap-3 mb-1">
-                      {(() => { const src = getAmazonImage(opt.link); return src ? <img src={src} alt={opt.name} class="w-14 h-14 object-contain rounded bg-white flex-shrink-0 border border-gray-100" loading="lazy" /> : null; })()}
+                      <div class="w-14 h-14 rounded flex-shrink-0 bg-[#f3f4f6] border border-gray-100 flex items-center justify-center p-1 text-center"><span class="text-[9px] text-gray-400 leading-tight">{opt.name}</span></div>
                       <p class="font-semibold text-gray-900 text-sm pt-0.5">{opt.name}</p>
                     </div>
                     <p class="text-xs text-gray-500 mb-3">{opt.bestFor}</p>
-                    <a href={opt.link} target="_blank" rel="noopener noreferrer" class="inline-block text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">
+                    <span class="inline-block text-sm font-semibold text-blue-600">
                       {opt.retailer}
-                    </a>
-                  </div>
+                    </span>
+                  </a>
                 ))}
               </div>
             </div>

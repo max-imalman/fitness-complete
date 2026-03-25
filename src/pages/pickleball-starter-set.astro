@@ -5,7 +5,7 @@ const products = [
   {
     name: 'Paddle',
     preNote: null,
-    why: `The paddle is the single most important purchase you will make as a beginner. Weight and grip size affect control more than anything else. Go with a midweight paddle (7.5 to 8.2oz) in graphite or carbon fiber face, not wood. Wood paddles are sold as "beginner" options but the dead feel actively slows down your development.`,
+    why: `The paddle is the single most important purchase you will make as a beginner. Go with a midweight paddle (7.5 to 8.2oz) in graphite or carbon fiber, not wood.`,
     topPickReason: `The Vatic Pro Prism Flash hits the sweet spot beginners actually need: a raw carbon fiber face for spin, the right weight range, and a price that does not sting if you decide pickleball is not your thing. Recommended constantly on r/pickleball as the best first serious paddle.`,
     image: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=160',
     quote: `Skip the wood paddle. Even a $50 composite paddle will teach you more in the first month than any wood paddle ever could.`,
@@ -20,7 +20,7 @@ const products = [
   {
     name: 'Balls',
     preNote: null,
-    why: `Indoor and outdoor pickleball are played with different balls. Indoor balls have larger holes and are softer, designed for smooth gym floors. Outdoor balls have smaller holes, are harder, and withstand wind and rough court surfaces. Using the wrong ball makes the game significantly harder than it needs to be. The Franklin X-40 is the standard outdoor ball used in tournaments and at most recreational courts outdoors.`,
+    why: `Indoor and outdoor pickleball use different balls, so get the right type for your surface. The Franklin X-40 is the standard outdoor ball used in tournaments and at most recreational courts.`,
     topPickReason: `The most-used outdoor ball in recreational and tournament play. Consistent flight, durable enough to last many sessions, and the standard your court partners will already be using.`,
     image: 'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=160',
     quote: `I showed up with indoor balls to an outdoor court my first week. Get both types if you are not sure where you will be playing.`,
@@ -33,7 +33,7 @@ const products = [
   {
     name: 'Court Shoes',
     preNote: null,
-    why: `Do not play pickleball in running shoes. Running shoes are built for forward motion and have thick cushioning that reduces court feel. Pickleball requires constant lateral movement, side-to-side cuts and quick direction changes. Court shoes have a flatter, more grippy sole and reinforced lateral support that prevents ankle rolls. This is the second most important purchase after the paddle.`,
+    why: `Do not play pickleball in running shoes. Court shoes have lateral reinforcement and a flat sole built for the constant direction changes pickleball demands, and this is the second most important purchase after the paddle.`,
     topPickReason: `The K-Swiss Pickleball Supreme is built specifically for the sport: a stable, low-profile sole with lateral reinforcement and a durable outsole for hard courts. It consistently tops recommendation lists on pickleball forums and in independent court shoe roundups.`,
     image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=160',
     quote: `I rolled my ankle twice in the first two weeks wearing running shoes. Court shoes fixed it immediately.`,
@@ -48,7 +48,7 @@ const products = [
   {
     name: 'Bag',
     preNote: null,
-    why: `A standard gym bag works, but a paddle bag is worth it because of one thing: the paddle sleeve. Paddles get damaged when they knock around loose against water bottles and shoes. A bag with a dedicated paddle pocket protects the face and keeps the grip clean. You also want enough room for extra balls and a change of clothes.`,
+    why: `A standard gym bag works, but a dedicated paddle sleeve protects the face and grip from contact damage. Get one with enough room for extra balls and a change of clothes.`,
     topPickReason: `The CRBN Pro Team Backpack holds two paddles securely, has a separate ball pocket, and carries comfortably without feeling oversized. Well-built and bought by players who treat their gear seriously.`,
     image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=160',
     quote: `Just get a bag with a paddle sleeve. Everything else is a nice to have, that part is actually necessary.`,
@@ -63,7 +63,7 @@ const products = [
   {
     name: 'Eyewear',
     preNote: `Optional for beginners. Becomes important when playing outdoors in bright sun or in competitive settings where a ball to the face is a real risk.`,
-    why: `A pickleball travels at 25 to 40 mph and will hit you in the face. It is a question of when, not if. Standard sunglasses shatter on impact and can cause more damage than the ball itself. Sport-specific eyewear uses polycarbonate lenses rated for impact. If you play indoors, clear lenses. If you play outdoors, tinted. The Oakley Flak 2.0 XL is overkill for casual beginners, but if you play outdoors regularly, it is the right call.`,
+    why: `A pickleball travels at 25 to 40 mph and will hit you in the face. Standard sunglasses shatter on impact; sport eyewear with polycarbonate lenses does not.`,
     topPickReason: `The Oakley Flak 2.0 XL has polycarbonate lenses that meet impact standards, a secure wraparound fit that does not shift during movement, and optics clear enough that you will forget you are wearing them mid-game.`,
     image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=160',
     quote: `Got hit in the eye on week three. Wearing protective glasses every session now. Do not skip this.`,
@@ -77,12 +77,6 @@ const products = [
 ];
 
 const slugify = (s: string) => s.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-
-const getAmazonImage = (link: string): string | null => {
-  const m = link.match(/\/dp\/([A-Z0-9]{10})/);
-  if (!m) return null;
-  return `https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=${m[1]}&Format=_SL160_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1&tag=fitnesscomple-20`;
-};
 
 const tierColors: Record<string, string> = {
   'Best value': 'bg-green-50 text-green-700',
@@ -170,7 +164,7 @@ const schemaData = {
 
               <!-- Top pick callout -->
               <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6 flex gap-4 items-center">
-                {(() => { const pick = product.options.find(o => o.tier === 'Our pick'); if (!pick) return null; const src = getAmazonImage(pick.link); if (!src) return null; return <img src={src} alt={pick.name} class="w-20 h-20 object-contain rounded-lg flex-shrink-0 bg-white" loading="lazy" />; })()}
+                {(() => { const pick = product.options.find(o => o.tier === 'Our pick'); if (!pick) return null; return <div class="w-20 h-20 rounded-lg flex-shrink-0 bg-[#f3f4f6] flex items-center justify-center p-2 text-center"><span class="text-[10px] text-gray-400 leading-tight">{pick.name}</span></div>; })()}
                 <div class="min-w-0 flex-1">
                   <p class="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-1">Our top pick</p>
                   <p class="font-semibold text-gray-900 text-sm flex items-center gap-1.5">
@@ -205,7 +199,7 @@ const schemaData = {
                         </td>
                         <td class="px-5 py-3 font-medium text-gray-900">
                           <div class="flex items-center gap-3">
-                            {(() => { const src = getAmazonImage(opt.link); return src ? <img src={src} alt={opt.name} class="w-12 h-12 object-contain rounded bg-white flex-shrink-0 border border-gray-100" loading="lazy" /> : null; })()}
+                            <div class="w-12 h-12 rounded flex-shrink-0 bg-[#f3f4f6] border border-gray-100 flex items-center justify-center p-1 text-center"><span class="text-[9px] text-gray-400 leading-tight">{opt.name}</span></div>
                             <span class="inline-flex items-center gap-1.5">
                               {opt.name}
                               <span class="score-tooltip">
@@ -230,7 +224,7 @@ const schemaData = {
               <!-- Comparison cards — mobile -->
               <div class="sm:hidden space-y-3">
                 {product.options.map((opt, j) => (
-                  <div class={`rounded-xl border p-4 ${opt.tier === 'Our pick' ? 'border-blue-200 bg-blue-50/40' : 'border-gray-100 bg-white'}`}>
+                  <a href={opt.link} target="_blank" rel="noopener noreferrer" class={`block no-underline rounded-xl border p-4 hover:shadow-sm transition-shadow ${opt.tier === 'Our pick' ? 'border-blue-200 bg-blue-50/40' : 'border-gray-100 bg-white'}`}>
                     <div class="flex items-center justify-between mb-2">
                       <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full ${tierColors[opt.tier]}`}>
                         {opt.tier}
@@ -238,7 +232,7 @@ const schemaData = {
                       <span class="text-sm text-gray-500 font-medium">{opt.price}</span>
                     </div>
                     <div class="flex items-start gap-3 mb-1">
-                      {(() => { const src = getAmazonImage(opt.link); return src ? <img src={src} alt={opt.name} class="w-14 h-14 object-contain rounded bg-white flex-shrink-0 border border-gray-100" loading="lazy" /> : null; })()}
+                      <div class="w-14 h-14 rounded flex-shrink-0 bg-[#f3f4f6] border border-gray-100 flex items-center justify-center p-1 text-center"><span class="text-[9px] text-gray-400 leading-tight">{opt.name}</span></div>
                       <p class="font-semibold text-gray-900 text-sm inline-flex items-center gap-1.5 pt-0.5">
                         {opt.name}
                         <span class="score-tooltip">
@@ -248,10 +242,10 @@ const schemaData = {
                       </p>
                     </div>
                     <p class="text-xs text-gray-500 mb-3">{opt.bestFor}</p>
-                    <a href={opt.link} target="_blank" rel="noopener noreferrer" class="inline-block text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">
+                    <span class="inline-block text-sm font-semibold text-blue-600">
                       {opt.retailer}
-                    </a>
-                  </div>
+                    </span>
+                  </a>
                 ))}
               </div>
 
