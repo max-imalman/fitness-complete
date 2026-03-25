@@ -151,7 +151,10 @@ const tierColors: Record<string, string> = {
                   </thead>
                   <tbody>
                     {product.options.map((opt, j) => (
-                      <tr class={`${j < product.options.length - 1 ? 'border-b border-gray-100' : ''} ${opt.tier === 'Our pick' ? 'bg-blue-50/40' : 'bg-white'}`}>
+                      <tr
+                        class={`cursor-pointer hover:opacity-90 ${j < product.options.length - 1 ? 'border-b border-gray-100' : ''} ${opt.tier === 'Our pick' ? 'bg-blue-50/40' : 'bg-white'}`}
+                        onclick={`window.open('${opt.link !== '#' ? opt.link : (product.options.find(o => o.tier === 'Best value')?.link ?? '')}','_blank','noopener,noreferrer')`}
+                      >
                         <td class="px-5 py-3">
                           <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full ${tierColors[opt.tier]}`}>
                             {opt.tier}

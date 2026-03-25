@@ -74,6 +74,7 @@ const products = [
     options: [
       { tier: 'Best value', name: 'HEAD Impulse Sunglasses', price: '~$25', bestFor: 'Sport frame, polycarbonate lenses, covers the safety requirement without overspending', link: 'https://www.amazon.com/dp/B002LG5HH2?tag=fitnesscomple-20', retailer: 'Buy on Amazon →', score: 'Amazon: 38/50 · Tests: 10/35 · Beginner: 12/15 · Total: 60/100' },
       { tier: 'Our pick', name: 'Oakley Flak 2.0 XL', price: '~$169', bestFor: 'Polycarbonate lenses, impact-rated, wraparound fit that stays put, clear optics mid-game', link: 'https://www.amazon.com/dp/B08YSYR851?tag=fitnesscomple-20', retailer: 'Buy on Amazon →', score: 'Amazon: 47/50 · Tests: 30/35 · Beginner: 11/15 · Total: 88/100' },
+      { tier: 'Long-term investment', name: 'Oakley Radar EV Path', price: '~$227', bestFor: 'Larger lens coverage, interchangeable lens system, photochromic option for variable outdoor light', link: 'https://www.amazon.com/s?k=Oakley+Radar+EV+Path+sunglasses&tag=fitnesscomple-20', retailer: 'Buy on Amazon →', score: 'Amazon: 46/50 · Tests: 32/35 · Beginner: 10/15 · Total: 88/100' },
     ],
   },
 ];
@@ -192,7 +193,10 @@ const schemaData = {
                   </thead>
                   <tbody>
                     {product.options.map((opt, j) => (
-                      <tr class={`${j < product.options.length - 1 ? 'border-b border-gray-100' : ''} ${opt.tier === 'Our pick' ? 'bg-blue-50/40' : 'bg-white'}`}>
+                      <tr
+                        class={`cursor-pointer hover:opacity-90 ${j < product.options.length - 1 ? 'border-b border-gray-100' : ''} ${opt.tier === 'Our pick' ? 'bg-blue-50/40' : 'bg-white'}`}
+                        onclick={`window.open('${opt.link !== '#' ? opt.link : (product.options.find(o => o.tier === 'Best value')?.link ?? '')}','_blank','noopener,noreferrer')`}
+                      >
                         <td class="px-5 py-3">
                           <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full ${tierColors[opt.tier]}`}>
                             {opt.tier}
