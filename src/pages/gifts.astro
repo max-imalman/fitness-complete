@@ -198,7 +198,7 @@ const tierColors: Record<string, string> = {
               </div>
               <div class="flex items-center gap-3 sm:flex-col sm:items-end flex-shrink-0">
                 <span class="text-sm font-semibold text-gray-700">{item.price}</span>
-                <a href={item.link} class="text-xs font-semibold text-blue-600 hover:text-blue-800 transition-colors whitespace-nowrap">{item.retailer} →</a>
+                <a href={item.link} target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-blue-600 hover:text-blue-800 transition-colors whitespace-nowrap">{item.retailer} →</a>
               </div>
             </li>
           ))}
@@ -237,7 +237,7 @@ const tierColors: Record<string, string> = {
                 </div>
                 <div class="flex-shrink-0 text-right">
                   <p class="text-sm font-semibold text-gray-700">{sport.featured.price}</p>
-                  <a href={sport.featured.link} class="text-xs font-semibold text-blue-600 hover:text-blue-800 transition-colors whitespace-nowrap">{sport.featured.retailer}</a>
+                  <a href={sport.featured.link} target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-blue-600 hover:text-blue-800 transition-colors whitespace-nowrap">{sport.featured.retailer}</a>
                 </div>
               </div>
             </div>
@@ -257,7 +257,7 @@ const tierColors: Record<string, string> = {
                     </div>
                     <div class="flex items-center gap-3 sm:flex-col sm:items-end flex-shrink-0">
                       <span class="text-sm text-gray-600 font-medium">{tier.price}</span>
-                      <a href={tier.link} class="text-xs font-semibold text-blue-600 hover:text-blue-800 transition-colors whitespace-nowrap">{tier.retailer}</a>
+                      <a href={tier.link} target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-blue-600 hover:text-blue-800 transition-colors whitespace-nowrap">{tier.retailer}</a>
                     </div>
                   </li>
                 ))}
