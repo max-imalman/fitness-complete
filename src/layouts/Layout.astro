@@ -45,14 +45,14 @@ const path = Astro.url.pathname;
           <a href="/gifts" class={`transition-colors font-medium ${path === '/gifts' ? 'text-gray-900 font-semibold' : 'text-gray-700 hover:text-gray-900'}`}>🎁 Gifts</a>
         </nav>
         <!-- Hamburger button (mobile only) -->
-        <button id="menu-toggle" class="md:hidden flex flex-col justify-center gap-[5px] p-2 -mr-2" aria-label="Toggle menu" aria-expanded="false">
+        <button id="menu-toggle" class="flex flex-col justify-center gap-[5px] p-2 -mr-2 md:!hidden" aria-label="Toggle menu" aria-expanded="false">
           <span class="block w-6 h-0.5 bg-gray-900 transition-all duration-200" id="bar1"></span>
           <span class="block w-6 h-0.5 bg-gray-900 transition-all duration-200" id="bar2"></span>
           <span class="block w-6 h-0.5 bg-gray-900 transition-all duration-200" id="bar3"></span>
         </button>
       </div>
       <!-- Mobile dropdown menu -->
-      <div id="mobile-menu" class="md:hidden hidden bg-[#fafaf8] border-t border-gray-100">
+      <div id="mobile-menu" class="hidden md:!hidden bg-[#fafaf8] border-t border-gray-100">
         <nav class="max-w-[1400px] mx-auto px-4 py-3 flex flex-col">
           <a href="/gym-starter-set" class={`py-3 text-sm border-b border-gray-100 transition-colors ${path === '/gym-starter-set' ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}>Gym</a>
           <a href="/pilates-starter-set" class={`py-3 text-sm border-b border-gray-100 transition-colors ${path === '/pilates-starter-set' ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}>Pilates</a>

@@ -124,20 +124,19 @@ const tierColors: Record<string, string> = {
               <p class="text-gray-600 leading-relaxed mb-5 max-w-3xl">{product.why}</p>
 
               <!-- Top pick callout -->
-              <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6 flex gap-4 items-start">
-                {(() => { const pick = product.options.find(o => o.tier === 'Our pick'); if (!pick) return null; return <div class="w-20 h-20 rounded-lg flex-shrink-0 bg-[#f3f4f6] flex items-center justify-center p-2 text-center"><span class="text-[10px] text-gray-400 leading-tight">{pick.name}</span></div>; })()}
-                <div class="min-w-0 flex-1">
+              {product.options.filter(o => o.tier === 'Our pick').map(pick => (
+                <a href={pick.link} target="_blank" rel="noopener noreferrer" class="block no-underline bg-blue-50 border border-blue-100 hover:border-blue-300 rounded-xl p-4 mb-6 transition-colors">
                   <p class="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-1">Our top pick</p>
                   <p class="font-semibold text-gray-900 text-sm flex items-center gap-1.5">
-                    {product.options.find(o => o.tier === 'Our pick')?.name}
+                    {pick.name}
                     <span class="score-tooltip">
                       <span class="score-icon">ⓘ</span>
                       <span class="score-tip">{product.score}</span>
                     </span>
                   </p>
                   <p class="text-sm text-gray-600 mt-1 leading-relaxed">{product.topPickReason}</p>
-                </div>
-              </div>
+                </a>
+              ))}
 
               <!-- Comparison table — desktop -->
               <div class="hidden sm:block overflow-x-auto overflow-hidden rounded-xl border border-gray-200">
@@ -159,10 +158,7 @@ const tierColors: Record<string, string> = {
                           </span>
                         </td>
                         <td class="px-5 py-3 font-medium text-gray-900">
-                          <div class="flex items-center gap-3">
-                            <div class="w-12 h-12 rounded flex-shrink-0 bg-[#f3f4f6] border border-gray-100 flex items-center justify-center p-1 text-center"><span class="text-[9px] text-gray-400 leading-tight">{opt.name}</span></div>
-                            {opt.name}
-                          </div>
+                          {opt.name}
                         </td>
                         <td class="px-5 py-3 text-gray-500">{opt.price}</td>
                         <td class="px-5 py-3">
@@ -186,10 +182,7 @@ const tierColors: Record<string, string> = {
                       </span>
                       <span class="text-sm text-gray-500 font-medium">{opt.price}</span>
                     </div>
-                    <div class="flex items-start gap-3 mb-1">
-                      <div class="w-14 h-14 rounded flex-shrink-0 bg-[#f3f4f6] border border-gray-100 flex items-center justify-center p-1 text-center"><span class="text-[9px] text-gray-400 leading-tight">{opt.name}</span></div>
-                      <p class="font-semibold text-gray-900 text-sm pt-0.5">{opt.name}</p>
-                    </div>
+                    <p class="font-semibold text-gray-900 text-sm mb-1">{opt.name}</p>
                     <p class="text-xs text-gray-500 mb-3">{opt.bestFor}</p>
                     <span class="inline-block text-sm font-semibold text-blue-600">
                       {opt.retailer}
