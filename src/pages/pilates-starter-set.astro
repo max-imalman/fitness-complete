@@ -161,7 +161,15 @@ const tierColors: Record<string, string> = {
                           </span>
                         </td>
                         <td class="px-5 py-3 font-medium text-gray-900">
-                          {opt.name}
+                          {opt.tier === 'Our pick' ? (
+                            <span class="inline-flex items-center gap-1.5">
+                              {opt.name}
+                              <span class="score-tooltip">
+                                <span class="score-icon">ⓘ</span>
+                                <span class="score-tip">{product.score}</span>
+                              </span>
+                            </span>
+                          ) : opt.name}
                         </td>
                         <td class="px-5 py-3 text-gray-500">{opt.price}</td>
                         <td class="px-5 py-3">
