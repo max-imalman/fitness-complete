@@ -132,3 +132,28 @@ Search YouTube for each sport + "beginner honest review no sponsorship 2025". Pi
 - running-starter-set.astro: `VIDEO_ID_RUNNING`
 - home-gym-starter-set.astro: `VIDEO_ID_HOMEGYM`
 - boxing-starter-set.astro: `VIDEO_ID_BOXING`
+
+## Monthly Link Maintenance Checklist
+
+Check every Amazon product link once per month (approx. 20 minutes total).
+Open each link and verify the product is still available and the price is roughly accurate.
+
+If a product is unavailable:
+1. Search Amazon for the closest replacement with same specs
+2. Update the ASIN in the link
+3. Update the product name and price if changed
+4. Commit with message "Monthly link check - updated [product name]"
+
+Products to check by page:
+
+GYM: FocusGear Gym Bag, Owala FreeSip, Nalgene 32oz, YETI Rambler, Ihuan Gloves, Harbinger Gloves, BlenderBottle Classic, Hydra Cup, Rainleaf Towel
+
+PILATES: Gaiam Mat, Manduka PRO Lite, Tavi Noir Socks, ToeSox, Fit Simplify Bands, Theraband Loops, Hydro Flask
+
+RUNNING: ASICS Gel-Contend 8, Brooks Ghost 17, HOKA Clifton 10, Balega Socks, Darn Tough Socks, FlipBelt, Nathan SpeedShot, Nike Dri-FIT
+
+HOME GYM: Amazon Basics Dumbbell, Bowflex 552, Fit Simplify Bands, Bodylastics Bands, Iron Gym Bar, Perfect Fitness Bar, Gaiam Mat, TriggerPoint Foam Roller
+
+PICKLEBALL: Niupipo Paddle, Vatic Pro Prism Flash, Franklin X-40 Balls, Skechers Viper Court Pro, K-Swiss Supreme, Babolat Jet Mach 3, Mangrove Bag, CRBN Backpack, HEAD Impulse Eyewear, Oakley Flak 2.0
+
+Last checked: March 2026
