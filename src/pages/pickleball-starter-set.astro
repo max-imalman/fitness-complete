@@ -64,8 +64,8 @@ const products = [
   },
   {
     name: 'Eyewear',
-    preNote: `Optional for beginners. Becomes important when playing outdoors in bright sun or in competitive settings where a ball to the face is a real risk.`,
-    why: `A pickleball travels at 25 to 40 mph and will hit you in the face. Standard sunglasses shatter on impact; sport eyewear with polycarbonate lenses does not.`,
+    preNote: null,
+    why: `Optional for beginners, but becomes important quickly. A pickleball travels at 25 to 40 mph and will hit you in the face. Standard sunglasses shatter on impact; sport eyewear with polycarbonate lenses does not.`,
     topPickReason: `The Oakley Flak 2.0 XL has polycarbonate lenses that meet impact standards, a secure wraparound fit that does not shift during movement, and optics clear enough that you will forget you are wearing them mid-game.`,
     image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=160',
     quote: `Got hit in the eye on week three. Wearing protective glasses every session now. Do not skip this.`,
@@ -158,10 +158,6 @@ const schemaData = {
                 </span>
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">{product.name}</h2>
               </div>
-
-              {product.preNote && (
-                <p class="text-sm text-gray-400 italic mb-4 max-w-3xl">{product.preNote}</p>
-              )}
 
               <p class="text-gray-600 leading-relaxed mb-5 max-w-3xl">{product.why}</p>
 
