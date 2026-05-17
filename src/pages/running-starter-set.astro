@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AuthorByline from '../components/AuthorByline.astro';
+import { getAuthor } from '../data/authors';
+const author = getAuthor('ryan-mitchell')!;
 
 const products = [
   {
@@ -81,6 +84,7 @@ const tierColors: Record<string, string> = {
       <p class="text-lg sm:text-xl text-gray-500 max-w-2xl leading-relaxed">
         The right shoes are 90% of it. Here's the other 10%.
       </p>
+      <AuthorByline author={author} reviewedDate="March 2026" />
     </section>
 
     <!-- Mobile section nav -->

@@ -1,10 +1,27 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorByline from '../../components/AuthorByline.astro';
+import { getAuthor } from '../../data/authors';
+const author = getAuthor('ryan-mitchell')!;
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: 'How Many Days a Week Should a Beginner Go to the Gym?',
+  description: 'The honest answer based on actual research, not gym bro advice. You need less than you think.',
+  datePublished: '2026-03-01',
+  dateModified: '2026-03-01',
+  author: { '@type': 'Person', name: author.name, url: `https://www.fitness-complete.com/authors/${author.slug}` },
+  publisher: { '@type': 'Organization', name: 'fitness-complete', logo: { '@type': 'ImageObject', url: 'https://www.fitness-complete.com/favicon.svg' } },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://www.fitness-complete.com/blog/how-many-days-per-week-gym-beginner' },
+  url: 'https://www.fitness-complete.com/blog/how-many-days-per-week-gym-beginner',
+});
 ---
 
 <Layout
   title="How Many Days a Week Should a Beginner Go to the Gym? | fitness-complete.com"
   description="The honest answer based on actual research, not gym bro advice. You need less than you think."
+  schema={schema}
 >
 
   <main>
@@ -18,7 +35,7 @@ import Layout from '../../layouts/Layout.astro';
         How Many Days a Week Should a Beginner Go to the Gym?
       </h1>
 
-      <p class="text-sm text-gray-400 mb-10">Last updated: March 2026</p>
+      <AuthorByline author={author} reviewedDate="March 2026" />
 
       <div class="prose-content">
 

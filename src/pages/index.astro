@@ -1,5 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
+
+const siteSchema = JSON.stringify([
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'fitness-complete',
+    url: 'https://www.fitness-complete.com',
+    logo: 'https://www.fitness-complete.com/favicon.svg',
+    contactPoint: { '@type': 'ContactPoint', email: 'hello@fitness-complete.com' },
+    sameAs: [],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'fitness-complete',
+    url: 'https://www.fitness-complete.com',
+  },
+]);
 
 const sports = [
   {
@@ -50,7 +69,7 @@ const sports = [
 ];
 ---
 
-<Layout title="Fitness-Complete: Starter Kits for Every Sport">
+<Layout title="Fitness-Complete: Starter Kits for Every Sport" schema={siteSchema}>
 
   <main>
 

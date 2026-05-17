@@ -5,14 +5,37 @@ interface Props {
   title?: string;
   description?: string;
   schema?: string;
+  ogImage?: string;
+  showDisclosure?: boolean;
 }
 const {
   title = 'Fitness-Complete — Starter Kits for Every Sport',
-  description = 'Curated starter kits for gym, Pilates, running, home gym, and boxing. Researched from real beginners, not influencers.',
+  description = 'Curated starter kits for gym, Pilates, running, home gym, and pickleball. Researched from real beginners, not influencers.',
   schema,
+  ogImage = 'https://www.fitness-complete.com/og-default.jpg',
+  showDisclosure = true,
 } = Astro.props;
 const canonicalURL = `https://www.fitness-complete.com${Astro.url.pathname}`;
 const path = Astro.url.pathname;
+
+// Auto-generate BreadcrumbList for non-home pages
+const pageTitle = title.replace(' | fitness-complete.com', '').replace(' | fitness-complete', '');
+const breadcrumbSchema = path !== '/' ? JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.fitness-complete.com/' },
+    ...(path.startsWith('/blog/') ? [
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.fitness-complete.com/blog' },
+      { '@type': 'ListItem', position: 3, name: pageTitle, item: canonicalURL },
+    ] : path.startsWith('/authors/') ? [
+      { '@type': 'ListItem', position: 2, name: 'Authors', item: 'https://www.fitness-complete.com/' },
+      { '@type': 'ListItem', position: 3, name: pageTitle, item: canonicalURL },
+    ] : [
+      { '@type': 'ListItem', position: 2, name: pageTitle, item: canonicalURL },
+    ]),
+  ],
+}) : null;
 ---
 <!doctype html>
 <html lang="en">
@@ -28,7 +51,15 @@ const path = Astro.url.pathname;
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     {schema && <Fragment set:html={`<script type="application/ld+json">${schema}</script>`} />}
+    {breadcrumbSchema && <Fragment set:html={`<script type="application/ld+json">${breadcrumbSchema}</script>`} />}
     <title>{title}</title>
   </head>
   <body class="text-gray-900 antialiased">
@@ -64,6 +95,16 @@ const path = Astro.url.pathname;
         </nav>
       </div>
     </header>
+
+    {showDisclosure && (
+      <div class="bg-amber-50 border-b border-amber-100">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 py-2">
+          <p class="text-xs text-amber-800">
+            <span class="font-semibold">Affiliate disclosure:</span> This page contains affiliate links. We may earn a commission at no extra cost to you. <a href="/how-we-pick" class="underline hover:text-amber-900 transition-colors">How we pick products.</a>
+          </p>
+        </div>
+      </div>
+    )}
 
     <slot />
 

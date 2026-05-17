@@ -1,0 +1,97 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getAuthor } from '../../data/authors';
+
+const author = getAuthor('ryan-mitchell')!;
+
+const articles = [
+  { title: 'Gym Starter Kit', url: '/gym-starter-set', type: 'Starter Kit' },
+  { title: 'Pilates Starter Kit', url: '/pilates-starter-set', type: 'Starter Kit' },
+  { title: 'Running Starter Kit', url: '/running-starter-set', type: 'Starter Kit' },
+  { title: 'Home Gym Starter Kit', url: '/home-gym-starter-set', type: 'Starter Kit' },
+  { title: 'Pickleball Starter Kit', url: '/pickleball-starter-set', type: 'Starter Kit' },
+  { title: 'How Many Days a Week Should a Beginner Go to the Gym?', url: '/blog/how-many-days-per-week-gym-beginner', type: 'Article' },
+  { title: 'How Long Until You See Results from Pilates?', url: '/blog/how-long-to-see-results-from-pilates', type: 'Article' },
+  { title: 'How to Build a Home Gym in an Apartment for Under $500', url: '/blog/home-gym-apartment-under-500', type: 'Article' },
+  { title: 'How to Start Playing Pickleball: What Nobody Tells Beginners', url: '/blog/how-to-start-playing-pickleball', type: 'Article' },
+];
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: author.name,
+  jobTitle: author.title,
+  description: author.bio,
+  url: `https://www.fitness-complete.com/authors/${author.slug}`,
+  sameAs: Object.values(author.social).filter(Boolean),
+});
+---
+
+<Layout
+  title={`${author.name} — ${author.title} | fitness-complete.com`}
+  description={`${author.name} is a ${author.title} who writes beginner fitness guides for fitness-complete.com.`}
+  schema={schema}
+>
+  <main class="max-w-[760px] mx-auto px-4 sm:px-6 py-12">
+
+    <nav class="text-sm text-gray-400 mb-8">
+      <a href="/" class="hover:text-gray-600 transition-colors">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-600">Authors</span>
+      <span class="mx-2">/</span>
+      <span class="text-gray-900">{author.name}</span>
+    </nav>
+
+    <div class="flex items-start gap-6 mb-8">
+      <img
+        src={author.photo}
+        alt={author.name}
+        class="w-20 h-20 rounded-full object-cover bg-gray-200 flex-shrink-0"
+        width="80"
+        height="80"
+        onerror="this.src='';this.style.background='#e5e7eb'"
+      />
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900">{author.name}</h1>
+        <p class="text-gray-500 mt-1">{author.title}</p>
+        <div class="flex gap-3 mt-3">
+          {author.social.x && (
+            <a href={author.social.x} target="_blank" rel="noopener noreferrer" class="text-xs text-gray-400 hover:text-gray-700 transition-colors">X / Twitter</a>
+          )}
+          {author.social.linkedin && (
+            <a href={author.social.linkedin} target="_blank" rel="noopener noreferrer" class="text-xs text-gray-400 hover:text-gray-700 transition-colors">LinkedIn</a>
+          )}
+        </div>
+      </div>
+    </div>
+
+    <div class="prose prose-gray max-w-none mb-10">
+      <p class="text-gray-700 leading-relaxed">{author.bio}</p>
+
+      <div class="mt-6">
+        <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">Credentials</p>
+        <ul class="space-y-1">
+          {author.credentials.map(c => (
+            <li class="text-sm text-gray-600 flex items-start gap-2">
+              <span class="text-gray-300 mt-0.5">—</span>
+              {c}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Published on fitness-complete</p>
+      <ul class="space-y-3">
+        {articles.map(article => (
+          <li class="flex items-baseline gap-3">
+            <span class="text-xs text-gray-400 w-20 flex-shrink-0">{article.type}</span>
+            <a href={article.url} class="text-sm text-gray-700 hover:text-blue-600 transition-colors">{article.title}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+  </main>
+</Layout>

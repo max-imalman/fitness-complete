@@ -1,10 +1,27 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorByline from '../../components/AuthorByline.astro';
+import { getAuthor } from '../../data/authors';
+const author = getAuthor('ryan-mitchell')!;
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: 'How to Start Playing Pickleball: What Nobody Tells Beginners',
+  description: 'Before you buy a paddle, read this. A practical guide to starting pickleball without wasting money on gear you might not need.',
+  datePublished: '2026-03-15',
+  dateModified: '2026-03-15',
+  author: { '@type': 'Person', name: author.name, url: `https://www.fitness-complete.com/authors/${author.slug}` },
+  publisher: { '@type': 'Organization', name: 'fitness-complete', logo: { '@type': 'ImageObject', url: 'https://www.fitness-complete.com/favicon.svg' } },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://www.fitness-complete.com/blog/how-to-start-playing-pickleball' },
+  url: 'https://www.fitness-complete.com/blog/how-to-start-playing-pickleball',
+});
 ---
 
 <Layout
   title="How to Start Playing Pickleball: What Nobody Tells Beginners | fitness-complete.com"
   description="Before you buy a paddle, read this. A practical guide to starting pickleball without wasting money on gear you might not need."
+  schema={schema}
 >
 
   <main>
@@ -18,7 +35,7 @@ import Layout from '../../layouts/Layout.astro';
         How to Start Playing Pickleball: What Nobody Tells Beginners
       </h1>
 
-      <p class="text-sm text-gray-400 mb-10">Last updated: March 2026</p>
+      <AuthorByline author={author} reviewedDate="March 2026" />
 
       <div class="prose-content">
 

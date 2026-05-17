@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AuthorByline from '../components/AuthorByline.astro';
+import { getAuthor } from '../data/authors';
+const author = getAuthor('ryan-mitchell')!;
 
 const products = [
   {
@@ -127,6 +130,7 @@ const schemaData = {
       <p class="text-lg sm:text-xl text-gray-500 max-w-2xl leading-relaxed">
         Paddle, shoes with lateral support, and the right balls for your surface. Everything you need before your first game.
       </p>
+      <AuthorByline author={author} reviewedDate="March 2026" />
     </section>
 
     <!-- Mobile section nav -->
@@ -258,6 +262,19 @@ const schemaData = {
           ))}
 
       </div>
+    </section>
+
+    <!-- From the blog -->
+    <section class="max-w-[1400px] mx-auto px-4 sm:px-6 py-8 border-t border-gray-100">
+      <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">From the blog</p>
+      <ul class="space-y-3">
+        <li>
+          <a href="/blog/how-to-start-playing-pickleball" class="group flex flex-col sm:flex-row sm:items-baseline sm:gap-4">
+            <span class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors text-sm">How to Start Playing Pickleball: What Nobody Tells Beginners</span>
+            <span class="text-sm text-gray-400 mt-0.5 sm:mt-0">Try it before you spend a cent on gear. A practical guide for true beginners.</span>
+          </a>
+        </li>
+      </ul>
     </section>
 
     <!-- Methodology footer -->

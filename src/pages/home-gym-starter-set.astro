@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AuthorByline from '../components/AuthorByline.astro';
+import { getAuthor } from '../data/authors';
+const author = getAuthor('ryan-mitchell')!;
 
 const products = [
   {
@@ -93,6 +96,7 @@ const tierColors: Record<string, string> = {
       <p class="text-lg sm:text-xl text-gray-500 max-w-2xl leading-relaxed">
         A functional setup that fits in a corner. No treadmill required.
       </p>
+      <AuthorByline author={author} reviewedDate="March 2026" />
     </section>
 
     <!-- Mobile section nav -->
@@ -207,6 +211,19 @@ const tierColors: Record<string, string> = {
           ))}
 
       </div>
+    </section>
+
+    <!-- From the blog -->
+    <section class="max-w-[1400px] mx-auto px-4 sm:px-6 py-8 border-t border-gray-100">
+      <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">From the blog</p>
+      <ul class="space-y-3">
+        <li>
+          <a href="/blog/home-gym-apartment-under-500" class="group flex flex-col sm:flex-row sm:items-baseline sm:gap-4">
+            <span class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors text-sm">How to Build a Home Gym in an Apartment for Under $500</span>
+            <span class="text-sm text-gray-400 mt-0.5 sm:mt-0">Step-by-step buying order for a small-space setup that actually works.</span>
+          </a>
+        </li>
+      </ul>
     </section>
 
     <!-- Methodology footer -->

@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AuthorByline from '../components/AuthorByline.astro';
+import { getAuthor } from '../data/authors';
+const author = getAuthor('ryan-mitchell')!;
 
 const products = [
   {
@@ -125,6 +128,7 @@ const schemaData = {
       <p class="text-lg sm:text-xl text-gray-500 max-w-2xl leading-relaxed">
         What you actually need for your first 90 days. Researched from real beginners, not gym influencers.
       </p>
+      <AuthorByline author={author} reviewedDate="March 2026" />
     </section>
 
     <!-- Mobile section nav -->
@@ -236,6 +240,19 @@ const schemaData = {
           ))}
 
       </div>
+    </section>
+
+    <!-- From the blog -->
+    <section class="max-w-[1400px] mx-auto px-4 sm:px-6 py-8 border-t border-gray-100">
+      <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">From the blog</p>
+      <ul class="space-y-3">
+        <li>
+          <a href="/blog/how-many-days-per-week-gym-beginner" class="group flex flex-col sm:flex-row sm:items-baseline sm:gap-4">
+            <span class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors text-sm">How Many Days a Week Should a Beginner Go to the Gym?</span>
+            <span class="text-sm text-gray-400 mt-0.5 sm:mt-0">The honest answer. You need less than you think.</span>
+          </a>
+        </li>
+      </ul>
     </section>
 
     <!-- Methodology footer -->
