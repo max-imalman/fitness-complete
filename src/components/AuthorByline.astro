@@ -11,16 +11,8 @@ const { author, reviewedDate } = Astro.props;
 
 <div class="flex items-center gap-3 py-4 border-t border-b border-gray-100 my-6">
   <a href={`/authors/${author.slug}`} class="flex-shrink-0">
-    <img
-      src={author.photo}
-      alt={author.name}
-      class="w-10 h-10 rounded-full object-cover bg-gray-200"
-      width="40"
-      height="40"
-      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-    />
-    <div class="w-10 h-10 rounded-full bg-gray-200 items-center justify-center text-sm font-bold text-gray-500 flex-shrink-0" style="display:none">
-      {author.name.split(' ').map(n => n[0]).join('')}
+    <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-sm font-bold text-gray-500">
+      {author.name.split(' ').map((n: string) => n[0]).join('')}
     </div>
   </a>
   <div class="min-w-0">
