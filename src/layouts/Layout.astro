@@ -43,7 +43,6 @@ const breadcrumbSchema = path !== '/' ? JSON.stringify({
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
@@ -61,6 +60,15 @@ const breadcrumbSchema = path !== '/' ? JSON.stringify({
     {schema && <Fragment set:html={`<script type="application/ld+json">${schema}</script>`} />}
     {breadcrumbSchema && <Fragment set:html={`<script type="application/ld+json">${breadcrumbSchema}</script>`} />}
     <title>{title}</title>
+    <style is:global>
+      @media (max-width: 767px) {
+        #menu-toggle { display: flex !important; }
+      }
+      @media (min-width: 768px) {
+        #menu-toggle { display: none !important; }
+        #mobile-menu { display: none !important; }
+      }
+    </style>
   </head>
   <body class="text-gray-900 antialiased">
     <header class="border-b border-gray-100 bg-[#fafaf8]">
@@ -68,7 +76,7 @@ const breadcrumbSchema = path !== '/' ? JSON.stringify({
         <a href="/" class="text-[#0f172a] hover:opacity-75 transition-opacity" style="font-size: 20px; letter-spacing: -0.5px; line-height: 1; text-decoration: none;">
           <span style="font-weight: 700;">fitness</span><span style="font-weight: 300;">complete</span>
         </a>
-        <nav class="hidden sm:flex gap-6 text-sm text-gray-500">
+        <nav class="hidden md:flex gap-6 text-sm text-gray-500">
           <a href="/gym-starter-set" class={`transition-colors ${path === '/gym-starter-set' ? 'text-gray-900 font-semibold' : 'hover:text-gray-900'}`}>Gym</a>
           <a href="/pilates-starter-set" class={`transition-colors ${path === '/pilates-starter-set' ? 'text-gray-900 font-semibold' : 'hover:text-gray-900'}`}>Pilates</a>
           <a href="/running-starter-set" class={`transition-colors ${path === '/running-starter-set' ? 'text-gray-900 font-semibold' : 'hover:text-gray-900'}`}>Running</a>
@@ -77,14 +85,14 @@ const breadcrumbSchema = path !== '/' ? JSON.stringify({
           <a href="/gifts" class={`transition-colors font-medium ${path === '/gifts' ? 'text-gray-900 font-semibold' : 'text-gray-700 hover:text-gray-900'}`}>🎁 Gifts</a>
         </nav>
         <!-- Hamburger button (mobile only) -->
-        <button id="menu-toggle" class="sm:hidden flex flex-col justify-center gap-[5px] p-2 -mr-2" aria-label="Toggle menu" aria-expanded="false">
+        <button id="menu-toggle" class="flex-col justify-center gap-[5px] p-2 -mr-2" style="display:none" aria-label="Toggle menu" aria-expanded="false">
           <span class="block w-6 h-0.5 bg-gray-900 transition-all duration-200" id="bar1"></span>
           <span class="block w-6 h-0.5 bg-gray-900 transition-all duration-200" id="bar2"></span>
           <span class="block w-6 h-0.5 bg-gray-900 transition-all duration-200" id="bar3"></span>
         </button>
       </div>
       <!-- Mobile dropdown menu -->
-      <div id="mobile-menu" class="sm:hidden hidden bg-[#fafaf8] border-t border-gray-100">
+      <div id="mobile-menu" class="hidden bg-[#fafaf8] border-t border-gray-100">
         <nav class="max-w-[1400px] mx-auto px-4 py-3 flex flex-col">
           <a href="/gym-starter-set" class={`py-3 text-sm border-b border-gray-100 transition-colors ${path === '/gym-starter-set' ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}>Gym</a>
           <a href="/pilates-starter-set" class={`py-3 text-sm border-b border-gray-100 transition-colors ${path === '/pilates-starter-set' ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}>Pilates</a>
