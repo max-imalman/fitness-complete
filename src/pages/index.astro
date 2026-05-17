@@ -26,45 +26,50 @@ const sports = [
     slug: 'gym-starter-set',
     description: 'Gym bag, water bottle, gloves, and a shaker. The five things every beginner actually needs before their first session.',
     accent: 'text-orange-700',
+    bgAccent: 'bg-orange-50',
     borderColor: 'border-t-orange-500',
-    image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800',
-    alt: 'Athlete training with weights in a gym',
+    icon: '🏋️',
+    items: ['Gym bag', 'Water bottle', 'Gloves', 'Shaker bottle', 'Gym towel'],
   },
   {
     name: 'Pilates',
     slug: 'pilates-starter-set',
     description: 'Mat, grip socks, and resistance bands. The essentials for reformer or mat classes, without overbuying.',
     accent: 'text-purple-700',
+    bgAccent: 'bg-purple-50',
     borderColor: 'border-t-purple-500',
-    image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800',
-    alt: 'Person performing Pilates exercises on a mat',
+    icon: '🧘',
+    items: ['Pilates mat', 'Grip socks', 'Resistance bands', 'Water bottle', 'Grip gloves'],
   },
   {
     name: 'Running',
     slug: 'running-starter-set',
     description: 'The right shoes are 90% of it. Plus what to wear and carry so your first few miles don\'t suck.',
     accent: 'text-green-700',
+    bgAccent: 'bg-green-50',
     borderColor: 'border-t-green-500',
-    image: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800',
-    alt: 'Runner on an outdoor trail',
+    icon: '👟',
+    items: ['Running shoes', 'Running socks', 'Moisture-wicking shirt', 'Hydration belt'],
   },
   {
     name: 'Home Gym',
     slug: 'home-gym-starter-set',
     description: 'Build a functional setup that doesn\'t take over your living room. Prioritized by what you\'ll actually use.',
     accent: 'text-blue-700',
+    bgAccent: 'bg-blue-50',
     borderColor: 'border-t-blue-500',
-    image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=800',
-    alt: 'Home gym setup with dumbbells and exercise equipment',
+    icon: '🏠',
+    items: ['Adjustable dumbbells', 'Resistance bands', 'Pull-up bar', 'Exercise mat', 'Foam roller'],
   },
   {
     name: 'Pickleball',
     slug: 'pickleball-starter-set',
     description: 'Paddle, shoes with lateral support, and the right balls for your surface. Everything a beginner needs before their first game.',
     accent: 'text-teal-700',
+    bgAccent: 'bg-teal-50',
     borderColor: 'border-t-teal-500',
-    image: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=800',
-    alt: 'Pickleball paddle and balls on a court',
+    icon: '🏓',
+    items: ['Paddle', 'Court shoes', 'Balls', 'Bag', 'Eyewear'],
   },
 ];
 ---
@@ -85,50 +90,52 @@ const sports = [
         {sports.map((sport) => (
           <a
             href={`/${sport.slug}`}
-            class={`group block rounded-xl border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all duration-200 overflow-hidden border-t-4 ${sport.borderColor}`}
+            class={`group block rounded-xl border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all duration-200 border-t-4 ${sport.borderColor} p-6`}
           >
-            <div class="relative">
-              <img
-                src={sport.image}
-                alt={sport.alt}
-                class="h-48 w-full object-cover"
-                loading="lazy"
-              />
+            <div class={`inline-flex items-center justify-center w-11 h-11 rounded-lg ${sport.bgAccent} text-2xl mb-4`}>
+              {sport.icon}
             </div>
-            <div class="p-6">
-              <h3 class="font-bold text-gray-900 text-base mb-1 group-hover:text-gray-600 transition-colors">
-                {sport.name} Starter Kit
-              </h3>
-              <p class="text-sm text-gray-500 leading-relaxed">{sport.description}</p>
-              <span class={`inline-block mt-3 text-xs font-semibold ${sport.accent}`}>
-                See the kit →
-              </span>
-            </div>
+            <h3 class="font-bold text-gray-900 text-base mb-1 group-hover:text-gray-600 transition-colors">
+              {sport.name} Starter Kit
+            </h3>
+            <p class="text-sm text-gray-500 leading-relaxed mb-4">{sport.description}</p>
+            <ul class="space-y-1 mb-4">
+              {sport.items.map(item => (
+                <li class="text-xs text-gray-400 flex items-center gap-1.5">
+                  <span class={`w-1 h-1 rounded-full flex-shrink-0 ${sport.bgAccent.replace('bg-', 'bg-').replace('-50', '-400')}`}></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <span class={`text-xs font-semibold ${sport.accent}`}>
+              See the kit →
+            </span>
           </a>
         ))}
 
         <!-- Gifts card -->
         <a
           href="/gifts"
-          class="group block rounded-xl border border-amber-200 bg-amber-50 hover:border-amber-300 hover:shadow-md transition-all duration-200 overflow-hidden border-t-4 border-t-amber-500"
+          class="group block rounded-xl border border-amber-200 hover:border-amber-300 hover:shadow-md transition-all duration-200 border-t-4 border-t-amber-500 p-6"
         >
-          <div class="relative">
-            <img
-              src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=800"
-              alt="Gift wrapped present"
-              class="h-48 w-full object-cover"
-              loading="lazy"
-            />
+          <div class="inline-flex items-center justify-center w-11 h-11 rounded-lg bg-amber-50 text-2xl mb-4">
+            🎁
           </div>
-          <div class="p-6">
-            <h3 class="font-bold text-gray-900 text-base mb-1 group-hover:text-gray-600 transition-colors">
-              Gift Ideas
-            </h3>
-            <p class="text-sm text-gray-500 leading-relaxed">Shopping for someone else? Find the right gear by sport and budget.</p>
-            <span class="inline-block mt-3 text-xs font-semibold text-amber-700">
-              See gift picks →
-            </span>
-          </div>
+          <h3 class="font-bold text-gray-900 text-base mb-1 group-hover:text-gray-600 transition-colors">
+            Gift Ideas
+          </h3>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4">Shopping for someone else? Find the right gear by sport and budget — from under $50 to full kit splurges.</p>
+          <ul class="space-y-1 mb-4">
+            {['Under $50', '$50–150', '$150+', 'All 5 sports covered'].map(item => (
+              <li class="text-xs text-gray-400 flex items-center gap-1.5">
+                <span class="w-1 h-1 rounded-full bg-amber-400 flex-shrink-0"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <span class="text-xs font-semibold text-amber-700">
+            See gift picks →
+          </span>
         </a>
       </div>
     </section>
