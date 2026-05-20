@@ -104,16 +104,6 @@ const breadcrumbSchema = path !== '/' ? JSON.stringify({
       </div>
     </header>
 
-    {showDisclosure && (
-      <div class="bg-amber-50 border-b border-amber-100">
-        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 py-2">
-          <p class="text-xs text-amber-800">
-            <span class="font-semibold">Affiliate disclosure:</span> This page contains affiliate links. We may earn a commission at no extra cost to you. <a href="/how-we-pick" class="underline hover:text-amber-900 transition-colors">How we pick products.</a>
-          </p>
-        </div>
-      </div>
-    )}
-
     <slot />
 
     <!-- Shared footer -->
