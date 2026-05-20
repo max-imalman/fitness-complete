@@ -4,7 +4,7 @@ export interface Author {
   title: string;
   bio: string;
   credentials: string[];
-  photo: string;
+  initials: string;
   social: {
     x?: string;
     linkedin?: string;
@@ -13,12 +13,17 @@ export interface Author {
 
 export const authors: Record<string, Author> = {
   'ryan-mitchell': {
-    name: 'Ryan Mitchell',
+    name: 'fitness-complete Editorial Team',
     slug: 'ryan-mitchell',
-    title: 'NASM-CPT | Fitness Writer',
-    bio: 'Ryan spent his early 20s buying the wrong gear, skipping leg day, and wondering why he wasn\'t seeing results. A decade later, he\'s a NASM-certified personal trainer who writes about exactly the mistakes he made so beginners don\'t have to repeat them. He\'s been a member of seven gyms across four cities and has tested more water bottles than he\'d like to admit.',
-    credentials: ['NASM-CPT', '10+ years of training experience', 'Former beginner who wasted a lot of money on the wrong gear'],
-    photo: '/images/authors/ryan-mitchell.jpg',
+    title: 'Researched from real beginners',
+    bio: 'Every recommendation on fitness-complete is researched from Reddit community consensus, independently tested by sources like Wirecutter and Garage Gym Reviews, and verified against Amazon purchase patterns. Commission rates play no role in our picks.',
+    credentials: [
+      'Reddit community consensus (r/fitness, r/xxfitness, r/beginnerfitness)',
+      'Independent testing: Wirecutter, Garage Gym Reviews, OutdoorGearLab',
+      'Amazon verified purchase patterns',
+      'No commission influence on recommendations',
+    ],
+    initials: 'FC',
     social: {},
   },
 };

@@ -18,18 +18,16 @@ const articles = [
 
 const schema = JSON.stringify({
   '@context': 'https://schema.org',
-  '@type': 'Person',
+  '@type': 'Organization',
   name: author.name,
-  jobTitle: author.title,
   description: author.bio,
-  url: `https://www.fitness-complete.com/authors/${author.slug}`,
-  sameAs: Object.values(author.social).filter(Boolean),
+  url: 'https://www.fitness-complete.com',
 });
 ---
 
 <Layout
-  title={`${author.name} — ${author.title} | fitness-complete.com`}
-  description={`${author.name} is a ${author.title} who writes beginner fitness guides for fitness-complete.com.`}
+  title="fitness-complete Editorial Team | How We Research"
+  description="Every recommendation on fitness-complete is researched from Reddit community consensus, independently tested, and verified against real purchase patterns."
   schema={schema}
 >
   <main class="max-w-[760px] mx-auto px-4 sm:px-6 py-12">
@@ -37,43 +35,43 @@ const schema = JSON.stringify({
     <nav class="text-sm text-gray-400 mb-8">
       <a href="/" class="hover:text-gray-600 transition-colors">Home</a>
       <span class="mx-2">/</span>
-      <span class="text-gray-600">Authors</span>
-      <span class="mx-2">/</span>
-      <span class="text-gray-900">{author.name}</span>
+      <span class="text-gray-900">Editorial Team</span>
     </nav>
 
-    <div class="flex items-start gap-6 mb-8">
-      <div class="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0">
-        <span class="text-2xl font-bold text-gray-500">
-          {author.name.split(' ').map((n: string) => n[0]).join('')}
-        </span>
+    <div class="flex items-start gap-5 mb-8">
+      <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center text-lg font-bold text-gray-400 flex-shrink-0">
+        FC
       </div>
       <div>
         <h1 class="text-2xl font-bold text-gray-900">{author.name}</h1>
-        <p class="text-gray-500 mt-1">{author.title}</p>
+        <p class="text-gray-500 mt-1 text-sm">{author.title}</p>
       </div>
     </div>
 
-    <div class="prose prose-gray max-w-none mb-10">
+    <div class="mb-10">
       <p class="text-gray-700 leading-relaxed">{author.bio}</p>
 
       <div class="mt-6">
-        <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">Credentials</p>
-        <ul class="space-y-1">
-          {author.credentials.map(c => (
+        <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">Our research process</p>
+        <ul class="space-y-2">
+          {author.credentials.map((c: string) => (
             <li class="text-sm text-gray-600 flex items-start gap-2">
-              <span class="text-gray-300 mt-0.5">—</span>
+              <span class="text-gray-300 mt-1 flex-shrink-0">→</span>
               {c}
             </li>
           ))}
         </ul>
+      </div>
+
+      <div class="mt-6">
+        <a href="/how-we-pick" class="text-sm text-blue-600 hover:text-blue-800 underline transition-colors">Full methodology →</a>
       </div>
     </div>
 
     <div>
       <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Published on fitness-complete</p>
       <ul class="space-y-3">
-        {articles.map(article => (
+        {articles.map((article: { title: string; url: string; type: string }) => (
           <li class="flex items-baseline gap-3">
             <span class="text-xs text-gray-400 w-20 flex-shrink-0">{article.type}</span>
             <a href={article.url} class="text-sm text-gray-700 hover:text-blue-600 transition-colors">{article.title}</a>
