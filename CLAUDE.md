@@ -84,12 +84,15 @@ npm run preview  # Preview production build locally
 ```
 
 ## Architecture
-- `src/pages/` — File-based routing; each .astro file is a route
-- `src/layouts/` — Shared HTML document wrappers (Layout.astro)
-- `src/components/` — Reusable Astro components
-- `src/assets/` — Images and SVGs imported and optimized by Astro
-- `public/` — Static files served as-is (favicon, etc.)
-- TypeScript strict mode enabled via `astro/tsconfigs/strict`
+- `src/data/categories.ts` holds every product, price, link and score per kit. Edit products here, not in pages.
+- `src/data/kits.ts` holds per sport metadata (colors, headlines, copy) and helpers (totals, scores).
+- `src/data/gifts.ts` holds the gift finder ideas, `src/data/posts.ts` the blog index metadata.
+- `src/lib/links.ts` builds outbound links. The Amazon tag comes from `AMAZON_ASSOCIATE_TAG` (see `.env.example`); a production build on Vercel fails if it is missing. Retailer labels are derived from the URL so they can never disagree with the link.
+- `src/pages/[kit].astro` renders all five starter kit pages (`/gym-starter-set` etc.) including the kit builder.
+- `src/layouts/BlogPost.astro` wraps every blog post; a post file only contains its body HTML.
+- `src/layouts/Layout.astro` is the shared document (header, footer, SEO, JSON-LD via `src/lib/seo.ts`).
+- `public/` holds static files (favicon, OG image, robots.txt). `vercel.json` holds redirects and security headers.
+- Node 24 is required (Astro 7). TypeScript strict mode via `astro/tsconfigs/strict`; run `npm run check`.
 
 ## Product Scoring System
 
@@ -119,7 +122,7 @@ Commission rate is never a scoring factor. If two products score identically, th
 - Premium pick: Best scoring product over $80
 - Minimum score to be included: 45/100
 
-For each product on the site, store the score breakdown in a comment in the .astro file directly above the product recommendation, like this:
+Scores are stored as structured data (`score: { amazon, tests, beginner }`) on the category in `src/data/categories.ts` (score of the "Our pick" option) or on an individual option when it was scored on its own. The site renders them as scorecards.
 <!-- SCORE: Amazon=45/50 (1200+ verified reviews, strong 6mo+ pattern) | Tests=30/35 (Wirecutter #1, GGR recommended) | Beginner=14/15 (FreeSip spout solves one-handed drinking) | TOTAL=89/100 -->
 
 ## YouTube video IDs to replace
@@ -136,11 +139,11 @@ Search YouTube for each sport + "beginner honest review no sponsorship 2025". Pi
 ## Monthly Link Maintenance Checklist
 
 Check every Amazon product link once per month (approx. 20 minutes total).
-Open each link and verify the product is still available and the price is roughly accurate.
+Open each link and verify the product is still available and the price is roughly accurate. All links and prices live in `src/data/categories.ts` and `src/data/gifts.ts`.
 
 If a product is unavailable:
 1. Search Amazon for the closest replacement with same specs
-2. Update the ASIN in the link
+2. Update the ASIN in the link (without a `tag=` parameter, the tag is added at build time)
 3. Update the product name and price if changed
 4. Commit with message "Monthly link check - updated [product name]"
 

@@ -1,0 +1,99 @@
+---
+import type { Kit } from '../data/types';
+import { kitTotals, pickOf } from '../data/kits';
+import { affiliateUrl, formatPrice, outboundRel, retailerName } from '../lib/links';
+
+interface Props {
+  kit: Kit;
+}
+
+const { kit } = Astro.props;
+const totals = kitTotals(kit);
+// Server render the default state (our picks) so the receipt is complete without JavaScript.
+const lines = kit.categories.map((c) => {
+  const o = pickOf(c.options);
+  return { id: c.id, category: c.name, name: o.name, price: o.price, url: affiliateUrl(o.url), retailer: retailerName(o.url) };
+});
+---
+<aside
+  id="kit-receipt"
+  data-open="false"
+  class="kit-receipt z-40 lg:sticky lg:top-36 fixed lg:static inset-x-0 bottom-0 lg:inset-auto"
+  aria-label="Your kit"
+>
+  <!-- Mobile handle -->
+  <button
+    type="button"
+    id="receipt-toggle"
+    class="lg:hidden w-full flex items-center justify-between gap-4 bg-ink text-paper px-5 py-3.5 border-t-2 border-volt"
+    aria-expanded="false"
+    aria-controls="receipt-body"
+  >
+    <span class="text-left">
+      <span class="tag text-paper/60 block">Your {kit.sport.toLowerCase()} kit</span>
+      <span class="font-display font-extrabold text-2xl tabular-nums" data-total>{formatPrice(totals.picks)}</span>
+    </span>
+    <span class="btn btn-volt !py-2.5 !px-4 text-sm">
+      <span data-toggle-label>See receipt</span>
+      <svg viewBox="0 0 24 24" class="size-4 transition-transform receipt-chevron" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 15l6-6 6 6" /></svg>
+    </span>
+  </button>
+
+  <div id="receipt-body" class="receipt-body max-h-[70vh] lg:max-h-none overflow-y-auto lg:overflow-visible bg-ink lg:bg-transparent px-3 pb-3 lg:p-0">
+    <div class="receipt-edge hidden lg:block"></div>
+    <div class="receipt text-ink px-5 pt-4 pb-5 text-[0.78rem] rounded-b-lg lg:rounded-none">
+      <div class="text-center border-b-2 border-dashed border-ink/25 pb-3">
+        <p class="font-display font-extrabold text-xl tracking-tight">fitness<span class="font-light">complete</span></p>
+        <p class="opacity-60 mt-0.5">{kit.tag} · YOUR KIT</p>
+      </div>
+
+      <ul class="py-3 space-y-2.5" data-lines>
+        {lines.map((l) => (
+          <li class="flex gap-3 justify-between" data-line={l.id}>
+            <span class="min-w-0">
+              <span class="block font-bold uppercase">{l.category}</span>
+              <a href={l.url} target="_blank" rel={outboundRel} class="block opacity-70 leading-tight hover:opacity-100 hover:underline" data-line-link>
+                <span data-line-name>{l.name}</span> <span aria-hidden="true">↗</span>
+              </a>
+            </span>
+            <span class="font-bold tabular-nums shrink-0" data-line-price>{formatPrice(l.price)}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div class="border-t-2 border-dashed border-ink/25 pt-3 flex justify-between items-baseline">
+        <span class="font-bold text-sm">TOTAL</span>
+        <span class="font-display font-extrabold text-3xl tracking-tight tabular-nums" data-total>{formatPrice(totals.picks)}</span>
+      </div>
+      <p class="opacity-60 mt-1" data-savings>
+        {formatPrice(totals.cheapest)} at the cheapest · {formatPrice(totals.allIn)} all in
+      </p>
+
+      <div class="mt-4 grid grid-cols-3 gap-1.5 p-1 rounded-full bg-ink/8" role="group" aria-label="Quick presets">
+        <button type="button" data-preset="cheapest" class="preset rounded-full py-2 font-bold">Cheapest</button>
+        <button type="button" data-preset="pick" class="preset rounded-full py-2 font-bold" aria-pressed="true">Our picks</button>
+        <button type="button" data-preset="premium" class="preset rounded-full py-2 font-bold">All in</button>
+      </div>
+
+      <p class="mt-4 text-[0.72rem] opacity-60 leading-snug">
+        Tap any option in the list to swap it. Prices are approximate. We earn a commission if you buy through these links, at no extra cost to you.
+      </p>
+    </div>
+    <div class="receipt-edge bottom hidden lg:block"></div>
+  </div>
+</aside>
+
+<style>
+  .preset { transition: background-color 0.2s, color 0.2s; }
+  .preset[aria-pressed="true"] { background: var(--color-ink); color: var(--color-volt); }
+  @media (max-width: 1023px) {
+    /* Keep the footer clear of the fixed receipt bar */
+    :global(body:has(#kit-receipt)) { padding-bottom: 80px; }
+    .kit-receipt .receipt-body { display: none; }
+    .kit-receipt[data-open="true"] .receipt-body { display: block; }
+    .kit-receipt[data-open="true"] .receipt-chevron { transform: rotate(180deg); }
+  }
+  @media (min-width: 1024px) {
+    .kit-receipt { filter: drop-shadow(0 18px 30px rgb(13 15 12 / 0.18)); }
+  }
+</style>

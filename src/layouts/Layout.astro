@@ -1,243 +1,232 @@
 ---
-import '../styles/global.css'
-import Analytics from '@vercel/analytics/astro'
-interface Props {
-  title?: string;
-  description?: string;
-  schema?: string;
-  ogImage?: string;
-  showDisclosure?: boolean;
-}
-const {
-  title = 'Fitness-Complete — Starter Kits for Every Sport',
-  description = 'Curated starter kits for gym, Pilates, running, home gym, and pickleball. Researched from real beginners, not influencers.',
-  schema,
-  ogImage = 'https://www.fitness-complete.com/og-default.jpg',
-  showDisclosure = true,
-} = Astro.props;
-const canonicalURL = `https://www.fitness-complete.com${Astro.url.pathname}`;
-const path = Astro.url.pathname;
+import '../styles/global.css';
+import Analytics from '@vercel/analytics/astro';
+import Logo from '../components/Logo.astro';
+import { kits, kitPath } from '../data/kits';
+import { SITE_URL, absolute, jsonLd } from '../lib/seo';
 
-// Auto-generate BreadcrumbList for non-home pages
-const pageTitle = title.replace(' | fitness-complete.com', '').replace(' | fitness-complete', '');
-const breadcrumbSchema = path !== '/' ? JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.fitness-complete.com/' },
-    ...(path.startsWith('/blog/') ? [
-      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.fitness-complete.com/blog' },
-      { '@type': 'ListItem', position: 3, name: pageTitle, item: canonicalURL },
-    ] : path.startsWith('/authors/') ? [
-      { '@type': 'ListItem', position: 2, name: 'Authors', item: 'https://www.fitness-complete.com/' },
-      { '@type': 'ListItem', position: 3, name: pageTitle, item: canonicalURL },
-    ] : [
-      { '@type': 'ListItem', position: 2, name: pageTitle, item: canonicalURL },
-    ]),
-  ],
-}) : null;
+interface Crumb {
+  name: string;
+  path: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  /** One JSON-LD object or a list of them. */
+  schema?: object | object[];
+  breadcrumbs?: Crumb[];
+  ogImage?: string;
+  /** Paint the header dark so it blends into a dark hero. */
+  darkHeader?: boolean;
+}
+
+const { title, description, schema, breadcrumbs, ogImage = '/og-default.png', darkHeader = false } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const canonical = absolute(path === '/' ? '/' : path);
+const fullTitle = path === '/' ? title : `${title} | fitness-complete`;
+
+const graph = [
+  ...(schema ? (Array.isArray(schema) ? schema : [schema]) : []),
+  ...(breadcrumbs?.length
+    ? [{
+        '@type': 'BreadcrumbList',
+        itemListElement: [{ name: 'Home', path: '/' }, ...breadcrumbs].map((c, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: c.name,
+          item: absolute(c.path),
+        })),
+      }]
+    : []),
+];
+const ld = graph.length ? jsonLd({ '@context': 'https://schema.org', '@graph': graph }) : null;
+
+const nav = kits.map((k) => ({ label: k.sport, href: kitPath(k), color: k.color, tag: k.tag }));
+const isActive = (href: string) => path === href;
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
+    <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalURL} />
-    <meta property="og:title" content={title} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <meta name="theme-color" content="#0d0f0c" />
+    <meta name="author" content="fitness-complete Editorial Team" />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:site_name" content="fitness-complete" />
+    <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={absolute(ogImage)} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
-    {schema && <Fragment set:html={`<script type="application/ld+json">${schema}</script>`} />}
-    {breadcrumbSchema && <Fragment set:html={`<script type="application/ld+json">${breadcrumbSchema}</script>`} />}
-    <title>{title}</title>
-    <style is:global>
-      @media (max-width: 767px) {
-        #menu-toggle { display: flex !important; }
-      }
-      @media (min-width: 768px) {
-        #menu-toggle { display: none !important; }
-        #mobile-menu { display: none !important; }
-      }
-    </style>
+    <meta name="twitter:image" content={absolute(ogImage)} />
+    <link rel="sitemap" href={`${SITE_URL}/sitemap-index.xml`} />
+    {ld && <script type="application/ld+json" set:html={ld} />}
+    <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
-  <body class="text-gray-900 antialiased">
-    <header class="border-b border-gray-100 bg-[#fafaf8]">
-      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-        <a href="/" class="text-[#0f172a] hover:opacity-75 transition-opacity" style="font-size: 20px; letter-spacing: -0.5px; line-height: 1; text-decoration: none;">
-          <span style="font-weight: 700;">fitness</span><span style="font-weight: 300;">complete</span>
+  <body class="min-h-screen flex flex-col">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] btn btn-volt">Skip to content</a>
+
+    <header
+      id="site-header"
+      data-dark={darkHeader ? 'true' : 'false'}
+      class:list={[
+        'sticky top-0 z-50 transition-colors duration-300',
+        darkHeader ? 'bg-ink text-paper' : 'bg-paper/85 text-ink backdrop-blur-md border-b border-line/70',
+      ]}
+    >
+      <div class="max-w-[1320px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-6">
+        <a href="/" class="shrink-0" aria-label="fitness-complete home">
+          <Logo />
         </a>
-        <nav class="hidden md:flex gap-6 text-sm text-gray-500">
-          <a href="/gym-starter-set" class={`transition-colors ${path === '/gym-starter-set' ? 'text-gray-900 font-semibold' : 'hover:text-gray-900'}`}>Gym</a>
-          <a href="/pilates-starter-set" class={`transition-colors ${path === '/pilates-starter-set' ? 'text-gray-900 font-semibold' : 'hover:text-gray-900'}`}>Pilates</a>
-          <a href="/running-starter-set" class={`transition-colors ${path === '/running-starter-set' ? 'text-gray-900 font-semibold' : 'hover:text-gray-900'}`}>Running</a>
-          <a href="/home-gym-starter-set" class={`transition-colors ${path === '/home-gym-starter-set' ? 'text-gray-900 font-semibold' : 'hover:text-gray-900'}`}>Home Gym</a>
-          <a href="/pickleball-starter-set" class={`transition-colors ${path === '/pickleball-starter-set' ? 'text-gray-900 font-semibold' : 'hover:text-gray-900'}`}>Pickleball</a>
-          <a href="/gifts" class={`transition-colors font-medium ${path === '/gifts' ? 'text-gray-900 font-semibold' : 'text-gray-700 hover:text-gray-900'}`}>🎁 Gifts</a>
+
+        <nav class="hidden lg:flex items-center gap-1 text-[0.92rem] font-semibold" aria-label="Starter kits">
+          {nav.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                'group relative px-3 py-2 rounded-full transition-colors',
+                isActive(item.href) ? (darkHeader ? 'bg-paper text-ink' : 'bg-ink text-paper') : 'hover:bg-current/10',
+              ]}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+            >
+              <span class="inline-block size-2 rounded-full mr-1.5 align-middle transition-transform group-hover:scale-150" style={`background:${item.color}`}></span>
+              {item.label}
+            </a>
+          ))}
         </nav>
-        <!-- Hamburger button (mobile only) -->
-        <button id="menu-toggle" class="flex-col justify-center gap-[5px] p-2 -mr-2" style="display:none" aria-label="Toggle menu" aria-expanded="false">
-          <span class="block w-6 h-0.5 bg-gray-900 transition-all duration-200" id="bar1"></span>
-          <span class="block w-6 h-0.5 bg-gray-900 transition-all duration-200" id="bar2"></span>
-          <span class="block w-6 h-0.5 bg-gray-900 transition-all duration-200" id="bar3"></span>
+
+        <div class="hidden lg:flex items-center gap-2">
+          <a href="/blog" class="px-3 py-2 text-[0.92rem] font-semibold rounded-full hover:bg-current/10 transition-colors">Guides</a>
+          <a href="/gifts" class="btn btn-volt !py-2.5 !px-4 text-sm">Gift finder</a>
+        </div>
+
+        <button
+          id="menu-toggle"
+          class="lg:hidden relative size-11 -mr-2 grid place-items-center rounded-full"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <span class="sr-only">Menu</span>
+          <span class="menu-bar absolute h-0.5 w-6 bg-current transition-transform duration-300 -translate-y-1"></span>
+          <span class="menu-bar absolute h-0.5 w-6 bg-current transition-transform duration-300 translate-y-1"></span>
         </button>
       </div>
-      <!-- Mobile dropdown menu -->
-      <div id="mobile-menu" class="hidden bg-[#fafaf8] border-t border-gray-100">
-        <nav class="max-w-[1400px] mx-auto px-4 py-3 flex flex-col">
-          <a href="/gym-starter-set" class={`py-3 text-sm border-b border-gray-100 transition-colors ${path === '/gym-starter-set' ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}>Gym</a>
-          <a href="/pilates-starter-set" class={`py-3 text-sm border-b border-gray-100 transition-colors ${path === '/pilates-starter-set' ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}>Pilates</a>
-          <a href="/running-starter-set" class={`py-3 text-sm border-b border-gray-100 transition-colors ${path === '/running-starter-set' ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}>Running</a>
-          <a href="/home-gym-starter-set" class={`py-3 text-sm border-b border-gray-100 transition-colors ${path === '/home-gym-starter-set' ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}>Home Gym</a>
-          <a href="/pickleball-starter-set" class={`py-3 text-sm border-b border-gray-100 transition-colors ${path === '/pickleball-starter-set' ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}>Pickleball</a>
-          <a href="/gifts" class={`py-3 text-sm transition-colors font-medium ${path === '/gifts' ? 'text-gray-900 font-semibold' : 'text-gray-700 hover:text-gray-900'}`}>🎁 Gifts</a>
+
+      <div id="mobile-menu" class="lg:hidden hidden fixed inset-x-0 top-16 bottom-0 bg-ink text-paper grain overflow-y-auto">
+        <nav class="px-4 sm:px-6 py-6 flex flex-col" aria-label="Mobile">
+          {nav.map((item) => (
+            <a href={item.href} class="flex items-baseline justify-between gap-4 py-4 border-b border-paper/10 group">
+              <span class="font-display font-extrabold text-[2.6rem] leading-none tracking-tight group-hover:translate-x-2 transition-transform" style={`color:${item.color}`}>{item.label}</span>
+              <span class="tag text-paper/50">{item.tag}</span>
+            </a>
+          ))}
+          <div class="grid grid-cols-2 gap-3 pt-6">
+            <a href="/gifts" class="btn btn-volt">Gift finder</a>
+            <a href="/blog" class="btn btn-ghost text-paper">Guides</a>
+          </div>
+          <a href="/how-we-pick" class="mt-6 text-paper/60 text-sm underline underline-offset-4">How we score every product</a>
         </nav>
       </div>
     </header>
 
-    <slot />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
 
-    <!-- Shared footer -->
-    <footer class="bg-[#0f172a] text-white mt-16">
-      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 py-12">
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-10">
-
-          <!-- Column 1: Navigation -->
+    <footer class="bg-ink text-paper grain overflow-hidden mt-24">
+      <div class="max-w-[1320px] mx-auto px-4 sm:px-6 pt-16 pb-10">
+        <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <p class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-4">Starter Kits</p>
-            <ul class="space-y-2">
-              <li><a href="/gym-starter-set" class="text-sm text-slate-300 hover:text-white transition-colors">Gym</a></li>
-              <li><a href="/pilates-starter-set" class="text-sm text-slate-300 hover:text-white transition-colors">Pilates</a></li>
-              <li><a href="/running-starter-set" class="text-sm text-slate-300 hover:text-white transition-colors">Running</a></li>
-              <li><a href="/home-gym-starter-set" class="text-sm text-slate-300 hover:text-white transition-colors">Home Gym</a></li>
-              <li><a href="/pickleball-starter-set" class="text-sm text-slate-300 hover:text-white transition-colors">Pickleball</a></li>
-              <li><a href="/gifts" class="text-sm text-slate-300 hover:text-white transition-colors">Gift Ideas</a></li>
+            <p class="font-display font-extrabold text-4xl sm:text-5xl leading-[0.9] tracking-tight max-w-sm">
+              Day one is the hardest. <span class="text-volt">Your gear shouldn't be.</span>
+            </p>
+            <p class="mt-5 text-paper/60 max-w-sm text-[0.95rem]">
+              Starter kits for beginners, picked from community consensus and independent tests. Scored out of 100. Never ranked by commission.
+            </p>
+          </div>
+          <div>
+            <p class="tag text-paper/50 mb-4">Starter kits</p>
+            <ul class="space-y-2.5">
+              {kits.map((k) => (
+                <li><a href={kitPath(k)} class="hover:text-volt transition-colors">{k.sport}</a></li>
+              ))}
+              <li><a href="/gifts" class="hover:text-volt transition-colors">Gift finder</a></li>
             </ul>
           </div>
-
-          <!-- Column 2: Research Sources -->
           <div>
-            <p class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-4">Research Sources</p>
-            <ul class="space-y-2">
-              <li><a href="https://www.reddit.com/r/fitness/" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-300 hover:text-white transition-colors">r/fitness</a></li>
-              <li><a href="https://www.reddit.com/r/beginnerfitness/" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-300 hover:text-white transition-colors">r/beginnerfitness</a></li>
-              <li><a href="https://www.reddit.com/r/xxfitness/" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-300 hover:text-white transition-colors">r/xxfitness</a></li>
-              <li><a href="https://www.nytimes.com/wirecutter/" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-300 hover:text-white transition-colors">Wirecutter</a></li>
-              <li><a href="https://www.garagegymreviews.com/" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-300 hover:text-white transition-colors">Garage Gym Reviews</a></li>
-              <li><a href="https://www.cnn.com/cnn-underscored/reviews/fitness" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-300 hover:text-white transition-colors">CNN Underscored</a></li>
+            <p class="tag text-paper/50 mb-4">Read</p>
+            <ul class="space-y-2.5">
+              <li><a href="/blog" class="hover:text-volt transition-colors">Beginner guides</a></li>
+              <li><a href="/how-we-pick" class="hover:text-volt transition-colors">How we score</a></li>
+              <li><a href="/about" class="hover:text-volt transition-colors">About</a></li>
+              <li><a href="/authors/editorial-team" class="hover:text-volt transition-colors">Editorial team</a></li>
+              <li><a href="/privacy-policy" class="hover:text-volt transition-colors">Privacy policy</a></li>
             </ul>
           </div>
-
-          <!-- Column 3: About -->
           <div>
-            <p class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-4">About</p>
-            <ul class="space-y-2">
-              <li><a href="/blog" class="text-sm text-slate-300 hover:text-white transition-colors">Blog</a></li>
-              <li><a href="/about" class="text-sm text-slate-300 hover:text-white transition-colors">About fitness-complete</a></li>
-              <li><a href="/privacy-policy" class="text-sm text-slate-300 hover:text-white transition-colors">Privacy Policy</a></li>
+            <p class="tag text-paper/50 mb-4">Where we look</p>
+            <ul class="space-y-2.5 text-paper/80">
+              <li><a href="https://www.reddit.com/r/fitness/" target="_blank" rel="noopener noreferrer" class="hover:text-volt transition-colors">r/fitness</a></li>
+              <li><a href="https://www.reddit.com/r/beginnerfitness/" target="_blank" rel="noopener noreferrer" class="hover:text-volt transition-colors">r/beginnerfitness</a></li>
+              <li><a href="https://www.reddit.com/r/xxfitness/" target="_blank" rel="noopener noreferrer" class="hover:text-volt transition-colors">r/xxfitness</a></li>
+              <li><a href="https://www.nytimes.com/wirecutter/" target="_blank" rel="noopener noreferrer" class="hover:text-volt transition-colors">Wirecutter</a></li>
+              <li><a href="https://www.garagegymreviews.com/" target="_blank" rel="noopener noreferrer" class="hover:text-volt transition-colors">Garage Gym Reviews</a></li>
             </ul>
           </div>
-
         </div>
 
-        <!-- Bottom bar -->
-        <div class="border-t border-slate-700 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-          <p class="text-sm font-bold text-white">fitness-complete.com</p>
-          <p class="text-xs text-slate-500">This site contains affiliate links. We may earn a commission at no extra cost to you.</p>
-          <p class="text-xs text-slate-500">Last updated: March 2026</p>
+        <p class="mt-14 text-paper/50 text-sm max-w-3xl">
+          We earn a commission when you buy through links on this site, at no extra cost to you. As an Amazon Associate we earn from qualifying purchases. Prices are approximate and change often.
+        </p>
+
+        <div class="mt-10 pt-6 border-t border-paper/10 flex flex-col sm:flex-row gap-3 justify-between text-sm text-paper/40">
+          <p>© {new Date().getFullYear()} fitness-complete.com</p>
+          <p>Built for beginners. No sponsored picks.</p>
         </div>
       </div>
+      <p aria-hidden="true" class="font-display font-extrabold leading-[0.75] tracking-tighter text-[22vw] text-center select-none whitespace-nowrap outline-text text-paper/25 -mb-[3vw]">
+        day one
+      </p>
     </footer>
 
-    <!-- Cookie banner -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white z-50" style="display:none">
-      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-3 justify-between">
-        <p class="text-sm text-gray-300">
-          This site uses cookies for analytics. By continuing you accept our
-          <a href="/privacy-policy" class="underline hover:text-white transition-colors">Privacy Policy</a>.
-        </p>
-        <div class="flex gap-3 flex-shrink-0">
-          <button
-            id="cookie-decline"
-            class="border border-slate-600 text-slate-300 text-sm font-semibold px-4 py-2 rounded-lg hover:bg-slate-800 transition-colors"
-          >
-            Decline
-          </button>
-          <button
-            id="cookie-accept"
-            class="bg-white text-gray-900 text-sm font-semibold px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
-          >
-            Accept
-          </button>
-        </div>
-      </div>
-    </div>
-
     <script>
-      (function () {
-        const toggle = document.getElementById('menu-toggle');
-        const menu = document.getElementById('mobile-menu');
-        if (toggle && menu) {
-          toggle.addEventListener('click', function () {
-            const isOpen = !menu.classList.contains('hidden');
-            menu.classList.toggle('hidden');
-            toggle.setAttribute('aria-expanded', String(!isOpen));
-          });
+      const toggle = document.getElementById('menu-toggle');
+      const menu = document.getElementById('mobile-menu');
+      const bars = toggle?.querySelectorAll<HTMLElement>('.menu-bar');
+      const setOpen = (open: boolean) => {
+        menu?.classList.toggle('hidden', !open);
+        toggle?.setAttribute('aria-expanded', String(open));
+        toggle?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        document.body.style.overflow = open ? 'hidden' : '';
+        if (bars) {
+          bars[0].style.transform = open ? 'rotate(45deg)' : '';
+          bars[1].style.transform = open ? 'rotate(-45deg)' : '';
         }
-      })();
-    </script>
+      };
+      toggle?.addEventListener('click', () => setOpen(menu?.classList.contains('hidden') ?? false));
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
 
-    <script>
-      (function () {
-        const banner = document.getElementById('cookie-banner');
-        if (!localStorage.getItem('cookieAccepted') && !localStorage.getItem('cookieDeclined')) {
-          banner.style.display = 'block';
+      const reveal = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in');
+            reveal.unobserve(entry.target);
+          }
         }
-        document.getElementById('cookie-accept').addEventListener('click', function () {
-          localStorage.setItem('cookieAccepted', 'true');
-          banner.style.display = 'none';
-        });
-        document.getElementById('cookie-decline').addEventListener('click', function () {
-          localStorage.setItem('cookieDeclined', 'true');
-          banner.style.display = 'none';
-        });
-      })();
-    </script>
-
-    <script>
-      // Sticky TOC scroll tracking for sport pages
-      const sections = document.querySelectorAll('[data-product-section]');
-      const tocLinks = document.querySelectorAll('.toc-link');
-      if (sections.length > 0 && tocLinks.length > 0) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                tocLinks.forEach((link) => {
-                  link.classList.remove('border-gray-900', 'text-gray-900', 'font-semibold');
-                  link.classList.add('border-transparent', 'text-slate-400');
-                });
-                const activeLink = document.querySelector(`.toc-link[data-section="${entry.target.id}"]`);
-                if (activeLink) {
-                  activeLink.classList.remove('border-transparent', 'text-slate-400');
-                  activeLink.classList.add('border-gray-900', 'text-gray-900', 'font-semibold');
-                }
-              }
-            });
-          },
-          { rootMargin: '-10% 0px -70% 0px' }
-        );
-        sections.forEach((section) => observer.observe(section));
-      }
+      }, { rootMargin: '0px 0px -8% 0px' });
+      document.querySelectorAll('.reveal').forEach((el) => reveal.observe(el));
     </script>
     <Analytics />
   </body>

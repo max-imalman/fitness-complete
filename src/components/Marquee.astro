@@ -1,0 +1,21 @@
+---
+interface Props {
+  items: string[];
+  class?: string;
+}
+const { items, class: className = 'bg-volt text-ink' } = Astro.props;
+// Repeat the list so one track is always wider than the viewport.
+const track = [...items, ...items, ...items];
+---
+<div class:list={['marquee py-3.5 border-y-2 border-ink', className]} aria-label={items.join('. ')}>
+  {[0, 1].map(() => (
+    <div class="marquee__track" aria-hidden="true">
+      {track.map((item) => (
+        <span class="inline-flex items-center gap-10 font-display font-extrabold text-xl sm:text-2xl tracking-tight uppercase">
+          {item}
+          <svg viewBox="0 0 24 24" class="size-5 shrink-0" fill="currentColor"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z" /></svg>
+        </span>
+      ))}
+    </div>
+  ))}
+</div>

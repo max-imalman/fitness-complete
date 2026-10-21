@@ -1,0 +1,83 @@
+---
+import type { Option, Score } from '../data/types';
+import { scoreOf, scoreTotal, tierLabel } from '../data/kits';
+import { affiliateUrl, formatPrice, outboundRel, retailerName } from '../lib/links';
+
+interface Props {
+  option: Option;
+  group: string;
+  categoryName: string;
+  categoryScore?: Score;
+}
+
+const { option, group, categoryName, categoryScore } = Astro.props;
+const score = scoreOf(option, categoryScore);
+const href = affiliateUrl(option.url);
+const retailer = retailerName(option.url);
+const isPick = option.tier === 'pick';
+---
+<label
+  class:list={[
+    'tier-card relative flex flex-col rounded-[1.25rem] border-2 p-4 sm:p-5',
+    isPick ? 'border-ink/70 bg-card' : 'border-line bg-card/60',
+  ]}
+>
+  <input
+    type="radio"
+    class="sr-only"
+    name={group}
+    value={option.tier}
+    checked={isPick}
+    data-category={categoryName}
+    data-name={option.name}
+    data-price={option.price}
+    data-url={href}
+    data-retailer={retailer}
+  />
+
+  <div class="flex items-center justify-between gap-2">
+    <span
+      class:list={[
+        'tag rounded-full px-2.5 py-1',
+        isPick ? 'bg-ink text-paper' : 'border border-ink/25',
+      ]}
+    >
+      {tierLabel[option.tier]}
+    </span>
+    <span class="check size-7 rounded-full bg-ink text-volt grid place-items-center" aria-hidden="true">
+      <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+    </span>
+  </div>
+
+  <div class="mt-4 flex items-center gap-4">
+    <span class="size-[4.5rem] shrink-0 rounded-xl bg-white border border-line grid place-items-center overflow-hidden">
+      {option.img
+        ? <img src={option.img} alt={option.name} class="size-16 object-contain" loading="lazy" decoding="async" />
+        : <span class="font-display font-extrabold text-2xl text-faint">{retailer.slice(0, 2)}</span>}
+    </span>
+    <div class="min-w-0">
+      <p class="font-display font-bold text-[1.08rem] leading-tight">{option.name}</p>
+      <p class="mt-1 font-display font-extrabold text-2xl tabular-nums">
+        <span class="text-sm font-semibold text-muted align-middle mr-0.5">~</span>{formatPrice(option.price)}
+      </p>
+    </div>
+  </div>
+
+  <p class="mt-3 text-[0.88rem] leading-snug text-muted">{option.bestFor}</p>
+
+  <div class="mt-auto pt-4 flex items-center justify-between gap-3">
+    {score
+      ? <span class="font-mono text-[0.72rem] font-bold rounded-md bg-ink/6 px-2 py-1">Score {scoreTotal(score)}/100</span>
+      : <span></span>}
+    <a
+      href={href}
+      target="_blank"
+      rel={outboundRel}
+      class="relative z-10 inline-flex items-center gap-1 text-sm font-bold underline decoration-2 underline-offset-4 hover:decoration-[var(--kit-color)]"
+      aria-label={`${option.name} at ${retailer} (opens in a new tab)`}
+    >
+      {retailer}
+      <svg viewBox="0 0 24 24" class="size-3.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8" /></svg>
+    </a>
+  </div>
+</label>

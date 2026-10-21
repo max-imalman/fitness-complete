@@ -1,280 +1,166 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { giftAngles, giftIdeas } from '../data/gifts';
+import { getKit, kits, kitPath } from '../data/kits';
+import { affiliateUrl, formatRange, outboundRel, retailerName } from '../lib/links';
+import { organization } from '../lib/seo';
 
-const underFifty = [
-  {
-    sport: 'Gym',
-    pick: 'Under Armour Undeniable 5.0 Duffel',
-    price: '$45–55',
-    note: 'The bag every gym-goer needs before anything else.',
-    link: 'https://www.amazon.com/s?k=Under+Armour+Undeniable+5.0+Duffel&tag=fitnesscomple-20',
-    retailer: "Dick's Sporting Goods",
-    borderColor: 'border-l-orange-500',
-    accent: 'text-orange-700',
-  },
-  {
-    sport: 'Pilates',
-    pick: 'Tavi Noir Savvy Grip Socks 3-pack + Fit Simplify Resistance Bands',
-    price: '$45–59 combined',
-    note: 'Studio-ready from class one.',
-    link: 'https://www.amazon.com/s?k=Tavi+Noir+Savvy+grip+socks&tag=fitnesscomple-20',
-    retailer: 'Amazon',
-    borderColor: 'border-l-purple-500',
-    accent: 'text-purple-700',
-  },
-  {
-    sport: 'Running',
-    pick: 'Balega Hidden Comfort Socks + FlipBelt Classic',
-    price: '$42–50 combined',
-    note: 'The two things that make running actually comfortable.',
-    link: 'https://www.amazon.com/s?k=Balega+Hidden+Comfort+socks&tag=fitnesscomple-20',
-    retailer: 'Amazon / REI',
-    borderColor: 'border-l-green-500',
-    accent: 'text-green-700',
-  },
-  {
-    sport: 'Home Gym',
-    pick: 'Fit Simplify Resistance Bands + TriggerPoint GRID Foam Roller',
-    price: '$45–59 combined',
-    note: 'Train and recover. The foundation of any home setup.',
-    link: 'https://www.amazon.com/s?k=Fit+Simplify+resistance+loop+bands&tag=fitnesscomple-20',
-    retailer: "Amazon / Dick's",
-    borderColor: 'border-l-blue-500',
-    accent: 'text-blue-700',
-  },
-  {
-    sport: 'Pickleball',
-    pick: 'Franklin X-40 Outdoor Balls 3-Pack + Niupipo Graphite Paddle',
-    price: '$40–55 combined',
-    note: 'Paddle and balls in one gift. Everything they need to play their first game.',
-    link: 'https://www.amazon.com/s?k=Franklin+X-40+outdoor+pickleball&tag=fitnesscomple-20',
-    retailer: 'Amazon',
-    borderColor: 'border-l-teal-500',
-    accent: 'text-teal-700',
-  },
+const budgets = [
+  { id: 'under-50', label: 'Under $50', test: (min: number) => min < 50 },
+  { id: '50-150', label: '$50 to $150', test: (min: number) => min >= 50 && min < 150 },
+  { id: '150-plus', label: '$150 and up', test: (min: number) => min >= 150 },
 ];
+const bucket = (min: number) => budgets.find((b) => b.test(min))!.id;
 
-const sportGifts = [
-  {
-    name: 'Gym',
-    giftAngle: 'A gym membership without a bag is an excuse not to go. The gear below removes that excuse.',
-    borderColor: 'border-t-orange-500',
-    accent: 'text-orange-700',
-    slug: 'gym-starter-set',
-    featured: {
-      name: 'Under Armour Undeniable 5.0 Duffel',
-      price: '$45–55',
-      why: 'The most-recommended beginner gym bag on Reddit. Water-resistant, holds everything including shoes, and built to survive daily commutes.',
-      link: 'https://www.amazon.com/s?k=Under+Armour+Undeniable+5.0+Duffel&tag=fitnesscomple-20',
-      retailer: "Buy at Dick's Sporting Goods →",
-    },
-    tiers: [
-      { tier: 'Budget', range: 'Under $35', name: 'BlenderBottle Classic 28oz + Rainleaf Microfiber Gym Towel', price: '$25–32', link: 'https://www.amazon.com/s?k=BlenderBottle+Classic+28oz&tag=fitnesscomple-20', retailer: 'Buy on Amazon →' },
-      { tier: 'Mid-Range', range: '$45–55', name: 'Under Armour Undeniable 5.0 Duffel', price: '$45–55', link: 'https://www.amazon.com/s?k=Under+Armour+Undeniable+5.0+Duffel&tag=fitnesscomple-20', retailer: "Buy at Dick's Sporting Goods →" },
-      { tier: 'Premium', range: '$145–165', name: 'Aer Gym Duffel 3', price: '$145–165', link: 'https://www.amazon.com/s?k=Aer+Gym+Duffel+3&tag=fitnesscomple-20', retailer: 'Buy on Amazon →' },
-    ],
-  },
-  {
-    name: 'Pilates',
-    giftAngle: 'Most beginners show up to their first Pilates class without grip socks and get turned away at the door.',
-    borderColor: 'border-t-purple-500',
-    accent: 'text-purple-700',
-    slug: 'pilates-starter-set',
-    featured: {
-      name: 'Manduka PRO Lite 4.7mm Mat',
-      price: '$78–88',
-      why: 'The mat upgrade serious practitioners use. Dense, grippy, and built to last years of daily class use without compressing.',
-      link: 'https://www.amazon.com/s?k=Manduka+PRO+Lite+yoga+mat&tag=fitnesscomple-20',
-      retailer: 'Buy on Amazon →',
-    },
-    tiers: [
-      { tier: 'Budget', range: 'Under $60', name: 'Tavi Noir Savvy Grip Socks 3-pack + Fit Simplify Resistance Bands', price: '$45–59', link: 'https://www.amazon.com/s?k=Tavi+Noir+Savvy+grip+socks&tag=fitnesscomple-20', retailer: 'Buy on Amazon →' },
-      { tier: 'Mid-Range', range: '$78–88', name: 'Manduka PRO Lite 4.7mm Mat', price: '$78–88', link: 'https://www.amazon.com/s?k=Manduka+PRO+Lite+yoga+mat&tag=fitnesscomple-20', retailer: 'Buy on Amazon →' },
-      { tier: 'Premium', range: '$126–152', name: 'Lululemon The Mat 5mm + Alo Yoga Warrior Socks', price: '$126–152', link: 'https://www.amazon.com/s?k=Lululemon+The+Mat+5mm&tag=fitnesscomple-20', retailer: 'Buy on Amazon →' },
-    ],
-  },
-  {
-    name: 'Running',
-    giftAngle: 'The right shoes prevent the injuries that stop most beginners in week three. Know their size and this decision is easy.',
-    borderColor: 'border-t-green-500',
-    accent: 'text-green-700',
-    slug: 'running-starter-set',
-    featured: {
-      name: 'Brooks Ghost 17',
-      price: '$130–140',
-      why: 'The most consistently recommended beginner running shoe across running communities. Neutral cushion, smooth ride, works for most gaits.',
-      link: 'https://www.amazon.com/s?k=Brooks+Ghost+17+running+shoes&tag=fitnesscomple-20',
-      retailer: "Buy on Amazon →",
-    },
-    tiers: [
-      { tier: 'Budget', range: 'Under $50', name: 'Balega Hidden Comfort Socks + FlipBelt Classic', price: '$42–50', link: 'https://www.amazon.com/s?k=Balega+Hidden+Comfort+socks&tag=fitnesscomple-20', retailer: 'Buy on Amazon →' },
-      { tier: 'Mid-Range', range: '$130–140', name: 'Brooks Ghost 17', price: '$130–140', link: 'https://www.amazon.com/s?k=Brooks+Ghost+17+running+shoes&tag=fitnesscomple-20', retailer: "Buy on Amazon →" },
-      { tier: 'Premium', range: '$145–160', name: 'HOKA Clifton 10', price: '$145–160', link: 'https://www.amazon.com/s?k=HOKA+Clifton+10+running+shoes&tag=fitnesscomple-20', retailer: 'Buy on Amazon →' },
-    ],
-  },
-  {
-    name: 'Home Gym',
-    giftAngle: 'The best home gym gift is something they will use every session, not a machine that becomes a clothes rack.',
-    borderColor: 'border-t-blue-500',
-    accent: 'text-blue-700',
-    slug: 'home-gym-starter-set',
-    featured: {
-      name: 'Bowflex Results Series 552 SelectTech Dumbbells',
-      price: '$280–320',
-      why: 'The gift that replaces an entire dumbbell rack. Adjusts from 5 to 52.5lbs in seconds. The kind of gift that gets mentioned every time they train.',
-      link: 'https://www.amazon.com/s?k=Bowflex+Results+Series+552+SelectTech&tag=fitnesscomple-20',
-      retailer: "Buy on Amazon →",
-    },
-    tiers: [
-      { tier: 'Budget', range: 'Under $60', name: 'Fit Simplify Resistance Bands + TriggerPoint GRID Foam Roller', price: '$45–59', link: 'https://www.amazon.com/s?k=Fit+Simplify+resistance+loop+bands&tag=fitnesscomple-20', retailer: "Buy on Amazon →" },
-      { tier: 'Mid-Range', range: '$65–80', name: 'TriggerPoint GRID Foam Roller + Perfect Fitness Multi-Gym Doorframe Bar', price: '$70–90', link: 'https://www.amazon.com/s?k=TriggerPoint+GRID+foam+roller&tag=fitnesscomple-20', retailer: "Buy on Amazon →" },
-      { tier: 'Premium', range: '$280–320', name: 'Bowflex Results Series 552 SelectTech Dumbbells', price: '$280–320', link: 'https://www.amazon.com/s?k=Bowflex+Results+Series+552+SelectTech&tag=fitnesscomple-20', retailer: "Buy on Amazon →" },
-    ],
-  },
-  {
-    name: 'Pickleball',
-    giftAngle: 'Most beginners borrow a paddle for their first few games. Be the person who gives them one worth keeping.',
-    borderColor: 'border-t-teal-500',
-    accent: 'text-teal-700',
-    slug: 'pickleball-starter-set',
-    featured: {
-      name: 'Vatic Pro Prism Flash Paddle',
-      price: '$80–90',
-      why: 'The most recommended first serious paddle on r/pickleball. Raw carbon fiber face, correct weight, and a price that does not sting if they are still figuring out if they love the sport.',
-      link: 'https://www.amazon.com/s?k=Vatic+Pro+Prism+Flash+pickleball+paddle&tag=fitnesscomple-20',
-      retailer: 'Buy on Amazon →',
-    },
-    tiers: [
-      { tier: 'Budget', range: 'Under $50', name: 'Niupipo Graphite Paddle + Franklin X-40 Outdoor Balls 3-Pack', price: '$40–55', link: 'https://www.amazon.com/s?k=Niupipo+graphite+pickleball+paddle&tag=fitnesscomple-20', retailer: 'Buy on Amazon →' },
-      { tier: 'Mid-Range', range: '$80–90', name: 'Vatic Pro Prism Flash Paddle', price: '$80–90', link: 'https://www.amazon.com/s?k=Vatic+Pro+Prism+Flash+pickleball+paddle&tag=fitnesscomple-20', retailer: 'Buy on Amazon →' },
-      { tier: 'Premium', range: '$195–210', name: 'Honolulu J2NF Paddle', price: '$195–210', link: 'https://www.amazon.com/s?k=Honolulu+J2NF+pickleball+paddle&tag=fitnesscomple-20', retailer: 'Buy on Amazon →' },
-    ],
-  },
-];
-
-const tierColors: Record<string, string> = {
-  Budget: 'bg-green-50 text-green-700',
-  'Mid-Range': 'bg-blue-50 text-blue-700',
-  Premium: 'bg-purple-50 text-purple-700',
-};
+const ideas = [...giftIdeas]
+  .sort((a, b) => a.min - b.min)
+  .map((g) => ({ ...g, kitData: getKit(g.kit), budget: bucket(g.min), href: affiliateUrl(g.url), retailer: retailerName(g.url) }));
 ---
 
 <Layout
-  title="Fitness Gift Ideas | fitness-complete.com"
-  description="The perfect gift for someone starting out. Curated fitness gift picks by sport and budget, from under $50 to serious splurges."
+  title="Fitness Gift Finder: Gifts for Someone Starting Out"
+  description="Gift ideas for someone starting the gym, Pilates, running, a home gym, or pickleball. Filter by sport and budget, from under $50 to serious splurges."
+  schema={organization}
+  breadcrumbs={[{ name: 'Gift finder', path: '/gifts' }]}
+  darkHeader
 >
-
-  <main>
-
-    <!-- Hero -->
-    <section class="bg-[#0f172a]">
-      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 pt-20 pb-16">
-        <a href="/" class="inline-block text-sm text-slate-400 hover:text-slate-200 transition-colors mb-8">← All starter kits</a>
-        <p class="text-sm font-semibold uppercase tracking-widest text-slate-400 mb-4">Gift Ideas</p>
-        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight mb-5 max-w-3xl">
-          The perfect gift for someone starting out
-        </h1>
-        <p class="text-lg sm:text-xl text-slate-300 max-w-2xl leading-relaxed">
-          A gym membership without the gear is half a gift. Here are our top picks by sport and budget.
-        </p>
+  <section class="bg-ink text-paper grain overflow-hidden">
+    <div class="max-w-[1320px] mx-auto px-4 sm:px-6 pt-10 sm:pt-16 pb-16 sm:pb-24 relative">
+      <p class="tag text-paper/50">GIFT 06 · for someone starting out</p>
+      <h1 class="mt-6 font-display font-extrabold text-[clamp(3.2rem,10vw,8.5rem)] leading-[0.84] tracking-[-0.055em] max-w-5xl">
+        Gifts they will <span class="text-volt">actually</span> use.
+      </h1>
+      <p class="mt-7 text-lg sm:text-xl text-paper/70 max-w-2xl leading-relaxed">
+        A gym membership without the gear is half a gift. Pick the sport, set a budget, and give them the thing beginners always wish they had on day one.
+      </p>
+      <div class="hidden md:grid absolute right-8 top-12 size-48 lg:size-56 place-items-center rounded-full bg-volt text-ink rotate-12 shadow-[6px_6px_0_0_#f3f0e8]" aria-hidden="true">
+        <p class="font-display font-extrabold text-center text-2xl lg:text-3xl leading-[0.9] tracking-tight">Better<br />than a<br />gift card</p>
+        <span class="absolute inset-3 rounded-full border-2 border-dashed border-ink/40"></span>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Under $50 callout -->
-    <section class="max-w-[1400px] mx-auto px-4 sm:px-6 pt-12 pb-8">
-      <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 sm:p-8">
-        <div class="mb-6">
-          <p class="text-xs font-semibold uppercase tracking-widest text-amber-600 mb-1">Quick picks</p>
-          <h2 class="text-xl font-extrabold text-gray-900">Under $50, by sport</h2>
-          <p class="text-sm text-gray-500 mt-1">One practical gift for every sport, all under $50.</p>
-        </div>
-        <ul class="space-y-0 divide-y divide-amber-100">
-          {underFifty.map((item) => (
-            <li class={`flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 py-4 border-l-4 pl-4 ${item.borderColor}`}>
-              <span class={`text-xs font-bold uppercase tracking-wide ${item.accent} sm:w-20 flex-shrink-0 pt-0.5`}>{item.sport}</span>
-              <div class="flex-1 min-w-0">
-                <p class="text-sm font-semibold text-gray-900">{item.pick}</p>
-                <p class="text-xs text-gray-500 mt-0.5">{item.note}</p>
-              </div>
-              <div class="flex items-center gap-3 sm:flex-col sm:items-end flex-shrink-0">
-                <span class="text-sm font-semibold text-gray-700">{item.price}</span>
-                <a href={item.link} target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-blue-600 hover:text-blue-800 transition-colors whitespace-nowrap">{item.retailer} →</a>
-              </div>
-            </li>
-          ))}
-        </ul>
+  <!-- Filters -->
+  <div class="sticky top-16 z-30 bg-paper/90 backdrop-blur-md border-b border-line">
+    <div class="max-w-[1320px] mx-auto px-4 sm:px-6 py-3 flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
+      <div class="flex gap-2 overflow-x-auto [scrollbar-width:none]" role="group" aria-label="Filter by sport">
+        <button type="button" class="chip" data-filter="sport" data-value="all" aria-pressed="true">All sports</button>
+        {kits.map((k) => (
+          <button type="button" class="chip" data-filter="sport" data-value={k.slug} aria-pressed="false" style={`--c:${k.color}`}>
+            <span class="size-2.5 rounded-full" style={`background:${k.color}`}></span>{k.sport}
+          </button>
+        ))}
       </div>
-    </section>
+      <div class="flex gap-2 overflow-x-auto [scrollbar-width:none] md:ml-auto" role="group" aria-label="Filter by budget">
+        <button type="button" class="chip" data-filter="budget" data-value="all" aria-pressed="true">Any budget</button>
+        {budgets.map((b) => (
+          <button type="button" class="chip" data-filter="budget" data-value={b.id} aria-pressed="false">{b.label}</button>
+        ))}
+      </div>
+    </div>
+  </div>
 
-    <!-- Sport sections -->
-    <section class="max-w-[1400px] mx-auto px-4 sm:px-6 pb-16 space-y-12 pt-6">
+  <section class="max-w-[1320px] mx-auto px-4 sm:px-6 pt-10">
+    <!-- Gift angle for the selected sport -->
+    {kits.map((k) => (
+      <div data-angle={k.slug} hidden class="mb-8 rounded-[1.5rem] border-2 border-ink p-6 sm:p-8 grid md:grid-cols-[minmax(0,1fr)_auto] gap-5 items-center" style={`background:${k.color}`}>
+        <p class="font-display font-bold text-[1.4rem] sm:text-[1.7rem] leading-[1.1] tracking-tight max-w-3xl">{giftAngles[k.slug]}</p>
+        <a href={kitPath(k)} class="btn btn-ink">See the full {k.sport.toLowerCase()} kit</a>
+      </div>
+    ))}
 
-      {sportGifts.map((sport) => (
-        <div class={`rounded-2xl border border-gray-200 overflow-hidden border-t-4 ${sport.borderColor}`}>
+    <p class="tag text-muted mb-5" aria-live="polite"><span data-count>{ideas.length}</span> gift ideas</p>
 
-          <!-- Sport header -->
-          <div class="px-6 sm:px-8 pt-7 pb-5 border-b border-gray-100">
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <h2 class="text-2xl font-extrabold text-gray-900 mb-1">{sport.name}</h2>
-                <p class="text-gray-500 text-sm max-w-2xl">{sport.giftAngle}</p>
+    <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-gifts>
+      {ideas.map((g) => (
+        <li data-sport={g.kit} data-budget={g.budget} class="gift-card">
+          <article class="relative h-full flex flex-col rounded-[1.5rem] border-2 border-ink bg-card overflow-hidden transition-transform duration-300 hover:-rotate-1 hover:-translate-y-1" style={`--c:${g.kitData.color}`}>
+            <div class="relative px-6 pt-6 pb-5 border-b-2 border-dashed border-ink/25" style={`background:${g.kitData.color}`}>
+              <span class="absolute right-5 top-5 size-5 rounded-full bg-paper border-2 border-ink" aria-hidden="true"></span>
+              <p class="tag">{g.kitData.sport}</p>
+              <p class="mt-6 font-display font-extrabold text-4xl tracking-tighter tabular-nums">{formatRange(g.min, g.max)}</p>
+              {g.featured && (
+                <span class="absolute right-4 -bottom-4 rotate-6 bg-ink text-volt font-display font-extrabold text-sm px-3 py-1.5 rounded-lg">Top gift</span>
+              )}
+            </div>
+            <div class="flex-1 flex flex-col px-6 pt-6 pb-6">
+              <h2 class="font-display font-bold text-[1.4rem] leading-[1.05] tracking-tight">{g.name}</h2>
+              {g.note && <p class="mt-3 text-muted text-[0.95rem] leading-snug">{g.note}</p>}
+              <div class="mt-auto pt-6 flex items-center justify-between gap-3">
+                <a href={kitPath(g.kitData)} class="text-sm font-semibold underline underline-offset-4 decoration-2 hover:decoration-[var(--c)]">Why it works</a>
+                <a href={g.href} target="_blank" rel={outboundRel} class="btn btn-ink !py-2.5 !px-4 text-sm">
+                  {g.retailer}
+                  <svg viewBox="0 0 24 24" class="size-3.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8" /></svg>
+                </a>
               </div>
-              <a href={`/${sport.slug}`} class={`flex-shrink-0 text-xs font-semibold ${sport.accent} hover:opacity-75 transition-opacity whitespace-nowrap hidden sm:block`}>
-                Full kit →
-              </a>
             </div>
-          </div>
-
-          <div class="px-6 sm:px-8 py-6 space-y-5">
-
-            <!-- Featured pick -->
-            <div class="bg-blue-50 border border-blue-100 rounded-xl p-4">
-              <p class="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-1">Our top gift pick</p>
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <p class="font-semibold text-gray-900 text-sm">{sport.featured.name}</p>
-                  <p class="text-sm text-gray-600 mt-1 max-w-xl">{sport.featured.why}</p>
-                </div>
-                <div class="flex-shrink-0 text-right">
-                  <p class="text-sm font-semibold text-gray-700">{sport.featured.price}</p>
-                  <a href={sport.featured.link} target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-blue-600 hover:text-blue-800 transition-colors whitespace-nowrap">{sport.featured.retailer}</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Gift tiers -->
-            <div>
-              <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">All budget levels</p>
-              <ul class="space-y-0 divide-y divide-gray-100">
-                {sport.tiers.map((tier) => (
-                  <li class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 py-3">
-                    <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full flex-shrink-0 self-start ${tierColors[tier.tier]}`}>
-                      {tier.tier}
-                    </span>
-                    <div class="flex-1 min-w-0">
-                      <p class="text-sm font-medium text-gray-900">{tier.name}</p>
-                      <p class="text-xs text-gray-400">{tier.range}</p>
-                    </div>
-                    <div class="flex items-center gap-3 sm:flex-col sm:items-end flex-shrink-0">
-                      <span class="text-sm text-gray-600 font-medium">{tier.price}</span>
-                      <a href={tier.link} target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-blue-600 hover:text-blue-800 transition-colors whitespace-nowrap">{tier.retailer}</a>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <a href={`/${sport.slug}`} class={`inline-block text-sm font-semibold ${sport.accent} hover:opacity-75 transition-opacity sm:hidden`}>
-              See the full {sport.name} kit →
-            </a>
-
-          </div>
-        </div>
+          </article>
+        </li>
       ))}
+    </ul>
 
-    </section>
+    <div data-empty hidden class="rounded-[1.5rem] border-2 border-dashed border-ink/30 p-10 text-center">
+      <p class="font-display font-extrabold text-3xl">Nothing in that budget yet.</p>
+      <p class="mt-2 text-muted">Try another budget, or build a custom gift from the full kit.</p>
+    </div>
 
-
-  </main>
-
+    <p class="mt-10 text-sm text-muted max-w-3xl">
+      Prices are approximate ranges for US retail and move with sales. Combo gifts add up the items from the matching kit. We earn a commission if you buy through these links, at no extra cost to you.
+    </p>
+  </section>
 </Layout>
+
+<style>
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-shrink: 0;
+    white-space: nowrap;
+    border: 2px solid rgb(13 15 12 / 0.15);
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .chip:hover { border-color: var(--color-ink); }
+  .chip[aria-pressed="true"] { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-paper); }
+</style>
+
+<script>
+  const state = { sport: 'all', budget: 'all' };
+  const params = new URLSearchParams(location.search);
+  if (params.get('sport')) state.sport = params.get('sport')!;
+  if (params.get('budget')) state.budget = params.get('budget')!;
+
+  const apply = () => {
+    let shown = 0;
+    document.querySelectorAll<HTMLElement>('.gift-card').forEach((card) => {
+      const ok = (state.sport === 'all' || card.dataset.sport === state.sport) && (state.budget === 'all' || card.dataset.budget === state.budget);
+      card.hidden = !ok;
+      if (ok) shown++;
+    });
+    document.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach((b) => {
+      b.setAttribute('aria-pressed', String(state[b.dataset.filter as 'sport' | 'budget'] === b.dataset.value));
+    });
+    document.querySelectorAll<HTMLElement>('[data-angle]').forEach((el) => (el.hidden = el.dataset.angle !== state.sport));
+    document.querySelector('[data-count]')!.textContent = String(shown);
+    (document.querySelector('[data-empty]') as HTMLElement).hidden = shown > 0;
+
+    const url = new URL(location.href);
+    for (const key of ['sport', 'budget'] as const) {
+      if (state[key] === 'all') url.searchParams.delete(key);
+      else url.searchParams.set(key, state[key]);
+    }
+    history.replaceState(null, '', url);
+  };
+
+  document.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach((b) =>
+    b.addEventListener('click', () => {
+      state[b.dataset.filter as 'sport' | 'budget'] = b.dataset.value!;
+      apply();
+    }),
+  );
+  apply();
+</script>

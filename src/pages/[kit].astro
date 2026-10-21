@@ -1,0 +1,313 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '../layouts/Layout.astro';
+import TierOption from '../components/TierOption.astro';
+import ScoreCard from '../components/ScoreCard.astro';
+import KitReceipt from '../components/KitReceipt.astro';
+import PostCard from '../components/PostCard.astro';
+import Marquee from '../components/Marquee.astro';
+import type { Kit } from '../data/types';
+import { kits, kitPath, kitTotals, pickOf, scoreOf } from '../data/kits';
+import { getPost } from '../data/posts';
+import { formatPrice } from '../lib/links';
+import { absolute, organization } from '../lib/seo';
+
+export const getStaticPaths = (() =>
+  kits.map((kit) => ({ params: { kit: `${kit.slug}-starter-set` }, props: { kit } }))) satisfies GetStaticPaths;
+
+interface Props {
+  kit: Kit;
+}
+
+const { kit } = Astro.props;
+const totals = kitTotals(kit);
+const pickImages = kit.categories.map((c) => pickOf(c.options)).filter((o) => o.img);
+const related = kit.blog.map(getPost);
+const otherKits = kits.filter((k) => k.slug !== kit.slug);
+const url = absolute(kitPath(kit));
+
+const schema = [
+  organization,
+  {
+    '@type': 'Article',
+    headline: kit.title,
+    description: kit.description,
+    url,
+    author: { '@type': 'Organization', name: 'fitness-complete Editorial Team', url: absolute('/authors/editorial-team') },
+    publisher: { '@id': organization['@id'] },
+    dateModified: '2026-03-01',
+  },
+  {
+    '@type': 'ItemList',
+    name: `${kit.sport} starter kit`,
+    numberOfItems: kit.categories.length,
+    itemListElement: kit.categories.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: `${c.name}: ${pickOf(c.options).name}`,
+      url: `${url}#${c.id}`,
+    })),
+  },
+];
+---
+
+<Layout title={kit.title} description={kit.description} schema={schema} breadcrumbs={[{ name: `${kit.sport} Starter Kit`, path: kitPath(kit) }]}>
+  <div style={`--kit-color:${kit.color}`}>
+    <!-- Hero -->
+    <section class="grain overflow-hidden border-b-2 border-ink" style={`background:${kit.color}; color:${kit.onColor}`}>
+      <div class="max-w-[1320px] mx-auto px-4 sm:px-6 pt-8 sm:pt-12 pb-14 sm:pb-20 grid lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] gap-10 items-end">
+        <div class="min-w-0">
+          <nav class="tag flex items-center gap-2 opacity-70" aria-label="Breadcrumb">
+            <a href="/" class="hover:underline">Kits</a><span>/</span><span aria-current="page">{kit.tag}</span>
+          </nav>
+          <h1 class="mt-6 font-display font-extrabold tracking-[-0.05em]">
+            <span class="block text-[clamp(3rem,8vw,6.8rem)] leading-[0.86]">{kit.headline}</span>
+            <span class="block mt-3 text-[clamp(1.6rem,3.6vw,2.9rem)] leading-[0.95] font-semibold italic tracking-[-0.035em]">{kit.headlineAccent}</span>
+          </h1>
+          <p class="mt-6 text-lg sm:text-xl max-w-xl leading-relaxed opacity-85">{kit.subtitle}</p>
+
+          <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm">
+            <a href="/authors/editorial-team" class="inline-flex items-center gap-2 font-semibold hover:underline">
+              <span class="size-8 rounded-full bg-ink text-volt grid place-items-center font-display font-extrabold text-xs">FC</span>
+              Editorial Team
+            </a>
+            <span class="opacity-70">Last reviewed {kit.reviewed}</span>
+            <a href="/how-we-pick" class="opacity-70 underline underline-offset-4 hover:opacity-100">How we score</a>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="flex flex-wrap justify-start lg:justify-end gap-3">
+            {pickImages.map((o, i) => (
+              <span
+                class="reveal size-20 sm:size-24 rounded-[1.4rem] bg-white border-2 border-ink grid place-items-center shadow-[4px_4px_0_0_#0d0f0c]"
+                style={`rotate:${[-6, 4, -3, 7, -5][i % 5]}deg; transition-delay:${i * 80}ms`}
+              >
+                <img src={o.img} alt={o.name} class="size-16 sm:size-20 object-contain" loading="eager" decoding="async" />
+              </span>
+            ))}
+          </div>
+          <div class="mt-6 lg:text-right">
+            <p class="tag opacity-70">{kit.categories.length} items · our picks</p>
+            <p class="font-display font-extrabold text-6xl sm:text-7xl tracking-tighter tabular-nums">{formatPrice(totals.picks)}</p>
+            <p class="text-sm opacity-75">or {formatPrice(totals.cheapest)} at the cheapest</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="bg-ink text-paper/75 text-[0.82rem] text-center px-4 py-2.5">
+      We may earn a commission if you buy through our links. It never decides what we recommend.
+      <a href="/how-we-pick" class="text-volt underline underline-offset-2">Here is how we pick.</a>
+    </p>
+
+    <!-- Category jump bar -->
+    <nav class="sticky top-16 z-30 bg-paper/90 backdrop-blur-md border-b border-line" aria-label="Kit sections">
+      <div class="max-w-[1320px] mx-auto px-4 sm:px-6 flex gap-2 overflow-x-auto py-3 [scrollbar-width:none]">
+        {kit.categories.map((c, i) => (
+          <a href={`#${c.id}`} data-jump={c.id} class="jump shrink-0 inline-flex items-center gap-2 rounded-full border-2 border-ink/15 px-3.5 py-1.5 text-sm font-semibold whitespace-nowrap transition-colors hover:border-ink">
+            <span class="font-mono text-[0.7rem] opacity-50">{String(i + 1).padStart(2, '0')}</span>{c.name}
+          </a>
+        ))}
+      </div>
+    </nav>
+
+    <!-- Builder -->
+    <div class="max-w-[1320px] mx-auto px-4 sm:px-6 pt-12 sm:pt-16 grid lg:grid-cols-[minmax(0,1fr)_21rem] gap-10 xl:gap-16 items-start">
+      <div id="kit-builder" data-kit={kit.slug} class="space-y-24 sm:space-y-28 pb-8">
+        {kit.categories.map((c, i) => {
+          const pick = pickOf(c.options);
+          const pickScore = scoreOf(pick, c.score);
+          return (
+            <section id={c.id} data-section class="scroll-mt-36">
+              <div class="flex items-start gap-4 sm:gap-6">
+                <span class="font-display font-extrabold text-[4.5rem] sm:text-[6.5rem] leading-[0.75] tracking-tighter shrink-0" style={`color:${kit.color}; -webkit-text-stroke:2px #0d0f0c`} aria-hidden="true">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div class="min-w-0">
+                  <h2 class="font-display font-extrabold text-[clamp(2.2rem,4.5vw,3.4rem)] leading-[0.9]">{c.name}</h2>
+                  <p class="mt-4 text-[1.05rem] leading-relaxed text-ink-2 max-w-2xl">{c.why}</p>
+                </div>
+              </div>
+
+              {c.preNote && <p class="mt-6 rounded-2xl border-2 border-ink/15 bg-card px-5 py-4 text-[0.95rem]">{c.preNote}</p>}
+              {c.safetyNote && (
+                <p class="mt-6 flex gap-3 rounded-2xl border-2 border-alert bg-alert/8 px-5 py-4 text-[0.95rem]">
+                  <span class="tag shrink-0 self-start rounded-full bg-alert text-white px-2 py-0.5">Recall</span>
+                  <span>{c.safetyNote}</span>
+                </p>
+              )}
+
+              <!-- Why our pick -->
+              <div class="reveal mt-8 rounded-[1.5rem] bg-ink text-paper p-6 sm:p-7 grid md:grid-cols-[minmax(0,1fr)_17rem] gap-6 md:gap-10 items-center">
+                <div>
+                  <p class="tag" style={`color:${kit.color}`}>Why we pick {pick.name}</p>
+                  <p class="mt-3 text-[1.02rem] leading-relaxed text-paper/85">{c.pickReason}</p>
+                </div>
+                {pickScore && <ScoreCard score={pickScore} color={kit.color} />}
+              </div>
+
+              <fieldset class="mt-6">
+                <legend class="sr-only">Choose your {c.name.toLowerCase()}</legend>
+                <div class="grid gap-4 md:grid-cols-3">
+                  {c.options.map((o) => (
+                    <TierOption option={o} group={`kit-${c.id}`} categoryName={c.id} categoryScore={c.score} />
+                  ))}
+                </div>
+              </fieldset>
+
+              {c.note && <p class="mt-4 text-[0.95rem] text-muted"><span class="font-bold text-ink">Heads up:</span> {c.note}</p>}
+
+              {c.quote && (
+                <figure class="reveal mt-8 relative pl-8 sm:pl-10">
+                  <span class="absolute left-0 -top-3 font-display font-extrabold text-6xl leading-none" style={`color:${kit.color}`} aria-hidden="true">“</span>
+                  <blockquote class="font-display font-semibold text-[1.35rem] sm:text-[1.6rem] leading-[1.15] tracking-tight max-w-2xl">
+                    {c.quote}
+                  </blockquote>
+                  <figcaption class="mt-3 tag text-muted">Community consensus, {c.quoteSource}</figcaption>
+                </figure>
+              )}
+            </section>
+          );
+        })}
+      </div>
+
+      <KitReceipt kit={kit} />
+    </div>
+
+    <!-- Gift callout -->
+    <section class="max-w-[1320px] mx-auto px-4 sm:px-6 mt-20">
+      <div class="reveal relative overflow-hidden rounded-[2rem] border-2 border-ink bg-volt p-8 sm:p-12 grid md:grid-cols-[minmax(0,1fr)_auto] gap-8 items-center">
+        <div>
+          <p class="tag">Gift this kit</p>
+          <h2 class="mt-3 font-display font-extrabold text-[clamp(2rem,4.5vw,3.4rem)] leading-[0.9]">Better than a gift card.</h2>
+          <p class="mt-4 max-w-2xl text-[1.05rem]">{kit.giftPitch}</p>
+        </div>
+        <a href={`/gifts?sport=${kit.slug}`} class="btn btn-ink text-base">Open the gift finder</a>
+      </div>
+    </section>
+
+    <!-- Related reading -->
+    <section class="max-w-[1320px] mx-auto px-4 sm:px-6 mt-20">
+      <h2 class="reveal font-display font-extrabold text-[clamp(2rem,4.5vw,3.4rem)] leading-[0.9]">Read before you buy.</h2>
+      <div class="mt-8 grid gap-5 md:grid-cols-2">
+        {related.map((post, i) => <PostCard post={post} index={i} />)}
+      </div>
+    </section>
+
+    <!-- Other kits -->
+    <section class="mt-24">
+      <Marquee items={otherKits.map((k) => `${k.sport} kit`)} class="bg-ink text-paper" />
+      <div class="max-w-[1320px] mx-auto px-4 sm:px-6 pt-10 flex flex-wrap gap-3">
+        <span class="tag text-muted self-center mr-2">Starting something else?</span>
+        {otherKits.map((k) => (
+          <a href={kitPath(k)} class="btn btn-ghost !py-2.5 hover:!bg-ink hover:text-paper" style={`--c:${k.color}`}>
+            <span class="size-2.5 rounded-full" style={`background:${k.color}`}></span>{k.sport}
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<script>
+  const builder = document.getElementById('kit-builder');
+  const receipt = document.getElementById('kit-receipt');
+
+  if (builder && receipt) {
+    const storageKey = `fc-kit-${builder.dataset.kit}`;
+    const money = (n: number) => `$${Math.round(n).toLocaleString('en-US')}`;
+    const groups = () => [...builder.querySelectorAll<HTMLFieldSetElement>('fieldset')];
+    const radios = (fs: HTMLFieldSetElement) => [...fs.querySelectorAll<HTMLInputElement>('input[type=radio]')];
+    const price = (r: HTMLInputElement) => Number(r.dataset.price);
+
+    let shown = 0;
+    let last: Record<string, string> | null = null;
+    const animateTotal = (to: number) => {
+      const from = shown;
+      const start = performance.now();
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const step = (now: number) => {
+        const t = reduce ? 1 : Math.min(1, (now - start) / 450);
+        const value = from + (to - from) * (1 - Math.pow(1 - t, 3));
+        receipt.querySelectorAll('[data-total]').forEach((el) => (el.textContent = money(value)));
+        if (t < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+      shown = to;
+    };
+
+    const render = () => {
+      let total = 0;
+      const saved: Record<string, string> = {};
+      for (const fs of groups()) {
+        const chosen = radios(fs).find((r) => r.checked);
+        if (!chosen) continue;
+        const id = chosen.dataset.category!;
+        saved[id] = chosen.value;
+        total += price(chosen);
+        const line = receipt.querySelector<HTMLElement>(`[data-line="${id}"]`);
+        if (line) {
+          line.querySelector('[data-line-name]')!.textContent = chosen.dataset.name!;
+          line.querySelector('[data-line-price]')!.textContent = money(price(chosen));
+          line.querySelector<HTMLAnchorElement>('[data-line-link]')!.href = chosen.dataset.url!;
+          if (last && last[id] !== chosen.value) line.animate?.([{ backgroundColor: 'rgb(216 255 54 / 0.7)' }, { backgroundColor: 'transparent' }], { duration: 600 });
+        }
+      }
+      last = saved;
+      animateTotal(total);
+      const all = groups().map((fs) => radios(fs));
+      const matches = (pickFn: (rs: HTMLInputElement[]) => HTMLInputElement) => all.every((rs) => pickFn(rs).checked);
+      const presets: Record<string, (rs: HTMLInputElement[]) => HTMLInputElement> = {
+        cheapest: (rs) => rs.reduce((a, b) => (price(b) < price(a) ? b : a)),
+        pick: (rs) => rs.find((r) => r.value === 'pick') ?? rs[0],
+        premium: (rs) => rs.reduce((a, b) => (price(b) > price(a) ? b : a)),
+      };
+      receipt.querySelectorAll<HTMLButtonElement>('[data-preset]').forEach((b) => {
+        b.setAttribute('aria-pressed', String(matches(presets[b.dataset.preset!])));
+        b.onclick = () => {
+          all.forEach((rs) => (presets[b.dataset.preset!](rs).checked = true));
+          render();
+        };
+      });
+      try { localStorage.setItem(storageKey, JSON.stringify(saved)); } catch {}
+    };
+
+    // Restore an earlier selection on this device, if there is one.
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) ?? '{}') as Record<string, string>;
+      for (const fs of groups()) {
+        for (const r of radios(fs)) if (saved[r.dataset.category!] === r.value) r.checked = true;
+      }
+    } catch {}
+
+    shown = Number((receipt.querySelector('[data-total]')?.textContent ?? '0').replace(/\D/g, ''));
+    builder.addEventListener('change', render);
+    render();
+
+    // Mobile receipt drawer
+    const toggle = document.getElementById('receipt-toggle');
+    toggle?.addEventListener('click', () => {
+      const open = receipt.dataset.open !== 'true';
+      receipt.dataset.open = String(open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.querySelector('[data-toggle-label]')!.textContent = open ? 'Hide receipt' : 'See receipt';
+    });
+
+    // Highlight the section in view in the jump bar
+    const jumps = document.querySelectorAll<HTMLElement>('.jump');
+    const spy = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        jumps.forEach((j) => {
+          const on = j.dataset.jump === e.target.id;
+          j.classList.toggle('!bg-ink', on);
+          j.classList.toggle('text-paper', on);
+          j.classList.toggle('!border-ink', on);
+          if (on) j.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+        });
+      }
+    }, { rootMargin: '-35% 0px -60% 0px' });
+    builder.querySelectorAll('[data-section]').forEach((s) => spy.observe(s));
+  }
+</script>
