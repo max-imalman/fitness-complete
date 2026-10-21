@@ -15,7 +15,7 @@ const bucket = (min: number) => budgets.find((b) => b.test(min))!.id;
 
 const ideas = [...giftIdeas]
   .sort((a, b) => a.min - b.min)
-  .map((g) => ({ ...g, kitData: getKit(g.kit), budget: bucket(g.min), href: affiliateUrl(g.url), retailer: retailerName(g.url) }));
+  .map((g) => ({ ...g, kitData: getKit(g.kit), budget: bucket(g.min), href: affiliateUrl(g.url, 'gifts'), retailer: retailerName(g.url) }));
 ---
 
 <Layout
@@ -62,6 +62,14 @@ const ideas = [...giftIdeas]
   </div>
 
   <section class="max-w-[1320px] mx-auto px-4 sm:px-6 pt-10">
+    <a href="/holiday-gift-guide" class="group mb-8 flex flex-wrap items-center justify-between gap-4 rounded-[1.5rem] border-2 border-ink bg-alert text-white px-6 py-5 transition-transform hover:-translate-y-0.5">
+      <span>
+        <span class="tag text-white/80">Holiday 2026</span>
+        <span class="block mt-1 font-display font-extrabold text-2xl tracking-tight">Shopping for the holidays? The scored gift guide is up.</span>
+      </span>
+      <span class="btn bg-white text-ink !py-2.5">See the guide →</span>
+    </a>
+
     <!-- Gift angle for the selected sport -->
     {kits.map((k) => (
       <div data-angle={k.slug} hidden class="mb-8 rounded-[1.5rem] border-2 border-ink p-6 sm:p-8 grid md:grid-cols-[minmax(0,1fr)_auto] gap-5 items-center" style={`background:${k.color}`}>

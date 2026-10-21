@@ -1,12 +1,31 @@
-// Outbound product links. The Amazon Associates tag lives in the environment
-// (AMAZON_ASSOCIATE_TAG, see .env.example) and is only added at build time.
+// Outbound product links. Amazon Associates tags live in the environment (see .env.example)
+// and are only added at build time.
+//
+// Every page area can carry its own Amazon tracking ID, so the Associates reports show which
+// page actually sells. An area without its own ID falls back to AMAZON_ASSOCIATE_TAG.
 
-const amazonTag: string | undefined = import.meta.env.AMAZON_ASSOCIATE_TAG;
+export type Placement = 'gym' | 'pilates' | 'running' | 'home-gym' | 'pickleball' | 'gifts' | 'holiday';
 
-if (!amazonTag) {
+const defaultTag: string | undefined = import.meta.env.AMAZON_ASSOCIATE_TAG;
+
+// Literal env access on purpose: Vite only exposes variables it can see statically.
+const placementTags: Record<Placement, string | undefined> = {
+  gym: import.meta.env.AMAZON_TAG_GYM,
+  pilates: import.meta.env.AMAZON_TAG_PILATES,
+  running: import.meta.env.AMAZON_TAG_RUNNING,
+  'home-gym': import.meta.env.AMAZON_TAG_HOME_GYM,
+  pickleball: import.meta.env.AMAZON_TAG_PICKLEBALL,
+  gifts: import.meta.env.AMAZON_TAG_GIFTS,
+  holiday: import.meta.env.AMAZON_TAG_HOLIDAY,
+};
+
+if (!defaultTag) {
   // Without the tag the site still works, it just earns nothing on Amazon. Shout about it in the build log.
   console.warn('[links] AMAZON_ASSOCIATE_TAG is not set, Amazon links will be built without an affiliate tag.');
 }
+
+/** The Amazon tag used for a page area. */
+export const amazonTagFor = (placement?: Placement) => (placement && placementTags[placement]) || defaultTag;
 
 const retailers: Record<string, string> = {
   'amazon.com': 'Amazon',
@@ -45,10 +64,11 @@ export function retailerName(url: string): string {
   return name.charAt(0).toUpperCase() + name.slice(1);
 }
 
-/** Final outbound URL with the affiliate tag applied where we have one. */
-export function affiliateUrl(url: string): string {
+/** Final outbound URL with the affiliate tag for this page area applied where we have one. */
+export function affiliateUrl(url: string, placement?: Placement): string {
   const parsed = new URL(url);
-  if (amazonTag && hostOf(url) === 'amazon.com') parsed.searchParams.set('tag', amazonTag);
+  const tag = amazonTagFor(placement);
+  if (tag && hostOf(url) === 'amazon.com') parsed.searchParams.set('tag', tag);
   return parsed.toString();
 }
 

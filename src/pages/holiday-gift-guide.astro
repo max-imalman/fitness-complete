@@ -1,0 +1,233 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GearArt from '../components/GearArt.astro';
+import Marquee from '../components/Marquee.astro';
+import { artFor } from '../data/art';
+import { blackFriday, cyberMonday, holidayBuckets, lastYear } from '../data/holiday';
+import { getKit, kitPath, scoreOf, scoreTotal, tierLabel } from '../data/kits';
+import { affiliateUrl, formatPrice, outboundRel, retailerName } from '../lib/links';
+import { absolute, organization } from '../lib/seo';
+
+const buckets = holidayBuckets.map((b) => ({
+  ...b,
+  picks: b.picks.map((p) => {
+    const kit = getKit(p.kit);
+    const category = kit.categories.find((c) => c.id === p.category);
+    const option = category?.options.find((o) => o.tier === p.tier);
+    if (!category || !option) throw new Error(`Holiday pick not found: ${p.kit}/${p.category}/${p.tier}`);
+    const score = scoreOf(option, category.score);
+    return {
+      ...p,
+      kit,
+      category,
+      option,
+      score: score ? scoreTotal(score) : undefined,
+      href: affiliateUrl(option.url, 'holiday'),
+      retailer: retailerName(option.url),
+    };
+  }),
+}));
+const giftCount = buckets.reduce((n, b) => n + b.picks.length, 0);
+
+const tips = [
+  { title: 'Check the price history', body: 'A big "was" price means nothing. Free trackers like Keepa or camelcamelcamel show what a product actually sold for over the last months. If the deal matches a normal Tuesday, it is not a deal.' },
+  { title: 'Know the exact model', body: 'Sales love older versions. A shoe deal on last year\'s model can be great, just make sure you know which version you are buying before you compare prices.' },
+  { title: 'Never buy recalled gear used', body: 'Cheap secondhand adjustable dumbbells are tempting. The original Bowflex SelectTech 552 and 1090 were recalled in 2025, so check the model before you pay anything.' },
+  { title: 'Ask for a gift receipt', body: 'Shoes, socks and gloves come down to fit. A gift receipt turns a wrong size from a problem into a five minute exchange.' },
+];
+
+const schema = [
+  organization,
+  {
+    '@type': 'Article',
+    headline: 'Holiday Fitness Gift Guide 2026: Black Friday Picks for Beginners',
+    description: 'Every gift scored out of 100, sorted by budget, plus what real Black Friday discounts looked like last year.',
+    url: absolute('/holiday-gift-guide'),
+    datePublished: '2026-10-21',
+    dateModified: '2026-10-21',
+    author: { '@type': 'Organization', name: 'fitness-complete Editorial Team', url: absolute('/authors/editorial-team') },
+    publisher: { '@id': organization['@id'] },
+  },
+  {
+    '@type': 'ItemList',
+    name: 'Holiday fitness gifts 2026',
+    numberOfItems: giftCount,
+    itemListElement: buckets.flatMap((b) => b.picks).map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.option.name })),
+  },
+];
+---
+
+<Layout
+  title="Holiday Fitness Gift Guide 2026: Black Friday Picks for Beginners"
+  description={`${giftCount} fitness gifts for someone starting the gym, Pilates, running, a home gym or pickleball. Every pick scored out of 100, sorted by budget, with real Black Friday price context.`}
+  schema={schema}
+  breadcrumbs={[{ name: 'Gift finder', path: '/gifts' }, { name: 'Holiday gift guide', path: '/holiday-gift-guide' }]}
+  darkHeader
+>
+  <section class="bg-ink text-paper grain overflow-hidden">
+    <div class="max-w-[1320px] mx-auto px-4 sm:px-6 pt-10 sm:pt-16 pb-16 sm:pb-24 grid lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)] gap-12 items-center">
+      <div class="min-w-0">
+        <p class="tag text-paper/50">Holiday 2026 · {giftCount} scored gifts</p>
+        <h1 class="mt-6 font-display font-extrabold text-[clamp(3rem,8.5vw,7.4rem)] leading-[0.85] tracking-[-0.055em]">
+          Gifts for day one, <span class="text-volt">not</span> for the back of the closet.
+        </h1>
+        <p class="mt-7 text-lg sm:text-xl text-paper/70 max-w-xl leading-relaxed">
+          Fitness gifts for someone who just started. Every pick scored out of 100, sorted by budget, with what real Black Friday discounts looked like last year so you can spot a fake one.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-2">
+          {buckets.map((b) => (
+            <a href={`#${b.id}`} class="rounded-full border-2 border-paper/25 hover:border-volt hover:text-volt px-4 py-2 text-sm font-semibold transition-colors">{b.title}</a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Countdown ticket -->
+      <div class="relative mx-auto w-full max-w-sm rotate-[-3deg]" data-countdown={blackFriday} data-cyber={cyberMonday}>
+        <div class="rounded-[1.75rem] bg-volt text-ink border-2 border-ink p-7 shadow-[10px_10px_0_0_#ff4d2e]">
+          <div class="flex items-center justify-between">
+            <p class="tag" data-count-label>Black Friday</p>
+            <p class="tag">Nov 27</p>
+          </div>
+          <div class="mt-5 grid grid-cols-3 gap-2 text-center" data-count-grid>
+            {[['days', 'Days'], ['hours', 'Hours'], ['minutes', 'Min']].map(([key, label]) => (
+              <div class="rounded-2xl bg-ink text-volt py-4">
+                <p class="font-display font-extrabold text-5xl leading-none tabular-nums" data-count={key}>00</p>
+                <p class="tag mt-2 text-paper/60">{label}</p>
+              </div>
+            ))}
+          </div>
+          <p class="mt-5 font-display font-bold text-lg leading-snug" data-count-text>
+            Friday, November 27. Cyber Monday follows on November 30.
+          </p>
+          <div class="mt-5 border-t-2 border-dashed border-ink/30 pt-4 flex justify-between font-mono text-xs">
+            <span>ADMIT ONE BEGINNER</span><span>NO FAKE DEALS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Marquee items={['Scored out of 100', 'No sponsored gifts', 'Recall checked', 'Real price context', 'Gift receipts recommended']} />
+
+  {buckets.map((b, bi) => (
+    <section id={b.id} class="max-w-[1320px] mx-auto px-4 sm:px-6 pt-20 sm:pt-24 scroll-mt-20">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <p class="reveal tag text-muted">{String(bi + 1).padStart(2, '0')} / {String(buckets.length).padStart(2, '0')}</p>
+          <h2 class="reveal mt-3 font-display font-extrabold text-[clamp(2.4rem,5.5vw,4.4rem)] leading-[0.9]">{b.title}</h2>
+        </div>
+        <p class="reveal text-muted max-w-md">{b.blurb}</p>
+      </div>
+
+      <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {b.picks.map((p, i) => (
+          <li class="reveal" style={`transition-delay:${i * 60}ms`}>
+            <article class="group h-full flex flex-col rounded-[1.75rem] border-2 border-ink bg-card overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_0_0_var(--c)]" style={`--c:${p.kit.color}`}>
+              <div class="relative grid place-items-center py-8 border-b-2 border-ink" style={`background:${p.kit.color}`}>
+                <span class="absolute left-4 top-4 tag rounded-full bg-paper/85 px-2.5 py-1">{p.kit.sport}</span>
+                {p.score && <span class="absolute right-4 top-4 font-mono text-xs font-bold rounded-full bg-ink text-volt px-2.5 py-1">{p.score}/100</span>}
+                <GearArt kind={artFor(p.category.id)} fill="#fbfaf6" accent={p.kit.color} class="size-28 transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-105" />
+              </div>
+              <div class="flex-1 flex flex-col p-6">
+                <p class="tag text-muted">{p.category.name} · {tierLabel[p.tier]}</p>
+                <h3 class="mt-2 font-display font-bold text-[1.45rem] leading-[1.05] tracking-tight">{p.option.name}</h3>
+                <p class="mt-3 text-[0.95rem] text-ink-2 leading-snug">{p.note}</p>
+                {p.safety && (
+                  <p class="mt-4 flex gap-2 rounded-xl border-2 border-alert bg-alert/8 px-3 py-2.5 text-[0.82rem] leading-snug">
+                    <span class="tag shrink-0 self-start rounded-full bg-alert text-white px-2 py-0.5">Recall</span>{p.safety}
+                  </p>
+                )}
+                <div class="mt-auto pt-6 flex items-end justify-between gap-3">
+                  <div>
+                    <p class="font-display font-extrabold text-3xl tracking-tight tabular-nums">{p.priceNote ? '' : '~'}{p.priceNote ?? formatPrice(p.option.price)}</p>
+                    <a href={`${kitPath(p.kit)}#${p.category.id}`} class="text-sm text-muted underline underline-offset-4 hover:text-ink">See the full comparison</a>
+                  </div>
+                  <a href={p.href} target="_blank" rel={outboundRel} class="btn btn-ink !py-2.5 !px-4 text-sm shrink-0">
+                    {p.retailer}
+                    <svg viewBox="0 0 24 24" class="size-3.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8" /></svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+
+  <!-- Last year -->
+  <section class="mt-24 sm:mt-32 bg-ink text-paper grain">
+    <div class="max-w-[1320px] mx-auto px-4 sm:px-6 py-20 sm:py-24">
+      <div class="grid lg:grid-cols-[0.8fr_1.2fr] gap-12">
+        <div>
+          <p class="reveal tag text-paper/50">Price reality check</p>
+          <h2 class="reveal mt-4 font-display font-extrabold text-[clamp(2.4rem,5.5vw,4.4rem)] leading-[0.9]">What a real discount looked like <span class="text-volt">last year.</span></h2>
+          <p class="reveal mt-6 text-paper/65 text-lg max-w-md">Use these as a yardstick. If a "deal" this year is weaker than what these brands did in 2025, wait.</p>
+        </div>
+        <ul class="grid gap-4 sm:grid-cols-2">
+          {lastYear.map((d, i) => (
+            <li class="reveal rounded-[1.5rem] border-2 border-paper/15 p-6 flex flex-col" style={`transition-delay:${i * 70}ms`}>
+              <p class="font-display font-extrabold text-3xl tracking-tight">{d.brand}</p>
+              <p class="mt-3 text-paper/80 leading-snug">{d.what}</p>
+              <a href={d.url} target="_blank" rel="noopener noreferrer" class="mt-auto pt-5 tag text-volt hover:underline">Source: {d.source} ↗</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tips -->
+  <section class="max-w-[1320px] mx-auto px-4 sm:px-6 pt-24">
+    <h2 class="reveal font-display font-extrabold text-[clamp(2.4rem,5.5vw,4.4rem)] leading-[0.9] max-w-3xl">How not to get played on Black Friday.</h2>
+    <ol class="mt-10 grid gap-px bg-ink border-2 border-ink rounded-[1.75rem] overflow-hidden sm:grid-cols-2 lg:grid-cols-4">
+      {tips.map((t, i) => (
+        <li class="reveal bg-card p-7 flex flex-col min-h-[15rem]" style={`transition-delay:${i * 70}ms`}>
+          <span class="font-display font-extrabold text-5xl leading-none outline-text">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="mt-auto pt-8 font-display font-bold text-xl leading-tight">{t.title}</h3>
+          <p class="mt-2 text-muted text-[0.93rem] leading-snug">{t.body}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="max-w-[1320px] mx-auto px-4 sm:px-6 mt-20">
+    <div class="reveal rounded-[2rem] border-2 border-ink bg-volt p-8 sm:p-12 grid md:grid-cols-[minmax(0,1fr)_auto] gap-8 items-center">
+      <div>
+        <h2 class="font-display font-extrabold text-[clamp(2rem,4.5vw,3.4rem)] leading-[0.9]">Still not sure what they need?</h2>
+        <p class="mt-4 max-w-2xl text-[1.05rem]">Filter every gift idea by sport and budget, or open their sport's full kit and build it item by item.</p>
+      </div>
+      <a href="/gifts" class="btn btn-ink text-base">Open the gift finder</a>
+    </div>
+    <p class="mt-8 text-sm text-muted max-w-3xl">Prices are approximate US prices from our last review and will move during sales. We earn a commission if you buy through these links, at no extra cost to you. It never decides what we recommend.</p>
+  </section>
+</Layout>
+
+<script>
+  const el = document.querySelector<HTMLElement>('[data-countdown]');
+  if (el) {
+    // Midnight Eastern on the sale days.
+    const bf = new Date(`${el.dataset.countdown}T00:00:00-05:00`).getTime();
+    const cm = new Date(`${el.dataset.cyber}T23:59:59-05:00`).getTime();
+    const set = (key: string, n: number) => {
+      const node = el.querySelector(`[data-count="${key}"]`);
+      if (node) node.textContent = String(n).padStart(2, '0');
+    };
+    const tick = () => {
+      const now = Date.now();
+      const left = bf - now;
+      if (left > 0) {
+        set('days', Math.floor(left / 864e5));
+        set('hours', Math.floor((left % 864e5) / 36e5));
+        set('minutes', Math.floor((left % 36e5) / 6e4));
+        return;
+      }
+      el.querySelector<HTMLElement>('[data-count-grid]')!.hidden = true;
+      el.querySelector('[data-count-label]')!.textContent = now < cm ? 'Deals are live' : 'Holiday season';
+      el.querySelector('[data-count-text]')!.textContent =
+        now < cm ? 'Black Friday through Cyber Monday. Check the price history before you buy.' : 'Order early for holiday delivery and ask for a gift receipt.';
+    };
+    tick();
+    setInterval(tick, 30_000);
+  }
+</script>
