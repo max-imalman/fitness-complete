@@ -1,0 +1,78 @@
+---
+import type { Kit } from '../data/types';
+import { kitPath, kitTotals } from '../data/kits';
+import { formatPrice } from '../lib/links';
+import GearArt from './GearArt.astro';
+import { artFor } from '../data/art';
+
+interface Props {
+  kit: Kit;
+  index: number;
+}
+
+const { kit, index } = Astro.props;
+const totals = kitTotals(kit);
+const art = kit.categories.slice(0, 4).map((c) => artFor(c.id));
+---
+<a
+  href={kitPath(kit)}
+  class="kit-tile reveal group relative isolate flex flex-col overflow-hidden rounded-[1.75rem] border-2 border-ink bg-card p-6 sm:p-7 min-h-[23rem]"
+  style={`--c:${kit.color}; --on:${kit.onColor}; transition-delay:${index * 60}ms`}
+>
+  <div class="flex items-start justify-between gap-4">
+    <span class="tag rounded-full border-2 border-current px-2.5 py-1">{kit.tag}</span>
+    <span class="size-11 rounded-full border-2 border-current grid place-items-center transition-transform duration-500 group-hover:-rotate-45">
+      <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+    </span>
+  </div>
+
+  <h3 class="mt-8 font-display font-extrabold text-[3.2rem] sm:text-[3.6rem] leading-[0.85] tracking-tighter">
+    {kit.sport}
+  </h3>
+  <p class="mt-4 text-[0.98rem] leading-snug max-w-[30ch] opacity-80">{kit.cardBlurb}</p>
+
+  <div class="mt-auto pt-8 flex items-end justify-between gap-4">
+    <div class="flex -space-x-3">
+      {art.map((kind, i) => (
+        <span class="size-14 rounded-full bg-paper border-2 border-ink grid place-items-center transition-transform duration-500 group-hover:-translate-y-1.5" style={`transition-delay:${i * 50}ms`}>
+          <GearArt kind={kind} fill={kit.color} class="size-9" />
+        </span>
+      ))}
+    </div>
+    <div class="text-right">
+      <p class="tag opacity-60">{kit.categories.length} items · our picks</p>
+      <p class="font-display font-extrabold text-3xl tracking-tight tabular-nums">{formatPrice(totals.picks)}</p>
+    </div>
+  </div>
+</a>
+
+<style>
+  .kit-tile {
+    color: var(--color-ink);
+    transition: color 0.35s, opacity 0.7s var(--ease-snap), transform 0.5s var(--ease-snap), box-shadow 0.4s var(--ease-snap);
+  }
+  .kit-tile::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    right: -30%;
+    top: -30%;
+    width: 160%;
+    aspect-ratio: 1;
+    border-radius: 999px;
+    background: var(--c);
+    transform: scale(0.06);
+    transform-origin: 82% 18%;
+    transition: transform 0.65s var(--ease-snap);
+  }
+  .kit-tile:hover,
+  .kit-tile:focus-visible {
+    color: var(--on);
+    transform: translateY(-4px) rotate(-0.6deg);
+    box-shadow: 8px 8px 0 0 var(--color-ink);
+  }
+  .kit-tile:hover::before,
+  .kit-tile:focus-visible::before {
+    transform: scale(1.4);
+  }
+</style>

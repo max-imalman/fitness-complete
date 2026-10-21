@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getAuthor } from '../../data/authors';
+import { kits, kitPath } from '../../data/kits';
+import { posts } from '../../data/posts';
+import { absolute, organization } from '../../lib/seo';
+
+const author = getAuthor('editorial-team')!;
+const work = [
+  ...kits.map((k) => ({ title: k.title, url: kitPath(k), type: 'Starter kit', color: k.color })),
+  ...posts.map((p) => ({ title: p.title, url: `/blog/${p.slug}`, type: 'Guide', color: kits.find((k) => k.slug === p.kit)!.color })),
+];
+
+const schema = [
+  organization,
+  { '@type': 'ProfilePage', url: absolute('/authors/editorial-team'), mainEntity: { '@id': organization['@id'] }, description: author.bio },
+];
+---
+
+<Layout
+  title="Editorial Team: How We Research"
+  description="Every recommendation on fitness-complete is researched from Reddit community consensus, independent tests, and real purchase patterns."
+  schema={schema}
+  breadcrumbs={[{ name: 'Editorial team', path: '/authors/editorial-team' }]}
+>
+  <section class="max-w-[1320px] mx-auto px-4 sm:px-6 pt-12 sm:pt-20 grid lg:grid-cols-[auto_minmax(0,1fr)] gap-10 items-start">
+    <div class="size-32 sm:size-44 rounded-[2rem] bg-volt border-2 border-ink grid place-items-center font-display font-extrabold text-6xl tracking-tighter rotate-[-4deg] shadow-[8px_8px_0_0_#0d0f0c]">
+      {author.initials}
+    </div>
+    <div>
+      <p class="tag text-muted">{author.title}</p>
+      <h1 class="mt-4 font-display font-extrabold text-[clamp(2.6rem,7vw,5.5rem)] leading-[0.88] tracking-[-0.05em]">{author.name}</h1>
+      <p class="mt-6 text-lg text-ink-2 max-w-2xl leading-relaxed">{author.bio}</p>
+      <ul class="mt-8 grid gap-3 sm:grid-cols-2 max-w-3xl">
+        {author.credentials.map((c) => (
+          <li class="flex gap-3 rounded-2xl border-2 border-ink/15 bg-card p-4 text-[0.95rem]">
+            <span class="mt-1 size-2.5 shrink-0 rounded-full bg-ink"></span>{c}
+          </li>
+        ))}
+      </ul>
+      <a href="/how-we-pick" class="mt-8 btn btn-ink">Read the full method</a>
+    </div>
+  </section>
+
+  <section class="max-w-[1320px] mx-auto px-4 sm:px-6 mt-20">
+    <h2 class="font-display font-extrabold text-4xl tracking-tight">Published on fitness-complete</h2>
+    <ul class="mt-8 border-t-2 border-ink">
+      {work.map((w) => (
+        <li class="border-b border-ink/15">
+          <a href={w.url} class="group flex items-center gap-4 py-4">
+            <span class="size-3 rounded-full shrink-0" style={`background:${w.color}`}></span>
+            <span class="tag text-muted w-24 shrink-0">{w.type}</span>
+            <span class="font-display font-bold text-lg sm:text-xl group-hover:underline underline-offset-4">{w.title}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Layout>

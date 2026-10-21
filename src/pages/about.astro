@@ -1,58 +1,62 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { organization } from '../lib/seo';
+
+const blocks = [
+  {
+    title: 'Why this site exists',
+    body: [
+      "Starting a new sport is overwhelming. You don't know what you actually need versus what is just marketed at you, and most gear guides are either too generic to be useful or quietly written to push the highest commission product. We built fitness-complete.com to cut through that noise.",
+    ],
+  },
+  {
+    title: 'How we research',
+    body: [
+      'Our primary sources are the Reddit communities r/fitness, r/beginnerfitness, r/xxfitness, r/running, r/homegym, r/pilates, and their sport specific equivalents. These are places where real beginners ask real questions and experienced people give honest answers, including what they regret buying. We cross reference everything with Amazon reviews, paying specific attention to the 3 star range where the honest tradeoffs show up.',
+      "We don't contact brands for samples. We don't run sponsored content. If a product gets recommended here it is because the community consensus and review data support it.",
+    ],
+  },
+  {
+    title: 'How we make money',
+    body: [
+      "We earn affiliate commissions when you buy through our links. That is how we keep the site running. We participate in Amazon Associates US and programs through Impact.com and other affiliate networks. The commission rate is never why we recommend something. It is a tiebreaker at most, and even then only between two otherwise equal options. A bad recommendation that earns a 5% commission is a bad trade.",
+    ],
+  },
+  {
+    title: "What we don't do",
+    body: [
+      "We don't recommend gear because a brand reached out. We don't write \"10 best\" listicles padded with mediocre picks. We don't include consumer electronics like headphones or smartwatches in sport specific kits. Those are personal decisions that have nothing to do with whether you are ready for the gym. Every product on this site has a specific reason it belongs there.",
+    ],
+  },
+];
 ---
 
 <Layout
-  title="About | fitness-complete.com"
-  description="Why fitness-complete.com exists and how we pick the products we recommend."
-  showDisclosure={false}
+  title="About"
+  description="Why fitness-complete.com exists, how we research the gear we recommend, and how the site makes money."
+  schema={organization}
+  breadcrumbs={[{ name: 'About', path: '/about' }]}
 >
+  <section class="max-w-[1320px] mx-auto px-4 sm:px-6 pt-12 sm:pt-20">
+    <p class="tag text-muted">About</p>
+    <h1 class="mt-5 font-display font-extrabold text-[clamp(3rem,9vw,7.5rem)] leading-[0.85] tracking-[-0.055em] max-w-5xl">
+      The friend who already made the <span class="bg-volt px-2 -mx-1 rounded-lg box-decoration-clone">mistakes.</span>
+    </h1>
+  </section>
 
-  <main>
+  <section class="max-w-[1320px] mx-auto px-4 sm:px-6 mt-16 grid gap-px bg-ink border-2 border-ink rounded-[2rem] overflow-hidden md:grid-cols-2">
+    {blocks.map((b, i) => (
+      <article class:list={['reveal p-8 sm:p-10', i === 2 ? 'bg-ink text-paper' : 'bg-card']}>
+        <p class:list={['font-display font-extrabold text-5xl leading-none outline-text', i === 2 && 'text-volt']}>{String(i + 1).padStart(2, '0')}</p>
+        <h2 class="mt-6 font-display font-bold text-3xl leading-tight">{b.title}</h2>
+        {b.body.map((p) => <p class:list={['mt-4 leading-relaxed', i === 2 ? 'text-paper/75' : 'text-ink-2']}>{p}</p>)}
+      </article>
+    ))}
+  </section>
 
-    <section class="max-w-3xl mx-auto px-4 sm:px-6 pt-16 pb-20">
-      <a href="/" class="inline-block text-sm text-gray-400 hover:text-gray-600 transition-colors mb-6">← Home</a>
-      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight mb-10">
-        About Fitness-Complete
-      </h1>
-
-      <div class="space-y-8 text-gray-600 leading-relaxed">
-
-        <div>
-          <h2 class="text-lg font-bold text-gray-900 mb-3">Why this site exists</h2>
-          <p>
-            Starting a new sport is overwhelming. You don't know what you actually need versus what's just marketed at you, and most gear guides are either too generic to be useful or quietly written to push the highest-commission product. We built fitness-complete.com to cut through that noise.
-          </p>
-        </div>
-
-        <div>
-          <h2 class="text-lg font-bold text-gray-900 mb-3">How we research</h2>
-          <p>
-            Our primary sources are the Reddit communities r/fitness, r/beginnerfitness, r/xxfitness, r/running, r/homegym, r/pilates, r/amateur_boxing, and their sport-specific equivalents. These are places where real beginners ask real questions and experienced people give honest answers, including what they regret buying. We cross-reference everything with Amazon reviews, paying specific attention to the 3-star range where the honest tradeoffs show up.
-          </p>
-          <p class="mt-4">
-            We don't contact brands for samples. We don't run sponsored content. If a product gets recommended here it's because the community consensus and review data supports it.
-          </p>
-        </div>
-
-        <div>
-          <h2 class="text-lg font-bold text-gray-900 mb-3">How we make money</h2>
-          <p>
-            We earn affiliate commissions when you buy through our links. That is how we keep the site running. We participate in Amazon Associates US and programs through Impact.com and other affiliate networks. The commission rate is never why we recommend something. It's a tiebreaker at most, and even then only between two otherwise equal options. Our reputation depends on getting this right, and a bad recommendation that earns a 5% commission is a bad trade.
-          </p>
-        </div>
-
-        <div>
-          <h2 class="text-lg font-bold text-gray-900 mb-3">What we don't do</h2>
-          <p>
-            We don't recommend gear because a brand reached out. We don't write "10 best" listicles padded with mediocre picks. We don't include consumer electronics like headphones or smartwatches in sport-specific kits. These are personal decisions that have nothing to do with whether you're ready for the gym. Every product on this site has a specific reason it belongs there.
-          </p>
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-
+  <section class="max-w-[1320px] mx-auto px-4 sm:px-6 mt-10 flex flex-wrap gap-3">
+    <a href="/how-we-pick" class="btn btn-ink">How we score products</a>
+    <a href="/authors/editorial-team" class="btn btn-ghost">Meet the editorial team</a>
+    <a href="mailto:hello@fitness-complete.com" class="btn btn-ghost">hello@fitness-complete.com</a>
+  </section>
 </Layout>

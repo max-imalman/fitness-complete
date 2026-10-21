@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { kits, kitPath } from '../data/kits';
+---
+
+<Layout title="Page not found" description="This page took a rest day." darkHeader>
+  <section class="bg-ink text-paper grain overflow-hidden min-h-[70vh]">
+    <div class="max-w-[1320px] mx-auto px-4 sm:px-6 py-16 sm:py-24">
+      <p class="tag text-paper/50">Error 404</p>
+      <h1 class="mt-6 font-display font-extrabold text-[clamp(4rem,16vw,13rem)] leading-[0.8] tracking-[-0.06em]">
+        Rest <span class="text-volt">day.</span>
+      </h1>
+      <p class="mt-8 text-xl text-paper/70 max-w-xl">This page skipped the session. Pick a kit and get back to it.</p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        {kits.map((k) => (
+          <a href={kitPath(k)} class="btn !py-3 text-ink" style={`background:${k.color}`}>{k.sport}</a>
+        ))}
+        <a href="/" class="btn btn-ghost text-paper">Home</a>
+      </div>
+    </div>
+  </section>
+</Layout>

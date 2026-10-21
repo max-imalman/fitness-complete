@@ -12,9 +12,9 @@ export interface Author {
 }
 
 export const authors: Record<string, Author> = {
-  'ryan-mitchell': {
+  'editorial-team': {
     name: 'fitness-complete Editorial Team',
-    slug: 'ryan-mitchell',
+    slug: 'editorial-team',
     title: 'Researched from real beginners',
     bio: 'Every recommendation on fitness-complete is researched from Reddit community consensus, independently tested by sources like Wirecutter and Garage Gym Reviews, and verified against Amazon purchase patterns. Commission rates play no role in our picks.',
     credentials: [

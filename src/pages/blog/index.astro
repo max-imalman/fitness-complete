@@ -1,93 +1,72 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { posts, formatDate } from '../../data/posts';
+import { getKit, kits } from '../../data/kits';
+import { organization } from '../../lib/seo';
 
-const posts = [
-  {
-    title: 'What to Bring to the Gym on Your First Day',
-    slug: 'what-to-bring-to-the-gym-first-day',
-    description: 'A short, honest list. No overcomplicating it.',
-    category: 'Gym',
-    date: 'March 2026',
-  },
-  {
-    title: 'What Shoes Should You Wear for Pickleball?',
-    slug: 'what-shoes-for-pickleball',
-    description: 'Not running shoes. Here is what actually matters and why.',
-    category: 'Pickleball',
-    date: 'March 2026',
-  },
-  {
-    title: 'What to Wear on Your First Run',
-    slug: 'what-to-wear-first-run',
-    description: 'Cotton kills. Everything else is negotiable.',
-    category: 'Running',
-    date: 'March 2026',
-  },
-  {
-    title: 'Mat Pilates vs Reformer Pilates: Which Should Beginners Start With?',
-    slug: 'mat-pilates-vs-reformer',
-    description: 'The honest answer depends on what you actually want from it.',
-    category: 'Pilates',
-    date: 'March 2026',
-  },
-  {
-    title: 'How Many Days a Week Should a Beginner Go to the Gym?',
-    slug: 'how-many-days-per-week-gym-beginner',
-    description: 'The honest answer based on actual research, not gym bro advice. You need less than you think.',
-    category: 'Gym',
-    date: 'March 2026',
-  },
-  {
-    title: 'How to Build a Home Gym in an Apartment for Under $500',
-    slug: 'home-gym-apartment-under-500',
-    description: 'A realistic buying guide for small spaces. No power racks, no treadmills, no wasted money on single-use machines.',
-    category: 'Home Gym',
-    date: 'March 2026',
-  },
-  {
-    title: 'How Long Until You See Results from Pilates? The Honest Answer',
-    slug: 'how-long-to-see-results-from-pilates',
-    description: 'No hype, no before-and-after filters. What research and physiology actually say about the Pilates timeline.',
-    category: 'Pilates',
-    date: 'March 2026',
-  },
-  {
-    title: 'How to Start Playing Pickleball: What Nobody Tells Beginners',
-    slug: 'how-to-start-playing-pickleball',
-    description: 'Before you buy a paddle, read this. A practical guide to starting pickleball without wasting money on gear you might not need.',
-    category: 'Pickleball',
-    date: 'March 2026',
-  },
-];
+const sorted = [...posts].sort((a, b) => b.published.localeCompare(a.published) || a.title.localeCompare(b.title));
+const [lead, ...rest] = sorted;
+const leadKit = getKit(lead.kit);
 ---
 
 <Layout
-  title="Blog | fitness-complete.com"
-  description="Practical guides for fitness beginners. No fluff, no influencer picks — just what you need to know to start well."
+  title="Beginner Guides"
+  description="Practical guides for fitness beginners. No fluff and no influencer picks, just what you need to know to start well."
+  schema={organization}
+  breadcrumbs={[{ name: 'Guides', path: '/blog' }]}
 >
+  <section class="max-w-[1320px] mx-auto px-4 sm:px-6 pt-12 sm:pt-20">
+    <p class="tag text-muted">Guides · {posts.length} reads</p>
+    <h1 class="mt-5 font-display font-extrabold text-[clamp(3.2rem,10vw,8rem)] leading-[0.84] tracking-[-0.055em]">
+      Before your<br /><span class="outline-text">first</span> session.
+    </h1>
+    <p class="mt-6 text-lg sm:text-xl text-muted max-w-2xl">
+      Short, honest answers to the questions every beginner asks. No fluff, no gym bro myths, nothing you have to buy to read it.
+    </p>
 
-  <main>
-    <section class="max-w-2xl mx-auto px-4 sm:px-6 pt-16 pb-20">
+    <div class="mt-10 flex flex-wrap gap-2">
+      {kits.map((k) => (
+        <a href={`#${k.slug}`} class="inline-flex items-center gap-2 rounded-full border-2 border-ink/15 hover:border-ink px-3.5 py-1.5 text-sm font-semibold transition-colors">
+          <span class="size-2.5 rounded-full" style={`background:${k.color}`}></span>{k.sport}
+        </a>
+      ))}
+    </div>
+  </section>
 
-      <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 mb-3">Blog</h1>
-      <p class="text-gray-500 mb-12">Practical guides for fitness beginners. No fluff.</p>
+  <section class="max-w-[1320px] mx-auto px-4 sm:px-6 mt-12">
+    <a
+      href={`/blog/${lead.slug}`}
+      class="reveal group grid lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)] rounded-[2rem] border-2 border-ink overflow-hidden transition-shadow duration-300 hover:shadow-[10px_10px_0_0_var(--color-ink)]"
+    >
+      <div class="p-8 sm:p-12 flex flex-col justify-between gap-10" style={`background:${leadKit.color}`}>
+        <p class="tag">Newest · {leadKit.sport}</p>
+        <h2 class="font-display font-extrabold text-[clamp(2.2rem,4.8vw,4rem)] leading-[0.9] group-hover:underline decoration-4 underline-offset-8">{lead.title}</h2>
+      </div>
+      <div class="bg-ink text-paper p-8 sm:p-12 flex flex-col justify-between gap-8">
+        <p class="text-lg text-paper/80">{lead.description}</p>
+        <div class="flex items-center justify-between gap-4">
+          <span class="tag text-paper/50">{formatDate(lead.published)} · {lead.readMinutes} min</span>
+          <span class="btn btn-volt !py-2.5">Read</span>
+        </div>
+      </div>
+    </a>
+  </section>
 
-      <ul class="space-y-8">
-        {posts.map((post) => (
-          <li>
-            <a href={`/blog/${post.slug}`} class="group block">
-              <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">{post.category}</p>
-              <h2 class="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-snug mb-2">
-                {post.title}
-              </h2>
-              <p class="text-sm text-gray-500 leading-relaxed mb-2">{post.description}</p>
-              <p class="text-xs text-gray-400">{post.date}</p>
-            </a>
-          </li>
-        ))}
-      </ul>
-
-    </section>
-  </main>
-
+  {kits.map((k) => {
+    const list = rest.filter((p) => p.kit === k.slug);
+    if (!list.length) return null;
+    return (
+      <section id={k.slug} class="max-w-[1320px] mx-auto px-4 sm:px-6 mt-16 scroll-mt-24">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="size-4 rounded-full" style={`background:${k.color}`}></span>
+          <h2 class="font-display font-extrabold text-3xl tracking-tight">{k.sport}</h2>
+          <span class="flex-1 h-0.5 bg-ink/10"></span>
+        </div>
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {list.map((p, i) => <PostCard post={p} index={i} />)}
+        </div>
+      </section>
+    );
+  })}
 </Layout>

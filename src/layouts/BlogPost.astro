@@ -1,0 +1,90 @@
+---
+import Layout from './Layout.astro';
+import PostCard from '../components/PostCard.astro';
+import { formatDate, getPost, posts } from '../data/posts';
+import { getKit, kitPath, kitTotals } from '../data/kits';
+import { formatPrice } from '../lib/links';
+import { absolute, organization } from '../lib/seo';
+
+interface Props {
+  slug: string;
+}
+
+const post = getPost(Astro.props.slug);
+const kit = getKit(post.kit);
+const totals = kitTotals(kit);
+const url = absolute(`/blog/${post.slug}`);
+// Same sport first, then the newest of the rest.
+const more = [
+  ...posts.filter((p) => p.slug !== post.slug && p.kit === post.kit),
+  ...posts.filter((p) => p.kit !== post.kit).sort((a, b) => b.published.localeCompare(a.published)),
+].slice(0, 3);
+
+const schema = [
+  organization,
+  {
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.description,
+    datePublished: post.published,
+    dateModified: post.published,
+    author: { '@type': 'Organization', name: 'fitness-complete Editorial Team', url: absolute('/authors/editorial-team') },
+    publisher: { '@id': organization['@id'] },
+    mainEntityOfPage: url,
+    url,
+  },
+];
+---
+
+<Layout
+  title={post.title}
+  description={post.description}
+  schema={schema}
+  breadcrumbs={[{ name: 'Guides', path: '/blog' }, { name: post.title, path: `/blog/${post.slug}` }]}
+>
+  <article style={`--kit-color:${kit.color}`}>
+    <header class="border-b-2 border-ink" style={`background:${kit.color}`}>
+      <div class="max-w-[1320px] mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-12 sm:pb-16">
+        <nav class="tag flex items-center gap-2 opacity-70" aria-label="Breadcrumb">
+          <a href="/blog" class="hover:underline">Guides</a><span>/</span><a href={kitPath(kit)} class="hover:underline">{kit.sport}</a>
+        </nav>
+        <h1 class="mt-6 font-display font-extrabold text-[clamp(2.5rem,6.5vw,5.6rem)] leading-[0.9] tracking-[-0.05em] max-w-5xl">
+          {post.title}
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl max-w-2xl opacity-85">{post.description}</p>
+        <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+          <a href="/authors/editorial-team" class="inline-flex items-center gap-2 font-semibold hover:underline">
+            <span class="size-8 rounded-full bg-ink text-volt grid place-items-center font-display font-extrabold text-xs">FC</span>
+            Editorial Team
+          </a>
+          <span class="opacity-70">{formatDate(post.published)}</span>
+          <span class="opacity-70">{post.readMinutes} min read</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-[1320px] mx-auto px-4 sm:px-6 pt-12 sm:pt-16 grid lg:grid-cols-[minmax(0,1fr)_19rem] gap-12 xl:gap-20">
+      <div class="prose max-w-[42rem]">
+        <slot />
+      </div>
+
+      <aside class="lg:sticky lg:top-24 self-start">
+        <a href={kitPath(kit)} class="group block rounded-[1.5rem] border-2 border-ink bg-ink text-paper p-6 transition-transform duration-300 hover:-rotate-1">
+          <p class="tag" style={`color:${kit.color}`}>{kit.tag} · the kit</p>
+          <p class="mt-4 font-display font-extrabold text-3xl leading-[0.95] tracking-tight">{kit.headline}</p>
+          <p class="mt-3 text-paper/70 text-sm">{kit.categories.length} items, three budgets each, every pick scored out of 100.</p>
+          <p class="mt-5 font-display font-extrabold text-4xl tabular-nums" style={`color:${kit.color}`}>{formatPrice(totals.picks)}</p>
+          <p class="text-paper/50 text-xs">our picks · from {formatPrice(totals.cheapest)}</p>
+          <span class="mt-5 btn btn-volt w-full">Build the kit</span>
+        </a>
+      </aside>
+    </div>
+  </article>
+
+  <section class="max-w-[1320px] mx-auto px-4 sm:px-6 mt-24">
+    <h2 class="reveal font-display font-extrabold text-[clamp(2rem,4.5vw,3.4rem)] leading-[0.9]">Keep reading.</h2>
+    <div class="mt-8 grid gap-5 md:grid-cols-3">
+      {more.map((p, i) => <PostCard post={p} index={i} />)}
+    </div>
+  </section>
+</Layout>
