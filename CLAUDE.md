@@ -87,7 +87,7 @@ npm run preview  # Preview production build locally
 - `src/data/categories.ts` holds every product, price, link and score per kit. Edit products here, not in pages.
 - `src/data/kits.ts` holds per sport metadata (colors, headlines, copy) and helpers (totals, scores).
 - `src/data/gifts.ts` holds the gift finder ideas, `src/data/posts.ts` the blog index metadata.
-- `src/lib/links.ts` builds outbound links. The Amazon tag comes from `AMAZON_ASSOCIATE_TAG` (see `.env.example`); a production build on Vercel fails if it is missing. Retailer labels are derived from the URL so they can never disagree with the link.
+- `src/lib/links.ts` builds outbound links. The Amazon tag comes from `AMAZON_ASSOCIATE_TAG` (see `.env.example`); without it the build warns and Amazon links carry no tag, so keep it set in Vercel for Production and Preview. Retailer labels are derived from the URL so they can never disagree with the link.
 - `src/pages/[kit].astro` renders all five starter kit pages (`/gym-starter-set` etc.) including the kit builder.
 - `src/layouts/BlogPost.astro` wraps every blog post; a post file only contains its body HTML.
 - `src/layouts/Layout.astro` is the shared document (header, footer, SEO, JSON-LD via `src/lib/seo.ts`).

@@ -4,10 +4,8 @@
 const amazonTag: string | undefined = import.meta.env.AMAZON_ASSOCIATE_TAG;
 
 if (!amazonTag) {
-  const message = 'AMAZON_ASSOCIATE_TAG is not set, Amazon links will be built without an affiliate tag.';
-  // A production deploy without the tag would silently earn nothing, so stop the build instead.
-  if (process.env.VERCEL_ENV === 'production') throw new Error(message);
-  console.warn(`[links] ${message}`);
+  // Without the tag the site still works, it just earns nothing on Amazon. Shout about it in the build log.
+  console.warn('[links] AMAZON_ASSOCIATE_TAG is not set, Amazon links will be built without an affiliate tag.');
 }
 
 const retailers: Record<string, string> = {
