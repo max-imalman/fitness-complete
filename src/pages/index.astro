@@ -5,6 +5,8 @@ import KitTile from '../components/KitTile.astro';
 import ScoreCard from '../components/ScoreCard.astro';
 import CostChart from '../components/CostChart.astro';
 import PostCard from '../components/PostCard.astro';
+import GearArt from '../components/GearArt.astro';
+import { artFor, tierColors } from '../data/art';
 import { kits, kitPath, pickOf, scoreOf, scoreTotal, siteStats, getKit } from '../data/kits';
 import { posts } from '../data/posts';
 import { formatPrice } from '../lib/links';
@@ -178,11 +180,9 @@ const rules = [
       <div class="reveal relative rounded-[2rem] border-2 border-ink bg-card p-7 sm:p-10 shadow-[10px_10px_0_0_var(--color-ink)]">
         <p class="tag text-muted">Top scorer on the site right now</p>
         <div class="mt-5 flex items-center gap-5">
-          {best.option.img && (
-            <span class="size-20 shrink-0 rounded-2xl border-2 border-ink bg-white grid place-items-center overflow-hidden">
-              <img src={best.option.img} alt="" class="size-16 object-contain" loading="lazy" />
-            </span>
-          )}
+          <span class="size-20 shrink-0 rounded-2xl border-2 border-ink bg-white grid place-items-center">
+            <GearArt kind={artFor(best.category.id)} {...tierColors(best.kit, best.option.tier)} class="size-14" />
+          </span>
           <div>
             <p class="font-display font-extrabold text-2xl leading-tight tracking-tight">{best.option.name}</p>
             <a href={`${kitPath(best.kit)}#${best.category.id}`} class="text-sm text-muted hover:underline">{best.kit.sport} kit · {best.category.name}</a>

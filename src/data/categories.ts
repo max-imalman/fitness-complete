@@ -21,7 +21,6 @@ export const gym: Category[] = [
         name: "FocusGear Ultimate Gym Bag 2.0",
         price: 39,
         bestFor: "Best tested budget bag, wet pockets and shoe compartment, CNN Underscored pick",
-        img: "https://m.media-amazon.com/images/I/91wv23DWzPL._AC_SX342_SY445_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B07GSJ45CF"
       },
       {
@@ -29,7 +28,6 @@ export const gym: Category[] = [
         name: "Under Armour Undeniable 5.0 Duffel",
         price: 49,
         bestFor: "Most recommended on Reddit, water-resistant, holds up for years",
-        img: "https://m.media-amazon.com/images/I/41umDCG2udL._AC_SX342_SY445_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/s?k=Under+Armour+Undeniable+5.0+Duffel"
       },
       {
@@ -59,7 +57,6 @@ export const gym: Category[] = [
         name: "Nalgene Wide Mouth 32oz",
         price: 12,
         bestFor: "No-nonsense, nearly indestructible",
-        img: "https://m.media-amazon.com/images/I/715SE6ZgTjL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B002PLU912"
       },
       {
@@ -67,7 +64,6 @@ export const gym: Category[] = [
         name: "Owala FreeSip 32oz",
         price: 39,
         bestFor: "Current community favorite, dual drinking options, leakproof, dishwasher safe",
-        img: "https://m.media-amazon.com/images/I/71Cfld2aMpL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B085DVHQ57"
       },
       {
@@ -97,7 +93,6 @@ export const gym: Category[] = [
         name: "Ihuan Breathable Fingerless Lifting Gloves",
         price: 18,
         bestFor: "Tested best overall gym glove at this price, designed for lifting not work",
-        img: "https://m.media-amazon.com/images/I/81applaAiGL._AC_SX300_SY300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B093BN15F5"
       },
       {
@@ -105,7 +100,6 @@ export const gym: Category[] = [
         name: "Harbinger Pro Wrist Wrap Gloves",
         price: 35,
         bestFor: "Best combo of protection + wrist support",
-        img: "https://m.media-amazon.com/images/I/818OeC165WL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/s?k=Harbinger+Pro+Wrist+Wrap+Gloves"
       },
       {
@@ -113,7 +107,6 @@ export const gym: Category[] = [
         name: "Versa Gripps Classic",
         price: 52,
         bestFor: "Doubles as lifting straps, serious lifters",
-        img: "https://m.media-amazon.com/images/I/91YZA4wO2RL._AC_SX300_SY300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/s?k=Versa+Gripps+Classic"
       }
     ]
@@ -136,7 +129,6 @@ export const gym: Category[] = [
         name: "Hydra Cup Dual Shaker",
         price: 20,
         bestFor: "Carry pre-workout + shake in one bottle",
-        img: "https://m.media-amazon.com/images/I/61doRGhuy+L._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B011WPCU4U"
       },
       {
@@ -144,7 +136,6 @@ export const gym: Category[] = [
         name: "BlenderBottle Classic 28oz",
         price: 11,
         bestFor: "The reliable standard, hard to beat at this price",
-        img: "https://m.media-amazon.com/images/I/41W52ukYnJL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B01LX4GTDW"
       },
       {
@@ -152,7 +143,6 @@ export const gym: Category[] = [
         name: "Promixx MiiXR Electric Shaker",
         price: 40,
         bestFor: "Battery-powered mixing, no lumps ever",
-        img: "https://m.media-amazon.com/images/I/61k3spNGskL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/s?k=Promixx+MiiXR+Electric+Shaker"
       }
     ]
@@ -175,7 +165,6 @@ export const gym: Category[] = [
         name: "AmazonBasics Microfiber Towel",
         price: 10,
         bestFor: "Gets the job done, packs small",
-        img: "https://m.media-amazon.com/images/I/91SK4-Q3DEL._AC_SX300_SY300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B073JD55WK"
       },
       {
@@ -183,7 +172,6 @@ export const gym: Category[] = [
         name: "Rainleaf Microfiber Gym Towel",
         price: 18,
         bestFor: "Great absorbency, comes with clip loop",
-        img: "https://m.media-amazon.com/images/I/61NwNFbA9FL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B01A4ZXXR2"
       },
       {
@@ -191,7 +179,6 @@ export const gym: Category[] = [
         name: "Youphoria Sport Towel",
         price: 25,
         bestFor: "Antimicrobial, stays fresh longer, large size",
-        img: "https://m.media-amazon.com/images/I/91JxDv25JuL._AC_SX300_SY300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B00NLF475K"
       }
     ]
@@ -215,7 +202,6 @@ export const pilates: Category[] = [
         name: "Gaiam Essentials Thick Yoga Mat",
         price: 29,
         bestFor: "Getting started without overspending",
-        img: "https://m.media-amazon.com/images/I/81k53EsViVL._AC_SX300_SY300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B07H9PZ42P"
       },
       {
@@ -223,7 +209,6 @@ export const pilates: Category[] = [
         name: "Manduka PRO Lite 4.7mm",
         price: 83,
         bestFor: "Dense, grippy and built to last, best for most beginners",
-        img: "https://m.media-amazon.com/images/I/91ZAz0ZAJfL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.manduka.com/products/prolite-yoga-mat-4-5mm"
       },
       {
@@ -251,7 +236,6 @@ export const pilates: Category[] = [
         name: "Tavi Noir Savvy Sock",
         price: 14,
         bestFor: "Meets studio requirements without the price tag",
-        img: "https://m.media-amazon.com/images/I/61anJ4usn4L._AC_SX342_SY445_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B0B8MM3H8F"
       },
       {
@@ -259,7 +243,6 @@ export const pilates: Category[] = [
         name: "ToeSox Full Toe Crew",
         price: 21,
         bestFor: "Individual toe design improves reformer feedback",
-        img: "https://m.media-amazon.com/images/I/81CtauLX6sL._AC_SX342_SY445_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B0C9QY42DY"
       },
       {
@@ -287,7 +270,6 @@ export const pilates: Category[] = [
         name: "Fit Simplify Resistance Loop Bands",
         price: 12,
         bestFor: "5-band set, covers every resistance level",
-        img: "https://m.media-amazon.com/images/I/71S4-NjoTDL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B09MJKJYLQ"
       },
       {
@@ -295,7 +277,6 @@ export const pilates: Category[] = [
         name: "Theraband Professional Loops",
         price: 21,
         bestFor: "Physical-therapy grade, color-coded resistance",
-        img: "https://m.media-amazon.com/images/I/61x7jyCzMlL._AC_SX342_SY445_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B00M1WK5Z0"
       },
       {
@@ -303,7 +284,6 @@ export const pilates: Category[] = [
         name: "Perform Better Mini Bands",
         price: 31,
         bestFor: "Durable fabric, won't roll or snap, class staple",
-        img: "https://m.media-amazon.com/images/I/41ZcUiQP30L._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/s?k=Perform+Better+Mini+Bands"
       }
     ]
@@ -324,7 +304,6 @@ export const pilates: Category[] = [
         name: "Nalgene Wide Mouth 32oz",
         price: 12,
         bestFor: "Indestructible, simple, no frills",
-        img: "https://m.media-amazon.com/images/I/715SE6ZgTjL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B002PLU912"
       },
       {
@@ -332,7 +311,6 @@ export const pilates: Category[] = [
         name: "Hydro Flask 32oz Wide Mouth",
         price: 45,
         bestFor: "Keeps water cold, great leakproof lid",
-        img: "https://m.media-amazon.com/images/I/61JEB+cGneL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/s?k=Hydro+Flask+32oz+Wide+Mouth"
       },
       {
@@ -340,7 +318,6 @@ export const pilates: Category[] = [
         name: "S'well 17oz Bottle",
         price: 40,
         bestFor: "Slim enough for a reformer cupholder, beautiful finish",
-        img: "https://m.media-amazon.com/images/I/51kMkojCO6L._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B07CS5SPRW"
       }
     ]
@@ -361,7 +338,6 @@ export const pilates: Category[] = [
         name: "Trideer Half Finger Gloves",
         price: 14,
         bestFor: "Basic palm protection, fits most hand sizes",
-        img: "https://m.media-amazon.com/images/I/71gDNPKcpIL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B07G8621VX"
       },
       {
@@ -369,7 +345,6 @@ export const pilates: Category[] = [
         name: "Harbinger Pro Wrist Wrap Gloves",
         price: 35,
         bestFor: "Adds wrist support for reformer bar holds",
-        img: "https://m.media-amazon.com/images/I/818OeC165WL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/s?k=Harbinger+Pro+Wrist+Wrap+Gloves"
       },
       {
@@ -400,7 +375,6 @@ export const running: Category[] = [
         name: "ASICS Gel-Contend 8",
         price: 62,
         bestFor: "Reliable cushion, neutral, great entry price. Get fitted at a running specialty store like Fleet Feet if possible. Shoe fit is personal and the right model depends on your gait.",
-        img: "https://m.media-amazon.com/images/I/616jrFrzp2L._AC_SY395_SX395_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/s?k=ASICS+Gel-Contend+8"
       },
       {
@@ -408,7 +382,6 @@ export const running: Category[] = [
         name: "Brooks Ghost 17",
         price: 135,
         bestFor: "Best all-rounder for most beginners, smooth ride",
-        img: "https://m.media-amazon.com/images/I/71jhFenCcEL._AC_SY395_SX395_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/s?k=Brooks+Ghost+17"
       },
       {
@@ -416,7 +389,6 @@ export const running: Category[] = [
         name: "HOKA Clifton 10",
         price: 152,
         bestFor: "Maximum cushion, ideal for high mileage or joint issues",
-        img: "https://m.media-amazon.com/images/I/51DYgNA5GXL._AC_SY395_SX395_QL70_FMwebp_.jpg",
         url: "https://www.hoka.com/en-us/running-shoes/clifton/"
       }
     ]
@@ -444,7 +416,6 @@ export const running: Category[] = [
         name: "Darn Tough Run No Show Tab",
         price: 24,
         bestFor: "Merino wool, lifetime warranty, extremely durable",
-        img: "https://m.media-amazon.com/images/I/61MySd+FtoL._AC_SX342_SY445_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/s?k=Darn+Tough+Run+No+Show+Tab"
       },
       {
@@ -472,7 +443,6 @@ export const running: Category[] = [
         name: "FlipBelt Classic",
         price: 31,
         bestFor: "Minimalist tube belt, no bounce, holds most phones",
-        img: "https://m.media-amazon.com/images/I/51Fqgs5-4+L._AC_SX300_SY300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/s?k=FlipBelt+Classic"
       },
       {
@@ -480,7 +450,6 @@ export const running: Category[] = [
         name: "Nathan SpeedShot Plus Handheld",
         price: 34,
         bestFor: "Adds hydration for longer runs, hands-free grip",
-        img: "https://m.media-amazon.com/images/I/61R1hcVHOEL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/s?k=Nathan+SpeedShot+Plus+Handheld"
       },
       {
@@ -488,7 +457,6 @@ export const running: Category[] = [
         name: "Salomon Active Skin 4 Vest",
         price: 130,
         bestFor: "Full hydration vest for serious distance runners",
-        img: "https://m.media-amazon.com/images/I/81+6ITtBijL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.rei.com/search#q=Salomon+Active+Skin+4"
       }
     ]
@@ -509,7 +477,6 @@ export const running: Category[] = [
         name: "Amazon Essentials Men's Tech Stretch Tee",
         price: 16,
         bestFor: "Functional, cheap, buy three and move on",
-        img: "https://m.media-amazon.com/images/I/71d22KRFHCL._AC_SX342_SY445_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B0D415F15Q"
       },
       {
@@ -548,7 +515,6 @@ export const homeGym: Category[] = [
         name: "Amazon Basics Adjustable Dumbbell",
         price: 49,
         bestFor: "Single dumbbell, basic adjustment, tight budget",
-        img: "https://m.media-amazon.com/images/I/61WL-9Vt6oL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B0FC6RZNK2"
       },
       {
@@ -556,7 +522,6 @@ export const homeGym: Category[] = [
         name: "Bowflex Results Series 552 SelectTech",
         price: 299,
         bestFor: "The recalled original 552 has been replaced by this updated Results Series model. Same dial system, same 5-52.5lb range, same beginner-friendly approach. Best adjustable dumbbell for anyone who does not need to lift over 50lbs.",
-        img: "https://m.media-amazon.com/images/I/71bdxVC7-0L._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/s?k=Bowflex+Results+Series+552+SelectTech"
       },
       {
@@ -564,7 +529,6 @@ export const homeGym: Category[] = [
         name: "POWERBLOCK Elite EXP",
         price: 389,
         bestFor: "More compact than Bowflex, expandable to 90lbs",
-        img: "https://m.media-amazon.com/images/I/81yF5CpdlLL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.powerblock.com/collections/adjustable-dumbbells"
       }
     ]
@@ -585,7 +549,6 @@ export const homeGym: Category[] = [
         name: "Fit Simplify Resistance Loop Bands",
         price: 12,
         bestFor: "Five bands covering light to heavy, hard to beat",
-        img: "https://m.media-amazon.com/images/I/71S4-NjoTDL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B09MJKJYLQ"
       },
       {
@@ -593,7 +556,6 @@ export const homeGym: Category[] = [
         name: "Bodylastics Stackable Tube Bands",
         price: 37,
         bestFor: "Anchor system for door, handles included, versatile",
-        img: "https://m.media-amazon.com/images/I/61vaBfcibhL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B006O09M4K"
       },
       {
@@ -601,7 +563,6 @@ export const homeGym: Category[] = [
         name: "SPRI Braided Xertube",
         price: 23,
         bestFor: "Braided cord won't snap, longer lasting than latex",
-        img: "https://m.media-amazon.com/images/I/61X6PbBcoxL._AC_SX300_SY300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/s?k=SPRI+Braided+Xertube"
       }
     ]
@@ -622,7 +583,6 @@ export const homeGym: Category[] = [
         name: "Iron Gym Total Upper Body Workout Bar",
         price: 31,
         bestFor: "Classic doorframe design, holds up to 300lbs",
-        img: "https://m.media-amazon.com/images/I/41tFlxNN-TL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B001ND04U4"
       },
       {
@@ -630,7 +590,6 @@ export const homeGym: Category[] = [
         name: "Perfect Fitness Multi-Gym Doorframe Bar",
         price: 39,
         bestFor: "Better grip positions, sturdier frame, no screws",
-        img: "https://m.media-amazon.com/images/I/71PdwFmsNIL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B01LH1FPKK"
       },
       {
@@ -658,7 +617,6 @@ export const homeGym: Category[] = [
         name: "BalanceFrom GoYoga All-Purpose Mat",
         price: 21,
         bestFor: "Gets the job done, good thickness for the price",
-        img: "https://m.media-amazon.com/images/I/81tispRkghL._AC_SX300_SY300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B01MQA0EGZ"
       },
       {
@@ -666,7 +624,6 @@ export const homeGym: Category[] = [
         name: "Gaiam Premium 6mm Yoga Mat",
         price: 39,
         bestFor: "Non-slip texture, good cushion, wide enough for most",
-        img: "https://m.media-amazon.com/images/I/817eIqfQCYL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B00FLID5EO"
       },
       {
@@ -674,7 +631,6 @@ export const homeGym: Category[] = [
         name: "Manduka PRO 6mm Yoga Mat",
         price: 130,
         bestFor: "Dense, no-squish cushion, lifetime guarantee",
-        img: "https://m.media-amazon.com/images/I/91ZAz0ZAJfL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.manduka.com/products/pro-yoga-mat-6mm"
       }
     ]
@@ -695,7 +651,6 @@ export const homeGym: Category[] = [
         name: "AmazonBasics High-Density Foam Roller",
         price: 21,
         bestFor: "Firm, durable, does exactly what a foam roller should",
-        img: "https://m.media-amazon.com/images/I/719fCtAm+hL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B00XM2MXK8"
       },
       {
@@ -703,7 +658,6 @@ export const homeGym: Category[] = [
         name: "TriggerPoint GRID Foam Roller",
         price: 39,
         bestFor: "Multi-density surface, better myofascial release",
-        img: "https://m.media-amazon.com/images/I/71WUESEiowL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/s?k=TriggerPoint+GRID+Foam+Roller"
       },
       {
@@ -711,7 +665,6 @@ export const homeGym: Category[] = [
         name: "Hyperice Vyper 3 Vibrating Roller",
         price: 199,
         bestFor: "Vibration speeds recovery, genuinely different experience",
-        img: "https://m.media-amazon.com/images/I/31FGCbvTrDL._AC_SX300_SY300_QL70_FMwebp_.jpg",
         url: "https://www.hyperice.com/products/vyper-3"
       }
     ]
@@ -732,7 +685,6 @@ export const pickleball: Category[] = [
         name: "Niupipo Graphite Paddle",
         price: 34,
         bestFor: "Graphite face, correct weight, solid entry point without overspending",
-        img: "https://m.media-amazon.com/images/I/6185ojY2e7L._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B07DL84H7C",
         score: {
           amazon: 38,
@@ -745,7 +697,6 @@ export const pickleball: Category[] = [
         name: "Vatic Pro Prism Flash",
         price: 84,
         bestFor: "Raw carbon fiber face, excellent spin and control, most recommended first serious paddle",
-        img: "https://m.media-amazon.com/images/I/61TcyJ2sooL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B0BYYY61L7",
         score: {
           amazon: 44,
@@ -781,7 +732,6 @@ export const pickleball: Category[] = [
         name: "Penn 26 Indoor Pickleball 3-Pack",
         price: 8,
         bestFor: "Standard indoor ball for gym floors and wooden courts, affordable starting point",
-        img: "https://m.media-amazon.com/images/I/71HRTZO-HlL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B07Q23Q17V",
         score: {
           amazon: 38,
@@ -794,7 +744,6 @@ export const pickleball: Category[] = [
         name: "Franklin X-40 Outdoor 3-Pack",
         price: 10,
         bestFor: "Tournament-standard outdoor ball, consistent flight in wind, used at most recreational courts",
-        img: "https://m.media-amazon.com/images/I/51bVZzWgRhL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B07P5JTJX3",
         score: {
           amazon: 47,
@@ -807,7 +756,6 @@ export const pickleball: Category[] = [
         name: "Selkirk Pro S1 3-Pack",
         price: 18,
         bestFor: "Tour-grade outdoor ball, longer lasting than Franklin X-40, preferred by competitive players",
-        img: "https://m.media-amazon.com/images/I/61-RMpwcdXL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/s?k=Selkirk+Pro+S1+pickleball",
         score: {
           amazon: 44,
@@ -830,7 +778,6 @@ export const pickleball: Category[] = [
         name: "Skechers Viper Court Pro",
         price: 99,
         bestFor: "Court-specific outsole, lateral support, excellent value for a pickleball-specific shoe",
-        img: "https://m.media-amazon.com/images/I/81dvD9hEEfL._AC_SY395_SX395_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B0B5HTGFPH",
         score: {
           amazon: 43,
@@ -843,7 +790,6 @@ export const pickleball: Category[] = [
         name: "K-Swiss Pickleball Supreme",
         price: 109,
         bestFor: "Built specifically for pickleball, stable low-profile sole, top-rated in community and independent tests",
-        img: "https://m.media-amazon.com/images/I/71lgyb1kSKL._AC_SX395_SY395_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B0CCXDX2QZ",
         score: {
           amazon: 44,
@@ -856,7 +802,6 @@ export const pickleball: Category[] = [
         name: "Babolat Jet Mach 3 Pickleball",
         price: 139,
         bestFor: "Maximum lateral support, premium cushioning, built for high-frequency competitive play",
-        img: "https://m.media-amazon.com/images/I/71eEviiC6nL._AC_SX395_SY395_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B0DXZT6V8L",
         score: {
           amazon: 45,
@@ -879,7 +824,6 @@ export const pickleball: Category[] = [
         name: "Mangrove Pickleball Sling Bag",
         price: 47,
         bestFor: "Dedicated paddle pocket, lightweight sling format, solid for casual play",
-        img: "https://m.media-amazon.com/images/I/71BVJlqkHpL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.amazon.com/dp/B0BL31LN1P",
         score: {
           amazon: 42,
@@ -892,7 +836,6 @@ export const pickleball: Category[] = [
         name: "CRBN Pro Team Backpack",
         price: 99,
         bestFor: "Holds two paddles, ball pocket, comfortable backpack carry, well-built",
-        img: "https://m.media-amazon.com/images/I/719EsFW05rL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         url: "https://www.crbnpickleball.com/collections/bags",
         score: {
           amazon: 43,
@@ -939,7 +882,6 @@ export const pickleball: Category[] = [
         name: "Oakley Flak 2.0 XL",
         price: 169,
         bestFor: "Polycarbonate lenses, impact-rated, wraparound fit that stays put, clear optics mid-game",
-        img: "https://m.media-amazon.com/images/I/51SGXOvp-WL._AC_SX342_SY445_QL70_FMwebp_.jpg",
         url: "https://www.oakley.com/en-us/category/sunglasses",
         score: {
           amazon: 47,
@@ -952,7 +894,6 @@ export const pickleball: Category[] = [
         name: "Oakley Radar EV Path",
         price: 227,
         bestFor: "Larger lens coverage, interchangeable lens system, photochromic option for variable outdoor light",
-        img: "https://m.media-amazon.com/images/I/51AHEH3N1lL._AC_SX342_SY445_QL70_FMwebp_.jpg",
         url: "https://www.oakley.com/en-us/category/sunglasses",
         score: {
           amazon: 46,

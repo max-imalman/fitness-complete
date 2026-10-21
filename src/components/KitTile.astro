@@ -1,7 +1,9 @@
 ---
 import type { Kit } from '../data/types';
-import { kitPath, kitTotals, pickOf } from '../data/kits';
+import { kitPath, kitTotals } from '../data/kits';
 import { formatPrice } from '../lib/links';
+import GearArt from './GearArt.astro';
+import { artFor } from '../data/art';
 
 interface Props {
   kit: Kit;
@@ -10,7 +12,7 @@ interface Props {
 
 const { kit, index } = Astro.props;
 const totals = kitTotals(kit);
-const images = kit.categories.map((c) => pickOf(c.options)).filter((o) => o.img).slice(0, 4);
+const art = kit.categories.slice(0, 4).map((c) => artFor(c.id));
 ---
 <a
   href={kitPath(kit)}
@@ -31,9 +33,9 @@ const images = kit.categories.map((c) => pickOf(c.options)).filter((o) => o.img)
 
   <div class="mt-auto pt-8 flex items-end justify-between gap-4">
     <div class="flex -space-x-3">
-      {images.map((o, i) => (
-        <span class="size-14 rounded-full bg-white border-2 border-ink overflow-hidden grid place-items-center transition-transform duration-500 group-hover:-translate-y-1.5" style={`transition-delay:${i * 50}ms`}>
-          <img src={o.img} alt="" class="size-11 object-contain" loading="lazy" decoding="async" />
+      {art.map((kind, i) => (
+        <span class="size-14 rounded-full bg-paper border-2 border-ink grid place-items-center transition-transform duration-500 group-hover:-translate-y-1.5" style={`transition-delay:${i * 50}ms`}>
+          <GearArt kind={kind} fill={kit.color} class="size-9" />
         </span>
       ))}
     </div>

@@ -1,3 +1,5 @@
+import type { GearKind } from './art';
+
 export type Tier = 'budget' | 'pick' | 'premium';
 
 /** Amazon verified reviews (max 50) + independent tests (max 35) + beginner failure prevention (max 15). */
@@ -13,7 +15,6 @@ export interface Option {
   /** Approximate US retail price in dollars. */
   price: number;
   bestFor: string;
-  img?: string;
   url: string;
   /** Per product score, when the option was scored on its own. */
   score?: Score;
@@ -62,6 +63,8 @@ export interface Kit {
 
 export interface GiftIdea {
   kit: string;
+  /** Illustrations shown on the gift card, one per item in the gift. */
+  art: GearKind[];
   tier: 'budget' | 'mid' | 'premium';
   name: string;
   min: number;

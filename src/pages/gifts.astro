@@ -4,6 +4,7 @@ import { giftAngles, giftIdeas } from '../data/gifts';
 import { getKit, kits, kitPath } from '../data/kits';
 import { affiliateUrl, formatRange, outboundRel, retailerName } from '../lib/links';
 import { organization } from '../lib/seo';
+import GearArt from '../components/GearArt.astro';
 
 const budgets = [
   { id: 'under-50', label: 'Under $50', test: (min: number) => min < 50 },
@@ -74,11 +75,18 @@ const ideas = [...giftIdeas]
     <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-gifts>
       {ideas.map((g) => (
         <li data-sport={g.kit} data-budget={g.budget} class="gift-card">
-          <article class="relative h-full flex flex-col rounded-[1.5rem] border-2 border-ink bg-card overflow-hidden transition-transform duration-300 hover:-rotate-1 hover:-translate-y-1" style={`--c:${g.kitData.color}`}>
+          <article class="group relative h-full flex flex-col rounded-[1.5rem] border-2 border-ink bg-card overflow-hidden transition-transform duration-300 hover:-rotate-1 hover:-translate-y-1" style={`--c:${g.kitData.color}`}>
             <div class="relative px-6 pt-6 pb-5 border-b-2 border-dashed border-ink/25" style={`background:${g.kitData.color}`}>
-              <span class="absolute right-5 top-5 size-5 rounded-full bg-paper border-2 border-ink" aria-hidden="true"></span>
+              <span class="absolute left-1/2 -translate-x-1/2 top-3 size-4 rounded-full bg-paper border-2 border-ink" aria-hidden="true"></span>
               <p class="tag">{g.kitData.sport}</p>
-              <p class="mt-6 font-display font-extrabold text-4xl tracking-tighter tabular-nums">{formatRange(g.min, g.max)}</p>
+              <div class="mt-4 flex items-end justify-between gap-3">
+                <p class="font-display font-extrabold text-4xl tracking-tighter tabular-nums">{formatRange(g.min, g.max)}</p>
+                <div class="flex -space-x-4 shrink-0">
+                  {g.art.map((kind, j) => (
+                    <GearArt kind={kind} fill="#fbfaf6" accent={j % 2 ? '#d8ff36' : g.kitData.color} class="size-16 transition-transform duration-500 group-hover:rotate-6" />
+                  ))}
+                </div>
+              </div>
               {g.featured && (
                 <span class="absolute right-4 -bottom-4 rotate-6 bg-ink text-volt font-display font-extrabold text-sm px-3 py-1.5 rounded-lg">Top gift</span>
               )}

@@ -6,6 +6,8 @@ import ScoreCard from '../components/ScoreCard.astro';
 import KitReceipt from '../components/KitReceipt.astro';
 import PostCard from '../components/PostCard.astro';
 import Marquee from '../components/Marquee.astro';
+import GearArt from '../components/GearArt.astro';
+import { artFor } from '../data/art';
 import type { Kit } from '../data/types';
 import { kits, kitPath, kitTotals, pickOf, scoreOf } from '../data/kits';
 import { getPost } from '../data/posts';
@@ -21,7 +23,6 @@ interface Props {
 
 const { kit } = Astro.props;
 const totals = kitTotals(kit);
-const pickImages = kit.categories.map((c) => pickOf(c.options)).filter((o) => o.img);
 const related = kit.blog.map(getPost);
 const otherKits = kits.filter((k) => k.slug !== kit.slug);
 const url = absolute(kitPath(kit));
@@ -77,14 +78,16 @@ const schema = [
         </div>
 
         <div class="relative">
-          <div class="flex flex-wrap justify-start lg:justify-end gap-3">
-            {pickImages.map((o, i) => (
-              <span
-                class="reveal size-20 sm:size-24 rounded-[1.4rem] bg-white border-2 border-ink grid place-items-center shadow-[4px_4px_0_0_#0d0f0c]"
+          <div class="flex flex-wrap lg:flex-nowrap justify-start lg:justify-end gap-3">
+            {kit.categories.map((c, i) => (
+              <a
+                href={`#${c.id}`}
+                class="reveal size-20 sm:size-24 lg:size-[5.2rem] xl:size-24 shrink-0 rounded-[1.4rem] bg-paper border-2 border-ink grid place-items-center shadow-[4px_4px_0_0_#0d0f0c] hover:-translate-y-1 transition-transform"
                 style={`rotate:${[-6, 4, -3, 7, -5][i % 5]}deg; transition-delay:${i * 80}ms`}
+                title={c.name}
               >
-                <img src={o.img} alt={o.name} class="size-16 sm:size-20 object-contain" loading="eager" decoding="async" />
-              </span>
+                <GearArt kind={artFor(c.id)} fill={kit.color} class="size-14 sm:size-16" title={c.name} />
+              </a>
             ))}
           </div>
           <div class="mt-6 lg:text-right">
@@ -97,7 +100,7 @@ const schema = [
     </section>
 
     <p class="bg-ink text-paper/75 text-[0.82rem] text-center px-4 py-2.5">
-      We may earn a commission if you buy through our links. It never decides what we recommend.
+      We may earn a commission if you buy through our links. It never decides what we recommend.{' '}
       <a href="/how-we-pick" class="text-volt underline underline-offset-2">Here is how we pick.</a>
     </p>
 
@@ -151,7 +154,7 @@ const schema = [
                 <legend class="sr-only">Choose your {c.name.toLowerCase()}</legend>
                 <div class="grid gap-4 md:grid-cols-3">
                   {c.options.map((o) => (
-                    <TierOption option={o} group={`kit-${c.id}`} categoryName={c.id} categoryScore={c.score} />
+                    <TierOption option={o} group={`kit-${c.id}`} categoryName={c.id} categoryScore={c.score} kitColor={kit.color} />
                   ))}
                 </div>
               </fieldset>

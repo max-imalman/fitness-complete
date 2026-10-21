@@ -12,6 +12,7 @@ export const giftIdeas: GiftIdea[] = [
   {
     kit: "gym",
     tier: "mid",
+    art: ["duffel"],
     name: "Under Armour Undeniable 5.0 Duffel",
     min: 45,
     max: 55,
@@ -22,6 +23,7 @@ export const giftIdeas: GiftIdea[] = [
   {
     kit: "pilates",
     tier: "budget",
+    art: ["socks", "bands"],
     name: "Tavi Noir Savvy Grip Socks 3-pack + Fit Simplify Resistance Bands",
     min: 45,
     max: 59,
@@ -31,6 +33,7 @@ export const giftIdeas: GiftIdea[] = [
   {
     kit: "running",
     tier: "budget",
+    art: ["socks", "belt"],
     name: "Balega Hidden Comfort Socks + FlipBelt Classic",
     min: 42,
     max: 50,
@@ -40,6 +43,7 @@ export const giftIdeas: GiftIdea[] = [
   {
     kit: "home-gym",
     tier: "budget",
+    art: ["bands", "roller"],
     name: "Fit Simplify Resistance Bands + TriggerPoint GRID Foam Roller",
     min: 45,
     max: 59,
@@ -49,6 +53,7 @@ export const giftIdeas: GiftIdea[] = [
   {
     kit: "pickleball",
     tier: "budget",
+    art: ["balls", "paddle"],
     name: "Franklin X-40 Outdoor Balls 3-Pack + Niupipo Graphite Paddle",
     min: 40,
     max: 55,
@@ -58,6 +63,7 @@ export const giftIdeas: GiftIdea[] = [
   {
     kit: "gym",
     tier: "budget",
+    art: ["shaker", "towel"],
     name: "BlenderBottle Classic 28oz + Rainleaf Microfiber Gym Towel",
     min: 25,
     max: 32,
@@ -66,6 +72,7 @@ export const giftIdeas: GiftIdea[] = [
   {
     kit: "gym",
     tier: "premium",
+    art: ["duffel"],
     name: "Aer Gym Duffel 3",
     min: 145,
     max: 165,
@@ -74,6 +81,7 @@ export const giftIdeas: GiftIdea[] = [
   {
     kit: "pilates",
     tier: "mid",
+    art: ["mat"],
     name: "Manduka PRO Lite 4.7mm Mat",
     min: 78,
     max: 88,
@@ -84,6 +92,7 @@ export const giftIdeas: GiftIdea[] = [
   {
     kit: "pilates",
     tier: "premium",
+    art: ["mat", "socks"],
     name: "Lululemon The Mat 5mm + Alo Yoga Warrior Socks",
     min: 126,
     max: 152,
@@ -92,6 +101,7 @@ export const giftIdeas: GiftIdea[] = [
   {
     kit: "running",
     tier: "mid",
+    art: ["shoe"],
     name: "Brooks Ghost 17",
     min: 130,
     max: 140,
@@ -102,6 +112,7 @@ export const giftIdeas: GiftIdea[] = [
   {
     kit: "running",
     tier: "premium",
+    art: ["shoe"],
     name: "HOKA Clifton 10",
     min: 145,
     max: 160,
@@ -110,6 +121,7 @@ export const giftIdeas: GiftIdea[] = [
   {
     kit: "home-gym",
     tier: "mid",
+    art: ["roller", "pullup"],
     name: "TriggerPoint GRID Foam Roller + Perfect Fitness Multi-Gym Doorframe Bar",
     min: 70,
     max: 90,
@@ -118,6 +130,7 @@ export const giftIdeas: GiftIdea[] = [
   {
     kit: "home-gym",
     tier: "premium",
+    art: ["dumbbell"],
     name: "Bowflex Results Series 552 SelectTech Dumbbells",
     min: 280,
     max: 320,
@@ -128,6 +141,7 @@ export const giftIdeas: GiftIdea[] = [
   {
     kit: "pickleball",
     tier: "mid",
+    art: ["paddle"],
     name: "Vatic Pro Prism Flash Paddle",
     min: 80,
     max: 90,
@@ -138,6 +152,7 @@ export const giftIdeas: GiftIdea[] = [
   {
     kit: "pickleball",
     tier: "premium",
+    art: ["paddle"],
     name: "Honolulu J2NF Paddle",
     min: 195,
     max: 210,
