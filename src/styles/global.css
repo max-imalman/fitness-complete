@@ -161,6 +161,34 @@
   .prose h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 800; margin-top: 2.2em; line-height: 1.05; }
   .prose a { font-weight: 600; text-decoration: underline; text-decoration-color: var(--color-volt-dim); text-decoration-thickness: 3px; text-underline-offset: 3px; }
   .prose a:hover { background: var(--color-volt); text-decoration-color: transparent; }
+  .prose strong { font-weight: 700; color: var(--color-ink); }
+  .prose ol, .prose ul { padding-left: 0; list-style: none; }
+  .prose ol { counter-reset: step; }
+  .prose ol > li {
+    counter-increment: step;
+    position: relative;
+    padding: 1.1rem 1.25rem 1.1rem 4.2rem;
+    border: 2px solid var(--color-ink);
+    border-radius: 1.1rem;
+    background: var(--color-card);
+  }
+  .prose ol > li + li { margin-top: 0.75rem; }
+  .prose ol > li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 1.1rem;
+    top: 1rem;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.8rem;
+    line-height: 1;
+    color: var(--kit-color, var(--color-ink));
+    -webkit-text-stroke: 1.5px var(--color-ink);
+  }
+  .prose ul > li { position: relative; padding-left: 1.4rem; }
+  .prose ul > li + li { margin-top: 0.4rem; }
+  .prose ul > li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 0.5rem; height: 0.5rem; border-radius: 999px; background: var(--color-ink); }
+  .prose .sources { font-size: 0.92rem; color: var(--color-muted); }
   .prose p.closing {
     margin-top: 2.5em;
     padding: 1.5rem 1.75rem;

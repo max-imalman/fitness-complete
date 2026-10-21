@@ -11,7 +11,7 @@ import { artFor } from '../data/art';
 import type { Kit } from '../data/types';
 import { kits, kitPath, kitTotals, pickOf, scoreOf } from '../data/kits';
 import { getPost } from '../data/posts';
-import { formatPrice } from '../lib/links';
+import { formatPrice, type Placement } from '../lib/links';
 import { absolute, organization } from '../lib/seo';
 
 export const getStaticPaths = (() =>
@@ -154,7 +154,7 @@ const schema = [
                 <legend class="sr-only">Choose your {c.name.toLowerCase()}</legend>
                 <div class="grid gap-4 md:grid-cols-3">
                   {c.options.map((o) => (
-                    <TierOption option={o} group={`kit-${c.id}`} categoryName={c.id} categoryScore={c.score} kitColor={kit.color} />
+                    <TierOption option={o} group={`kit-${c.id}`} categoryName={c.id} categoryScore={c.score} kitColor={kit.color} placement={kit.slug as Placement} />
                   ))}
                 </div>
               </fieldset>

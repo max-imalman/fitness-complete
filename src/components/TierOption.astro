@@ -1,7 +1,7 @@
 ---
 import type { Option, Score } from '../data/types';
 import { scoreOf, scoreTotal, tierLabel } from '../data/kits';
-import { affiliateUrl, formatPrice, outboundRel, retailerName } from '../lib/links';
+import { affiliateUrl, formatPrice, outboundRel, retailerName, type Placement } from '../lib/links';
 import { artFor, tierColors } from '../data/art';
 import GearArt from './GearArt.astro';
 
@@ -11,12 +11,13 @@ interface Props {
   categoryName: string;
   categoryScore?: Score;
   kitColor: string;
+  placement: Placement;
 }
 
-const { option, group, categoryName, categoryScore, kitColor } = Astro.props;
+const { option, group, categoryName, categoryScore, kitColor, placement } = Astro.props;
 const colors = tierColors({ color: kitColor }, option.tier);
 const score = scoreOf(option, categoryScore);
-const href = affiliateUrl(option.url);
+const href = affiliateUrl(option.url, placement);
 const retailer = retailerName(option.url);
 const isPick = option.tier === 'pick';
 ---

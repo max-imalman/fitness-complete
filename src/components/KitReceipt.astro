@@ -1,7 +1,7 @@
 ---
 import type { Kit } from '../data/types';
 import { kitTotals, pickOf } from '../data/kits';
-import { affiliateUrl, formatPrice, outboundRel, retailerName } from '../lib/links';
+import { affiliateUrl, formatPrice, outboundRel, retailerName, type Placement } from '../lib/links';
 
 interface Props {
   kit: Kit;
@@ -12,7 +12,7 @@ const totals = kitTotals(kit);
 // Server render the default state (our picks) so the receipt is complete without JavaScript.
 const lines = kit.categories.map((c) => {
   const o = pickOf(c.options);
-  return { id: c.id, category: c.name, name: o.name, price: o.price, url: affiliateUrl(o.url), retailer: retailerName(o.url) };
+  return { id: c.id, category: c.name, name: o.name, price: o.price, url: affiliateUrl(o.url, kit.slug as Placement), retailer: retailerName(o.url) };
 });
 ---
 <aside

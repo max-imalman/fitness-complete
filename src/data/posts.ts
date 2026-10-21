@@ -2,6 +2,14 @@ import type { Post } from './types';
 
 export const posts: Post[] = [
   {
+    slug: 'new-year-gym-plan',
+    title: "Starting the Gym in January: A 30 Day Plan That Outlasts Quitter's Day",
+    description: 'Most resolutions fade by mid January. A realistic first month for gym beginners, built on what research says about habits.',
+    kit: 'gym',
+    published: '2026-10-21',
+    readMinutes: 4,
+  },
+  {
     slug: 'what-to-bring-to-the-gym-first-day',
     title: 'What to Bring to the Gym on Your First Day',
     description: 'A short, honest list. No overcomplicating it.',
